@@ -8,7 +8,7 @@ namespace AlphaDebuger
     public class FilterButtonScript : MonoBehaviour
     {
         [SerializeField]
-        private LogType type;
+        private LogType type = LogType.Log;
 
         private void Awake()
         {

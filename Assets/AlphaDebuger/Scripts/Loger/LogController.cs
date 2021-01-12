@@ -7,26 +7,26 @@ namespace AlphaDebuger
 {
     public class LogController : MonoBehaviour
     {
-        public static LogController instance;
+        public static LogController instance = null;
 
         public delegate void D_MessageResive();
         public static event D_MessageResive E_MesageResive;
 
         [SerializeField]
-        private GameObject logContent;
+        private GameObject logContent = null;
 
         [SerializeField]
-        private Text traceText;
+        private Text traceText = null;
 
         [SerializeField]
-        private Text LogCountText;
+        private Text LogCountText = null;
         [SerializeField]
-        private Text WarningCountText;
+        private Text WarningCountText = null;
         [SerializeField]
-        private Text ErrorCountText;
+        private Text ErrorCountText = null;
 
         [SerializeField]
-        private GameObject slotPrefab;
+        private GameObject slotPrefab = null;
 
         private HashSet<LogItem> items = new HashSet<LogItem>();
         private HashSet<LogSlot> slots = new HashSet<LogSlot>();

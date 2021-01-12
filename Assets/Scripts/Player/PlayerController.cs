@@ -11,6 +11,11 @@ namespace Player
 
         private int currentLine = 1;
 
+        private float lineSize = 6.5f;
+
+        private bool canMoveLeft = true;
+        private bool canMoveRight = true;
+
 #if UNITY_EDITOR
         [SerializeField]
         private bool left;
@@ -55,35 +60,60 @@ namespace Player
             {
                 if (left)
                 {
-                    MoveLeft();
+                    StopCoroutine(MoveRight());
+                    StartCoroutine(MoveLeft());
                     left = false;
                 }
                 if (right)
                 {
-                    MoveRight();
+                    StopCoroutine(MoveLeft());
+                    StartCoroutine(MoveRight());
                     right = false;
                 }
-
-
+                
                 phase = TouchPhase.Stationary;
             }
 #endif
         }
 
-        private void MoveLeft()
+        private IEnumerator MoveLeft()
         {
             if(currentLine > 0)
             {
+                canMoveLeft = false;
                 --currentLine;
+                while(transform.position.z != MapManager.instance.lineShifts[currentLine])
+                {
+                    transform.Rotate(Vector3.up, (Mathf.Sin(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) - 0.5f) * -10 / MapManager.instance.currentSpeed);
+
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), 
+                        Time.deltaTime * MapManager.instance.currentSpeed / 3 * (Mathf.Cos(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) + 1));
+                    yield return new WaitForEndOfFrame();
+                }
+                canMoveLeft = true;
+
+                transform.rotation = new Quaternion();
                 transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }
 
-        private void MoveRight()
+        private IEnumerator MoveRight()
         {
             if (currentLine < MapManager.instance.lineShifts.Length - 1)
             {
+                canMoveRight = false;
                 ++currentLine;
+                while (transform.position.z != MapManager.instance.lineShifts[currentLine])
+                {
+                    transform.Rotate(Vector3.up, (Mathf.Sin(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) - 0.5f) * 10 / MapManager.instance.currentSpeed);
+
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]),
+                        Time.deltaTime * MapManager.instance.currentSpeed / 3 * (Mathf.Cos(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) + 1));
+                    yield return new WaitForEndOfFrame();
+                }
+                canMoveRight = true;
+
+                transform.rotation = new Quaternion();
                 transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }

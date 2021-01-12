@@ -7,7 +7,7 @@ namespace AlphaDebuger
     public class OpenDebugerButton : MonoBehaviour
     {
         [SerializeField]
-        private int index;
+        private int index = 0;
 
         public void ClickAction()
         {

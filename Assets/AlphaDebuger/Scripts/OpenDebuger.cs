@@ -12,7 +12,7 @@ namespace AlphaDebuger
         private List<bool> checks = new List<bool>();
 
         [SerializeField]
-        private GameObject passwordCanvas;
+        private GameObject passwordCanvas = null;
 
         private void Awake()
         {

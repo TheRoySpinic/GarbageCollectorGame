@@ -8,14 +8,14 @@ namespace AlphaDebuger
     public class PinCodeChecker : MonoBehaviour
     {
         [SerializeField]
-        private string pincode;
+        private string pincode = "1001";
         private string enterCode = "";
 
         [SerializeField]
-        private Text text;
+        private Text text = null;
 
         [SerializeField]
-        private GameObject canvas;
+        private GameObject canvas = null;
 
         private void Awake()
         {

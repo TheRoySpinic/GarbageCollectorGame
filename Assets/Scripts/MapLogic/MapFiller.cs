@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,19 +7,20 @@ namespace Map
 {
     public class MapFiller : MonoBehaviour
     {
+        public static Action E_CreateSegment;
         [SerializeField]
-        private GameObject playerCar;
+        private GameObject playerCar = null;
 
         [Header("Map objects"), Space]
-        [SerializeField]
-        private GameObject segmentPrefab;
+        //[SerializeField]
+        //private GameObject segmentPrefab = null;
 
         [SerializeField]
-        private List<GameObject> activeSegments;
+        private List<GameObject> activeSegments = new List<GameObject>();
 
         [Header("Setup"), Space]
         [SerializeField]
-        private float segmentSizeStep = 10;
+        private float nextSegmentSizeStep = 10;
         [SerializeField]
         private float minSegmentDestroyDistance = 10;
         [SerializeField]
@@ -55,19 +57,14 @@ namespace Map
         private void CreateMapSegment()
         {
             GameObject segment = Instantiate(GetNextSegment(), transform);
-            if (UnityEngine.Random.Range(0, 1f) > 0.7f)
-            {
-                MapSegment mapSegment = segment.GetComponent<MapSegment>();
-                mapSegment.haveBaricade[UnityEngine.Random.Range(0, 3)] = true;
-                mapSegment.UpdateBaricade();
-            }
-            segment.transform.localPosition = new Vector3(activeSegments[activeSegments.Count - 1].transform.localPosition.x + segmentSizeStep, segment.transform.localPosition.y, segment.transform.localPosition.z);
+            segment.transform.localPosition = new Vector3(activeSegments[activeSegments.Count - 1].transform.localPosition.x + nextSegmentSizeStep, segment.transform.localPosition.y, segment.transform.localPosition.z);
             activeSegments.Add(segment);
+            E_CreateSegment?.Invoke();
         }
 
         private GameObject GetNextSegment()
         {
-            return segmentPrefab;
+            return MapManager.instance.GetNextSegment(out nextSegmentSizeStep);
         }
     }
 }

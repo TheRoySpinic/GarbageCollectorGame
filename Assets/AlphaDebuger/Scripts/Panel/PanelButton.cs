@@ -7,7 +7,7 @@ namespace AlphaDebuger
     public class PanelButton : MonoBehaviour
     {
         [SerializeField]
-        private ECanvasType type;
+        private ECanvasType type = ECanvasType.LOGER;
 
         public void ClickAction()
         {

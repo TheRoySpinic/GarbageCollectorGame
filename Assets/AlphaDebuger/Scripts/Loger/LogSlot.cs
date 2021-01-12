@@ -6,20 +6,20 @@ namespace AlphaDebuger
     public class LogSlot : MonoBehaviour
     {
         [HideInInspector]
-        public string outputLog;
+        public string outputLog = null;
         [HideInInspector]
-        public string stack;
+        public string stack = null;
         [HideInInspector]
-        public LogType type;
+        public LogType type = LogType.Log;
         [HideInInspector]
-        public int count;
+        public int count = 0;
 
         [SerializeField]
-        private Text message;
+        private Text message = null;
         [SerializeField]
-        private Text countText;
+        private Text countText = null;
         [SerializeField]
-        private Image icon;
+        private Image icon = null;
 
         public void SetData(string output, string stack, LogType type)
         {

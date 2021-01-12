@@ -54,8 +54,8 @@ namespace AlphaDebuger
         [System.Serializable]
         class Canvases
         {
-            public ECanvasType type;
-            public GameObject canvas;
+            public ECanvasType type = ECanvasType.LOGER;
+            public GameObject canvas = null;
         }
     }
 
