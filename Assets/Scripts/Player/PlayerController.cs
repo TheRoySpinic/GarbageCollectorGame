@@ -11,17 +11,19 @@ namespace Player
 
         private int currentLine = 1;
 
-        private float lineSize = 6.5f;
-
         private bool canMoveLeft = true;
         private bool canMoveRight = true;
 
-#if UNITY_EDITOR
         [SerializeField]
-        private bool left;
+        private AnimationCurve turnCurve = null;
         [SerializeField]
-        private bool right;
+        private AnimationCurve rotationCurve = null;
+        [SerializeField]
+        private AnimationCurve speedCurve = null;
 
+#if UNITY_EDITOR
+        private bool left;
+        private bool right;
         private TouchPhase phase;
 #endif
         private void Update()
@@ -78,20 +80,18 @@ namespace Player
 
         private IEnumerator MoveLeft()
         {
-            if(currentLine > 0)
+            if(currentLine > 0 && canMoveLeft)
             {
-                canMoveLeft = false;
+                canMoveRight = false;
+                Vector3 target = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
                 --currentLine;
                 while(transform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    transform.Rotate(Vector3.up, (Mathf.Sin(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) - 0.5f) * -10 / MapManager.instance.currentSpeed);
-
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), 
-                        Time.deltaTime * MapManager.instance.currentSpeed / 3 * (Mathf.Cos(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) + 1));
+                    transform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(transform.position, target)), -turnCurve.Evaluate(Vector3.Distance(transform.position, target)), 0);
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(transform.position, target)));
                     yield return new WaitForEndOfFrame();
                 }
-                canMoveLeft = true;
-
+                canMoveRight = true;
                 transform.rotation = new Quaternion();
                 transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
@@ -99,20 +99,19 @@ namespace Player
 
         private IEnumerator MoveRight()
         {
-            if (currentLine < MapManager.instance.lineShifts.Length - 1)
+            if (currentLine < MapManager.instance.lineShifts.Length - 1 && canMoveRight)
             {
-                canMoveRight = false;
+                canMoveLeft = false;
+                Vector3 target = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
                 ++currentLine;
                 while (transform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    transform.Rotate(Vector3.up, (Mathf.Sin(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) - 0.5f) * 10 / MapManager.instance.currentSpeed);
-
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]),
-                        Time.deltaTime * MapManager.instance.currentSpeed / 3 * (Mathf.Cos(Mathf.Abs(transform.position.z - MapManager.instance.lineShifts[currentLine]) / lineSize) + 1));
+                    transform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(transform.position, target)), turnCurve.Evaluate(Vector3.Distance(transform.position, target)), 0);
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(transform.position, target)));
                     yield return new WaitForEndOfFrame();
                 }
-                canMoveRight = true;
 
+                canMoveLeft = true;
                 transform.rotation = new Quaternion();
                 transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
