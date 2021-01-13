@@ -20,6 +20,13 @@ namespace Player
         private AnimationCurve rotationCurve = null;
         [SerializeField]
         private AnimationCurve speedCurve = null;
+        [SerializeField]
+        private AnimationCurve cameraTurnCurve = null;
+
+        [SerializeField]
+        private GameObject car = null;
+        [SerializeField]
+        private new GameObject camera = null;
 
 #if UNITY_EDITOR
         private bool left;
@@ -32,20 +39,22 @@ namespace Player
             {
                 Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
-                if (touchPosition.y < Screen.height / 2)
+                if (touchPosition.y < Screen.height / 3)
                 {
                     if (touchPosition.x < Screen.width / 2)
                     {
-                        MoveLeft();
+
+                        StopCoroutine(MoveRight());
+                        StartCoroutine(MoveLeft());
                     }
                     else
                     {
-                        MoveRight();
+                        StopCoroutine(MoveLeft());
+                        StartCoroutine(MoveRight());
                     }
                 }
             }
 #if UNITY_EDITOR
-
             if(Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
             {
                 left = Input.GetAxis("Horizontal") < 0;
@@ -64,13 +73,11 @@ namespace Player
                 {
                     StopCoroutine(MoveRight());
                     StartCoroutine(MoveLeft());
-                    left = false;
                 }
                 if (right)
                 {
                     StopCoroutine(MoveLeft());
                     StartCoroutine(MoveRight());
-                    right = false;
                 }
                 
                 phase = TouchPhase.Stationary;
@@ -78,22 +85,33 @@ namespace Player
 #endif
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            //other.gameObject.GetComponent<Rigidbody>().AddForce((Vector3.right + Vector3.up) * UnityEngine.Random.Range(30,40), ForceMode.VelocityChange);
+        }
+
         private IEnumerator MoveLeft()
         {
             if(currentLine > 0 && canMoveLeft)
             {
                 canMoveRight = false;
-                Vector3 target = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                Vector3 target = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
                 --currentLine;
-                while(transform.position.z != MapManager.instance.lineShifts[currentLine])
+                while(car.transform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    transform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(transform.position, target)), -turnCurve.Evaluate(Vector3.Distance(transform.position, target)), 0);
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(transform.position, target)));
+                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, -cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
+                    car.transform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), -turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
+                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
                     yield return new WaitForEndOfFrame();
                 }
                 canMoveRight = true;
-                transform.rotation = new Quaternion();
-                transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                car.transform.rotation = new Quaternion();
+                car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }
 
@@ -102,18 +120,19 @@ namespace Player
             if (currentLine < MapManager.instance.lineShifts.Length - 1 && canMoveRight)
             {
                 canMoveLeft = false;
-                Vector3 target = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                Vector3 target = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
                 ++currentLine;
-                while (transform.position.z != MapManager.instance.lineShifts[currentLine])
+                while (car.transform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    transform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(transform.position, target)), turnCurve.Evaluate(Vector3.Distance(transform.position, target)), 0);
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(transform.position, target)));
+                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
+                    car.transform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
+                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
                     yield return new WaitForEndOfFrame();
                 }
 
                 canMoveLeft = true;
-                transform.rotation = new Quaternion();
-                transform.position = new Vector3(transform.position.x, transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                car.transform.rotation = new Quaternion();
+                car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }
     }
