@@ -10,15 +10,22 @@ namespace Map
 
         [SerializeField]
         private Vector3 speed = new Vector3();
-        
-        private void Update()
+
+        private new Rigidbody rigidbody = null;
+
+        private void Awake()
         {
-            if(speed.x != -MapManager.instance.currentSpeed)
+            rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            if(speed.x != MapManager.instance.currentSpeed)
             {
-                speed.x = -MapManager.instance.currentSpeed;
+                speed.x = MapManager.instance.currentSpeed;
             }
 
-            transform.Translate(speed * Time.deltaTime);
+            rigidbody.MovePosition(speed * Time.fixedTime);
         }
 
         private static void UpdateSpeed(Vector3 newSpeed)
