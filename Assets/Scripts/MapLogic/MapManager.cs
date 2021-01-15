@@ -10,7 +10,6 @@ namespace Map
         public const int LINE_COUNT = 3;
 
         public int currentDifficulty = 0;
-        public float currentSpeed = 0;
 
         public static MapManager instance = null;
 

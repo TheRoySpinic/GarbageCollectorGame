@@ -33,8 +33,11 @@ namespace Player
 
         public void TakeDamage(int damage)
         {
-            if (!isTakeDamage) return;
-
+            if (!isTakeDamage)
+            {
+                Debug.LogWarning("[HealthManager] isTakeDamage false!");
+                return;
+            }
             health -= damage;
             E_UpdateHealth?.Invoke(health);
 

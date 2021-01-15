@@ -23,12 +23,7 @@ namespace Map
 
         private void FixedUpdate()
         {
-            if (Player.HealthManager.isAlive && speed.x != MapManager.instance.currentSpeed)
-            {
-                speed.x = MapManager.instance.currentSpeed;
-            }
-
-            rigidbody.MovePosition(speed * Time.fixedTime);
+            rigidbody.MovePosition(transform.position + (speed * Time.deltaTime));
         }
 
         private static void UpdateSpeed(Vector3 newSpeed)
