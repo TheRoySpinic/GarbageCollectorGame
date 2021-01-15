@@ -33,6 +33,7 @@ namespace Player
         private bool right;
         private TouchPhase phase;
 #endif
+
         private void Update()
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -83,21 +84,6 @@ namespace Player
                 phase = TouchPhase.Stationary;
             }
 #endif
-        }
-
-        public bool TakeDamage(float damage)
-        {
-            return false;
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            //other.gameObject.GetComponent<Rigidbody>().AddForce((Vector3.right + Vector3.up) * UnityEngine.Random.Range(30,40), ForceMode.VelocityChange);
         }
 
         private IEnumerator MoveLeft()

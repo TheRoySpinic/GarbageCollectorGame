@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7672973054942406943}
   - component: {fileID: -5223333025690965627}
   - component: {fileID: 1942659190839343196}
+  - component: {fileID: -2340123420589400181}
   m_Layer: 0
   m_Name: traffic_barrier
   m_TagString: Untagged
@@ -112,3 +113,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2340123420589400181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177160502927149258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce63b82d9815bda48a269a29229151ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

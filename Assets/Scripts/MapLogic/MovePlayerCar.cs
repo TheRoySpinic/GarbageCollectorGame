@@ -4,23 +4,26 @@ using UnityEngine;
 
 namespace Map
 {
-    public class MoveMap : MonoBehaviour
+    public class MovePlayerCar : MonoBehaviour
     {
-        private static MoveMap instance = null;
+        private static MovePlayerCar instance = null;
 
         [SerializeField]
         private Vector3 speed = new Vector3();
 
         private new Rigidbody rigidbody = null;
 
+        private float stopSpeed = 0.02f;
+
         private void Awake()
         {
+            instance = this;
             rigidbody = GetComponent<Rigidbody>();
         }
 
         private void FixedUpdate()
         {
-            if(speed.x != MapManager.instance.currentSpeed)
+            if (Player.HealthManager.isAlive && speed.x != MapManager.instance.currentSpeed)
             {
                 speed.x = MapManager.instance.currentSpeed;
             }
