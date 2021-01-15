@@ -85,6 +85,11 @@ namespace Player
 #endif
         }
 
+        public bool TakeDamage(float damage)
+        {
+            return false;
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
 
