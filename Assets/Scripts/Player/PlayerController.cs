@@ -36,6 +36,9 @@ namespace Player
 
         private void Update()
         {
+            if (!HealthManager.isAlive)
+                return;
+
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;

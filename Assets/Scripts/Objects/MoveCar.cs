@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCar : MonoBehaviour
+namespace Map
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoveCar : MonoBehaviour
     {
-        
-    }
+        [SerializeField]
+        private Vector3 speed = new Vector3();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private new Rigidbody rigidbody = null;
+
+        private void Awake()
+        {
+            rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
+        {
+            rigidbody.MovePosition(transform.position + (speed * Time.deltaTime));
+        }
     }
 }
