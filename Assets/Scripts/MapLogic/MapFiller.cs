@@ -12,9 +12,6 @@ namespace Map
         private GameObject playerCar = null;
 
         [Header("Map objects"), Space]
-        //[SerializeField]
-        //private GameObject segmentPrefab = null;
-
         [SerializeField]
         private List<GameObject> activeSegments = new List<GameObject>();
 
