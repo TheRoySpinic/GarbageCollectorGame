@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4262258740986720029}
   - component: {fileID: 903339148253733048}
   - component: {fileID: 3129361149759247474}
+  - component: {fileID: 4806948844412784356}
+  - component: {fileID: 655723118418166828}
   m_Layer: 0
   m_Name: bush_corner
   m_TagString: Untagged
@@ -81,3 +83,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4806948844412784356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489521232307647911}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.188046, y: 2.203703, z: 6.3322225}
+  m_Center: {x: -1.7729113, y: 0.9611625, z: 1.8178685}
+--- !u!54 &655723118418166828
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489521232307647911}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
