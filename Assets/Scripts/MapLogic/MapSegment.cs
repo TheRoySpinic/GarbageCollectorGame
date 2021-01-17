@@ -6,6 +6,6 @@ namespace Map
 {
     public class MapSegment : MonoBehaviour
     {
-
+        public float prefabSize = 30;
     }
 }

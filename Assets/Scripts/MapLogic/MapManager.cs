@@ -34,7 +34,7 @@ namespace Map
                 FillQueue();
             }
 
-            size = GetSegmentSizeByDifficulty(currentDifficulty);
+            size = segmentQueue.Peek().GetComponent<MapSegment>().prefabSize;
             return segmentQueue.Dequeue();
         }
 
@@ -77,11 +77,6 @@ namespace Map
                 ++currentDifficulty;
         }
 
-        private float GetSegmentSizeByDifficulty(int difficulty)
-        {
-            return GetSegmentsByDifficulty(difficulty).segmentSize;
-        }
-
         private MapSegmentDifficulty GetSegmentsByDifficulty(int difficulty)
         {
             return Array.Find<MapSegmentDifficulty>(segments, (segment) => { return segment.segmentDifficulty == difficulty; });
@@ -94,7 +89,6 @@ namespace Map
             public int segmentDifficulty = 0;
             public int minSectorSize = 40;
             public int maxSectorSize = 50;
-            public float segmentSize = 10;
             [Header("Prefabs")]
             public GameObject[] segmentPrefabs = null;
         }

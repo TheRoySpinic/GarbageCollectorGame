@@ -767,6 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3526327897084669515}
   - component: {fileID: 4455039402270111835}
+  - component: {fileID: 6884515988881067524}
   m_Layer: 0
   m_Name: Clear_RoadSegment
   m_TagString: Untagged
@@ -805,6 +806,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30, y: 1, z: 20}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!114 &6884515988881067524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4304271529186194673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fe3596db6b99f4d8daa8da48fc98c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSize: 30
 --- !u!1 &4549963604409872213
 GameObject:
   m_ObjectHideFlags: 0
