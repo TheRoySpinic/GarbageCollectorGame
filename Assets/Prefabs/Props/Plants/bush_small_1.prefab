@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4411667564241850790}
   - component: {fileID: 763008103463558659}
   - component: {fileID: 3274759706347858633}
-  - component: {fileID: -2760291474605212781}
-  - component: {fileID: 2916190671091327437}
   m_Layer: 0
   m_Name: bush_small_1
   m_TagString: Untagged
@@ -83,32 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-2760291474605212781
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923397142694054684}
-  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5688759, y: 2.185117, z: 3.2767706}
-  m_Center: {x: -0.19872868, y: 1.0254792, z: 0.07559967}
---- !u!54 &2916190671091327437
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923397142694054684}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
