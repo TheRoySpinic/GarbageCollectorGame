@@ -985,6 +985,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBalance:
     startSpeed: {x: 20, y: 0, z: 0}
+  mapBalance:
+    garbageSpawnsConfig:
+    - garbageType: 0
+      spawnChange: 0.3
+    - garbageType: 1
+      spawnChange: 0.6
+    - garbageType: 2
+      spawnChange: 0.1
 --- !u!4 &1625051562
 Transform:
   m_ObjectHideFlags: 0

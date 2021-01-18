@@ -8,9 +8,9 @@ namespace Design
     public class Randomizer : MonoBehaviour
     {
         [SerializeField]
-        private DesignObjectOneFrom[] oneFrom;
+        private DesignObjectOneFrom[] oneFrom = null;
         [SerializeField]
-        private DesignObjectBetvenTwo[] betvenTwo;
+        private DesignObjectBetvenTwo[] betvenTwo =  null;
 
         private void Awake()
         {
@@ -46,18 +46,18 @@ namespace Design
         private class DesignObjectOneFrom
         {
             public string name = "";
-            public GameObject[] objects;
+            public GameObject[] objects = null;
         }
 
         [Serializable]
         private class DesignObjectBetvenTwo
         {
-            public GameObject A;
+            public GameObject A = null;
             [Range(0,1f)]
-            public float change_A;
-            public GameObject B;
+            public float change_A = 0;
+            public GameObject B = null;
             [Range(0,1f)]
-            public float change_B;
+            public float change_B = 0;
         }
     }
 }

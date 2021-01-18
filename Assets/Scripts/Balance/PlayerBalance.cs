@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerBalance
+namespace Balance
 {
-    public Vector3 startSpeed = new Vector3();
+    [System.Serializable]
+    public class PlayerBalance
+    {
+        public Vector3 startSpeed = new Vector3();
+    }
 }
