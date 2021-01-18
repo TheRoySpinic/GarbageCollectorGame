@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Balance;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,8 +49,8 @@ namespace Target
                 if (data.garbageType != GarbageType.NONE)
                 {
 
-                    int reward = Array.Find<Balance.MapBalance.GarbageConfig>(Balance.GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == data.garbageType; });
-                    rewardSum += data.count * 
+                    int reward = Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == data.garbageType; }).baseReward;
+                    rewardSum += data.count * reward;
                 }
             }
 
