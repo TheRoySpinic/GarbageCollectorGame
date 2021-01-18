@@ -10,12 +10,15 @@ namespace Target
     {
         public static TargetManager instance = null;
 
+        public static Action<int> E_CollectGarbage;
+
         [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
         [SerializeField]
         private float grabPercent = 0;
 
-
+        private int garbageCount = 0;
+        private int allCount = 0;
         private void Awake()
         {
             if (instance == null)
@@ -28,6 +31,18 @@ namespace Target
                 instance = null;
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.tag.Equals("Garbage"))
+            {
+                AddGarbage(other.gameObject.GetComponent<Garbage>().garbageType);
+                ++garbageCount;
+                AddAllCount();
+                Destroy(other.gameObject);
+                E_CollectGarbage?.Invoke(garbageCount);
+            }
+        }
+
         public void AddGarbage(GarbageType type)
         {
             foreach(GarbageData data in garbageData)
@@ -38,6 +53,12 @@ namespace Target
                     break;
                 }
             }
+        }
+
+        public void AddAllCount()
+        {
+            ++allCount;
+            grabPercent = (float) garbageCount / (float) allCount;
         }
 
         public void CalculateReward()
