@@ -34,7 +34,7 @@ namespace HUD
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed);
         }
 
-        private void OpenMenu()
+        public void OpenMenu()
         {
             PlayerController.enableInput = false;
             MovePlayerCar.SetSpeed(Vector3.zero);
