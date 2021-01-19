@@ -100,7 +100,7 @@ namespace Player
                 {
                     camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, -cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
                     car.transform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), -turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
-                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
+                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)) * Time.deltaTime);
                     yield return new WaitForEndOfFrame();
                 }
                 canMoveRight = true;
@@ -120,7 +120,7 @@ namespace Player
                 {
                     camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
                     car.transform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
-                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
+                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target))* Time.deltaTime);
                     yield return new WaitForEndOfFrame();
                 }
 
