@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Map;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,19 @@ namespace Target
     public class Garbage : MonoBehaviour
     {
         public GarbageType garbageType;
-
+        [HideInInspector]
         public bool isActive = true;
+
+        [SerializeField]
+        private GameObject[] particles = null;
+
+        private void Awake()
+        {
+            foreach (GameObject o in particles)
+            {
+                o.SetActive(false);
+            }
+        }
 
         private void Update()
         {
@@ -23,6 +35,12 @@ namespace Target
         public void HideEffect()
         {
             isActive = false;
+            foreach(GameObject o in particles)
+            {
+                o.SetActive(true);
+                o.transform.SetParent(transform.parent);
+            }
+
             StartCoroutine(Hide());
         }
 
