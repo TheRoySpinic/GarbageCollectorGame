@@ -53,13 +53,16 @@ MonoBehaviour:
   oneFrom:
   - name: 1
     objects:
-    - {fileID: 1470447443787629360}
-    - {fileID: 5951826581839328558}
     - {fileID: 1261731493437986789}
+    - {fileID: 2767525519249876921}
+  - name: 2
+    objects:
+    - {fileID: 5951826581839328558}
+    - {fileID: 4139906264321252951}
+  - name: 3
+    objects:
     - {fileID: 592424517870294135}
     - {fileID: 3688772847229089677}
-    - {fileID: 4139906264321252951}
-    - {fileID: 2767525519249876921}
   betvenTwo: []
 --- !u!1001 &358562991801182502
 PrefabInstance:
@@ -322,12 +325,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e52a4798bc635f43af6ef63655a7dc6, type: 3}
---- !u!1 &1470447443787629360 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4392451087211430415, guid: 6e52a4798bc635f43af6ef63655a7dc6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2926507243095703871}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2243853111941110154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4016874766025906357, guid: 6e52a4798bc635f43af6ef63655a7dc6,
