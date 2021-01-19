@@ -7,7 +7,7 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public static bool enableInput;
+        public static bool enableInput = false;
 
         private int currentLine = 1;
 

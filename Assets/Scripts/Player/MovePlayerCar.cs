@@ -18,7 +18,10 @@ namespace Player
         private float stopSpeed = 0.02f;
 
         [SerializeField]
-        private float accelerationSpeed = 0.01f;
+        private float fromZeroAccelerationSpeed = 0.01f;
+
+        [SerializeField]
+        private float accelerationSpeed = 0.001f;
 
         private new Rigidbody rigidbody = null;
 
@@ -30,16 +33,19 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if(!Player.HealthManager.isAlive)
+            if(!HealthManager.isAlive)
             {
                 currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, stopSpeed);
             }
             else if (currentSpeed != targetSpeed)
             {
-                currentSpeed = Vector3.Lerp(currentSpeed, targetSpeed, accelerationSpeed);
+                currentSpeed = Vector3.Lerp(currentSpeed, targetSpeed, fromZeroAccelerationSpeed);
             }
 
             rigidbody.MovePosition(transform.position + (currentSpeed * Time.deltaTime));
+
+            if(PlayerController.enableInput)
+                currentSpeed.Set(currentSpeed.x + accelerationSpeed, currentSpeed.y, currentSpeed.z);
         }
 
         public static void SetSpeed(Vector3 newSpeed)

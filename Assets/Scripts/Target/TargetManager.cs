@@ -35,10 +35,14 @@ namespace Target
         {
             if(other.gameObject.tag.Equals("Garbage"))
             {
-                AddGarbage(other.gameObject.GetComponent<Garbage>().garbageType);
+                Garbage garbage = other.gameObject.GetComponent<Garbage>();
+                if (!garbage.isActive)
+                    return;
+                AddGarbage(garbage.garbageType);
+                garbage.isActive = false;
                 ++garbageCount;
                 AddAllCount();
-                Destroy(other.gameObject);
+                garbage.HideEffect();
                 E_CollectGarbage?.Invoke(garbageCount);
             }
         }
