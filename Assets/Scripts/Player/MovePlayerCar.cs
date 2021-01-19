@@ -45,7 +45,7 @@ namespace Player
             rigidbody.MovePosition(transform.position + (currentSpeed * Time.deltaTime));
 
             if(PlayerController.enableInput)
-                currentSpeed.Set(currentSpeed.x + accelerationSpeed, currentSpeed.y, currentSpeed.z);
+                targetSpeed.Set(targetSpeed.x + accelerationSpeed, targetSpeed.y, targetSpeed.z);
         }
 
         public static void SetSpeed(Vector3 newSpeed)

@@ -1,4 +1,5 @@
 ﻿using Balance;
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +30,14 @@ namespace HUD
         public void PlayGameAction()
         {
             ScreensManager.ShowGameHud();
-            Player.MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed);
+            PlayerController.enableInput = true;
+            MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed);
         }
 
         private void OpenMenu()
         {
+            PlayerController.enableInput = false;
+            MovePlayerCar.SetSpeed(Vector3.zero);
             ScreensManager.ShowMenuHud();
         }
     }

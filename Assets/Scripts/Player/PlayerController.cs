@@ -36,7 +36,7 @@ namespace Player
 
         private void Update()
         {
-            if (!HealthManager.isAlive)
+            if (!HealthManager.isAlive || !enableInput)
                 return;
 
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
