@@ -22,7 +22,7 @@ namespace Design
                     o.SetActive(false);
                 }
 
-                int index = UnityEngine.Random.Range(0, one.objects.Length - 1);
+                int index = UnityEngine.Random.Range(0, one.objects.Length);
 
                 one.objects[index].SetActive(true);
             }
