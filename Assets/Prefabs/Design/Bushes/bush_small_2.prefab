@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6715609711252794397}
   - component: {fileID: 8851354727664982231}
   - component: {fileID: -1878348263218264734}
+  - component: {fileID: 7598891130478612022}
   m_Layer: 0
   m_Name: bush_small_2
   m_TagString: Untagged
@@ -96,6 +97,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0312529, y: 1.8581587, z: 1.6858505}
   m_Center: {x: 0.03313884, y: 0.92685694, z: 0.06164092}
+--- !u!114 &7598891130478612022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7050007303648295170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43b29b68f1ab374aa4bd7683a18928b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 4822747174359293994}
+  singleActive: 1
 --- !u!1001 &979872157757504696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,7 +127,7 @@ PrefabInstance:
     - target: {fileID: 5595709635546270520, guid: 781098b6af5e0e249bcff4f60d40f44a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: 2.058
       objectReference: {fileID: 0}
     - target: {fileID: 5595709635546270520, guid: 781098b6af5e0e249bcff4f60d40f44a,
         type: 3}
@@ -198,6 +214,12 @@ PrefabInstance:
 --- !u!4 &4629349454029862784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5595709635546270520, guid: 781098b6af5e0e249bcff4f60d40f44a,
+    type: 3}
+  m_PrefabInstance: {fileID: 979872157757504696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4822747174359293994 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5725451208028200082, guid: 781098b6af5e0e249bcff4f60d40f44a,
     type: 3}
   m_PrefabInstance: {fileID: 979872157757504696}
   m_PrefabAsset: {fileID: 0}
