@@ -18,10 +18,9 @@ namespace Design
 
         private void Awake()
         {
-            Debug.Log(1);
             while(content.transform.childCount > 0)
             {
-                DestroyImmediate(content.transform.GetChild(0));
+                DestroyImmediate(content.transform.GetChild(0).gameObject);
             }
 
             if(oneFrom.Length > 0)

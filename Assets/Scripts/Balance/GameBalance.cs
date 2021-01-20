@@ -28,12 +28,18 @@ namespace Balance
 
         public static PlayerBalance GetPlayerBalance()
         {
-            return instance.playerBalance;
+            if(instance != null)
+                return instance.playerBalance;
+
+            return null;
         }
 
         public static MapBalance GetMapBalance()
         {
-            return instance.mapBalance;
+            if (instance != null)
+                return instance.mapBalance;
+
+            return null;
         }
     }
 }

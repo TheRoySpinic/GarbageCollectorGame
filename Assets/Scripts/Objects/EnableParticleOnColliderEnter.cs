@@ -22,13 +22,13 @@ namespace Design
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (active)
+            if (active && collision.gameObject.tag.Equals("Player"))
             {
                 foreach (ParticleSystem particle in particles)
                 {
-                    particle.gameObject.SetActive(false);
+                    particle.gameObject.SetActive(true);
                     particle.Play();
                 }
 

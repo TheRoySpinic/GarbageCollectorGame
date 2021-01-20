@@ -14,6 +14,12 @@ namespace Design
 
         private void Awake()
         {
+            if(GameBalance.instance == null)
+            {
+                Debug.Log("Game balance instance is not set!");
+                return;
+            }
+
             foreach(Spot spot in spots)
             {
                 if (UnityEngine.Random.Range(0, 1f) < Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, 

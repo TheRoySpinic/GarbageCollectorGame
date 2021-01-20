@@ -118,6 +118,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4089822555581905768, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 562227446354424401, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -176,9 +181,25 @@ PrefabInstance:
     - target: {fileID: 902618020442958059, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
         type: 3}
       propertyPath: m_Name
-      value: CenterBaricade_2_RoadSegment Variant
+      value: CenterBaricade_2_RoadSegment Variant Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1183709561961691238, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6820954743444157900, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851417304739025692, guid: cc1b2396d936cfa4aad8dfab29ea53dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 89802499569440768, guid: cc1b2396d936cfa4aad8dfab29ea53dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cc1b2396d936cfa4aad8dfab29ea53dd, type: 3}
 --- !u!4 &5402593398492418470 stripped
 Transform:
