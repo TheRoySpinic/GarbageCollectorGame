@@ -1084,6 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1320465329090672077}
+  - component: {fileID: 587558847034320697}
   m_Layer: 0
   m_Name: Garbages
   m_TagString: Untagged
@@ -1105,6 +1106,22 @@ Transform:
   m_Father: {fileID: 6802560466882428474}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587558847034320697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036400818974553691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e309942ee3bfc064c8a8b1e4beaaf9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spots:
+  - garbageType: 1
+    garbage:
+    - {fileID: 3036400818974553691}
 --- !u!1 &3498987843738239108
 GameObject:
   m_ObjectHideFlags: 0
