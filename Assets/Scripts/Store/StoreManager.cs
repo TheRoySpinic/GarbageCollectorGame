@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Design;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace Store
         private static int _gold = 0;
         public static int gold { get { return _gold; } private set { _gold = value; PlayerPrefs.SetInt("gold", value); E_GoldUpdate?.Invoke(); } }
 
+        //[SerializeField]
+        //private Colorset[] colorsets = null;
 
         private void Awake()
         {
@@ -28,6 +31,15 @@ namespace Store
         {
             if (instance.Equals(this))
                 instance = null;
+        }
+
+
+        [Serializable]
+        private class Colorset
+        {
+            public EColorsetType colorset = EColorsetType.DEFAULT;
+            public Sprite albedo = null;
+
         }
     }
 }
