@@ -14,6 +14,9 @@ namespace HUD
         [SerializeField]
         private GameObject menuHud = null;
 
+        [SerializeField]
+        private GameObject colorsetStore = null;
+
         private List<GameObject> activeScreens = new List<GameObject>();
 
         private void Awake()
@@ -52,6 +55,19 @@ namespace HUD
         {
             instance.menuHud.SetActive(false);
             instance.activeScreens.Remove(instance.menuHud);
+        }
+
+        public static void ShowColorsetStore()
+        {
+            HideAllActiveScreens();
+            instance.colorsetStore.SetActive(true);
+            instance.activeScreens.Add(instance.colorsetStore);
+        }
+
+        public static void HideColorsetStore()
+        {
+            instance.colorsetStore.SetActive(false);
+            instance.activeScreens.Remove(instance.colorsetStore);
         }
 
         public static void HideAllActiveScreens()
