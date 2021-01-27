@@ -1,23 +1,19 @@
-﻿using Design;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Store
+namespace Store.Colorset
 {
-    public class StoreManager : MonoBehaviour
+    public class ColorsetStoreManager : MonoBehaviour
     {
         private const string PLAYERPREFS_PLAYER_COLORSETS_FIELD = "player_colorsets";
 
-        public static StoreManager instance = null;
+        public static ColorsetStoreManager instance = null;
 
-        public static Action E_GoldUpdate;
         public static Action E_PlayerColorsetUpdate;
         public static Action E_PlayerColorsetsLoaded;
 
-        private static int _gold = 0;
-        public static int gold { get { return _gold; } private set { _gold = value; PlayerPrefs.SetInt("gold", value); E_GoldUpdate?.Invoke(); } }
 
         [SerializeField]
         private Colorset[] colorsets = null;
@@ -29,9 +25,6 @@ namespace Store
         {
             if (instance == null)
                 instance = this;
-
-            _gold = PlayerPrefs.GetInt("gold");
-            E_GoldUpdate?.Invoke();
             
             if(LoadPlayerColorsets())
                 E_PlayerColorsetsLoaded?.Invoke();
@@ -51,6 +44,11 @@ namespace Store
         public int GetColorsetCost(EColorsetType colorsetType)
         {
             return Array.Find(colorsets, (c) => { return c.colorset == colorsetType; }).cost;
+        }
+
+        public EColorsetType GetActivePlayerColorset()
+        {
+            return playerColorsets.activeColorset;
         }
 
 

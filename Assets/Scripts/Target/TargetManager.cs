@@ -1,4 +1,5 @@
 ﻿using Balance;
+using Store;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Target
     {
         public static TargetManager instance = null;
 
-        public static Action<int> E_CollectGarbage;
+        public static Action<GarbageType> E_CollectGarbage;
 
         [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
@@ -43,7 +44,7 @@ namespace Target
                 ++garbageCount;
                 AddAllCount();
                 garbage.HideEffect();
-                E_CollectGarbage?.Invoke(garbageCount);
+                E_CollectGarbage?.Invoke(garbage.garbageType);
             }
         }
 
@@ -80,6 +81,14 @@ namespace Target
             }
 
 
+        }
+
+        public void AddReward(GarbageType garbageType)
+        {
+            int reward = 0;
+            reward = Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == garbageType; }).baseReward;
+
+            MasterStoreManager.gold += reward;
         }
 
 
