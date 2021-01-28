@@ -25,7 +25,18 @@ namespace Store
 
         public void AddGold(int toAdd)
         {
+            gold += toAdd;
+        }
 
+        public bool SubstractGold(int toSustract)
+        {
+            if(gold >= toSustract)
+            {
+                gold = gold - toSustract;
+                return true;
+            }
+
+            return false;
         }
     }
 }

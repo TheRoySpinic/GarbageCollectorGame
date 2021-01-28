@@ -15,7 +15,13 @@ namespace HUD
         private GameObject menuHud = null;
 
         [SerializeField]
+        private GameObject garage = null;
+
+        [SerializeField]
         private GameObject colorsetStore = null;
+
+        [SerializeField]
+        private GameObject buyStore = null;
 
         private List<GameObject> activeScreens = new List<GameObject>();
 
@@ -68,6 +74,32 @@ namespace HUD
         {
             instance.colorsetStore.SetActive(false);
             instance.activeScreens.Remove(instance.colorsetStore);
+        }
+
+        public static void ShowBuyStore()
+        {
+            HideAllActiveScreens();
+            instance.buyStore.SetActive(true);
+            instance.activeScreens.Add(instance.buyStore);
+        }
+
+        public static void HideBuyStore()
+        {
+            instance.buyStore.SetActive(false);
+            instance.activeScreens.Remove(instance.buyStore);
+        }
+
+        public static void ShowGarage()
+        {
+            HideAllActiveScreens();
+            instance.garage.SetActive(true);
+            instance.activeScreens.Add(instance.garage);
+        }
+
+        public static void HideGarage()
+        {
+            instance.garage.SetActive(false);
+            instance.activeScreens.Remove(instance.garage);
         }
 
         public static void HideAllActiveScreens()

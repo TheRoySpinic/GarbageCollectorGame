@@ -66,29 +66,12 @@ namespace Target
             grabPercent = (float) garbageCount / (float) allCount;
         }
 
-        public void CalculateReward()
-        {
-            float rewardSum = 0;
-
-            foreach (GarbageData data in garbageData)
-            {
-                if (data.garbageType != GarbageType.NONE)
-                {
-
-                    int reward = Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == data.garbageType; }).baseReward;
-                    rewardSum += data.count * reward;
-                }
-            }
-
-
-        }
-
         public void AddReward(GarbageType garbageType)
         {
             int reward = 0;
             reward = Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == garbageType; }).baseReward;
 
-            MasterStoreManager.gold += reward;
+            MasterStoreManager.instance.AddGold(reward);
         }
 
 
