@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,13 @@ namespace HUD
     public class ScreensManager : MonoBehaviour
     {
         public static ScreensManager instance;
+
+        public static event Action E_ShowGameHud;
+        public static event Action E_ShowMenuHud;
+        public static event Action E_ShowGarage;
+        public static event Action E_ShowColorsetStore;
+        public static event Action E_ShowBuyStore;
+        public static event Action E_UpdateActiveScreen;
 
         [SerializeField]
         private GameObject gameHud = null;
@@ -42,6 +50,8 @@ namespace HUD
             HideAllActiveScreens();
             instance.gameHud.SetActive(true);
             instance.activeScreens.Add(instance.gameHud);
+            E_ShowGameHud?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
         }
 
         public static void HideGameHud()
@@ -55,6 +65,8 @@ namespace HUD
             HideAllActiveScreens();
             instance.menuHud.SetActive(true);
             instance.activeScreens.Add(instance.menuHud);
+            E_ShowMenuHud?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
         }
 
         public static void HideMenuHud()
@@ -68,6 +80,8 @@ namespace HUD
             HideAllActiveScreens();
             instance.colorsetStore.SetActive(true);
             instance.activeScreens.Add(instance.colorsetStore);
+            E_ShowColorsetStore?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
         }
 
         public static void HideColorsetStore()
@@ -81,6 +95,8 @@ namespace HUD
             HideAllActiveScreens();
             instance.buyStore.SetActive(true);
             instance.activeScreens.Add(instance.buyStore);
+            E_ShowBuyStore?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
         }
 
         public static void HideBuyStore()
@@ -94,6 +110,8 @@ namespace HUD
             HideAllActiveScreens();
             instance.garage.SetActive(true);
             instance.activeScreens.Add(instance.garage);
+            E_ShowGarage?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
         }
 
         public static void HideGarage()

@@ -9,7 +9,7 @@ namespace Store
     {
         public static MasterStoreManager instance = null;
 
-        public static Action E_GoldUpdate;
+        public static event Action E_GoldUpdate;
 
         private static int _gold = 0;
         public static int gold { get { return _gold; } private set { _gold = value; PlayerPrefs.SetInt("gold", value); E_GoldUpdate?.Invoke(); } }

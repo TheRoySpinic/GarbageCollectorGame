@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Store.Colorset
+namespace Store.Colorsets
 {
     public class LoadColorset : MonoBehaviour
     {
@@ -10,6 +10,10 @@ namespace Store.Colorset
 
         [SerializeField]
         private Material material = null;
+
+        [Header("Light")]
+        [SerializeField]
+        private ColorsetLighting[] colorsets = null;
 
         private void Awake()
         {
@@ -21,6 +25,8 @@ namespace Store.Colorset
 
             ColorsetStoreManager.E_PlayerColorsetUpdate -= LoadActiveColorset;
             ColorsetStoreManager.E_PlayerColorsetUpdate += LoadActiveColorset;
+
+            LoadActiveColorset();
         }
 
         private void OnDestroy()
@@ -37,11 +43,33 @@ namespace Store.Colorset
             SetMainTexture(
             ColorsetStoreManager.instance.GetColorsetMainTexture(ColorsetStoreManager.instance.GetActivePlayerColorset())
             );
+            SetActiveLight(ColorsetStoreManager.instance.GetActivePlayerColorset());
         }
 
-        public void SetMainTexture(Texture texture)
+        private void SetMainTexture(Texture texture)
         {
             material.SetTexture("_MainTex", texture);
+        }
+
+        private void SetActiveLight(EColorsetType type)
+        {
+            foreach(ColorsetLighting lighting in colorsets)
+            {
+                lighting.light.SetActive(false);
+            }
+
+            foreach(ColorsetLighting lighting in colorsets)
+            {
+                if(lighting.colorsetType == type)
+                    lighting.light.SetActive(true);
+            }
+        }
+
+        [System.Serializable]
+        private class ColorsetLighting
+        {
+            public EColorsetType colorsetType = EColorsetType.NONE;
+            public GameObject light = null;
         }
     }
 }

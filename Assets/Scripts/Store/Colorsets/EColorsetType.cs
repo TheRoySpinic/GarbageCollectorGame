@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Store.Colorset
+namespace Store.Colorsets
 {
     public enum EColorsetType
     {
+        NONE,
         DEFAULT,
         COLD,
         DRY,
         FALL,
-        WINTER
+        WINTER,
+        DEFAULT_NIGHT
     }
 }

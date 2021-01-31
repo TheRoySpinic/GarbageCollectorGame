@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Store.Colorset
+namespace Store.Colorsets
 {
     public class ColorsetStoreManager : MonoBehaviour
     {
@@ -11,12 +11,12 @@ namespace Store.Colorset
 
         public static ColorsetStoreManager instance = null;
 
-        public static Action E_PlayerColorsetUpdate;
-        public static Action E_PlayerColorsetsLoaded;
+        public static event Action E_PlayerColorsetUpdate;
+        public static event Action E_PlayerColorsetsLoaded;
 
 
         [SerializeField]
-        private Colorset[] colorsets = null;
+        private ColorsetData[] colorsets = null;
 
         [SerializeField]
         private PlayerColorsets playerColorsets = new PlayerColorsets();
@@ -36,14 +36,22 @@ namespace Store.Colorset
                 instance = null;
         }
         
+        public void StoreButtonClickAction(EColorsetType colorsetType)
+        {
+            if(IsOpenColorset(colorsetType))
+            {
+                SetActiveColorset(colorsetType);
+                return;
+            }
+            else
+            {
+                OpenColorset(colorsetType);
+            }
+        }
+
         public Texture GetColorsetMainTexture(EColorsetType colorsetType)
         {
             return Array.Find(colorsets, (c) => { return c.colorset == colorsetType; }).maintTexture;
-        }
-        
-        public int GetColorsetCost(EColorsetType colorsetType)
-        {
-            return Array.Find(colorsets, (c) => { return c.colorset == colorsetType; }).cost;
         }
 
         public EColorsetType GetActivePlayerColorset()
@@ -51,6 +59,55 @@ namespace Store.Colorset
             return playerColorsets.activeColorset;
         }
 
+        public List<ColorsetData> GetColorsetsData()
+        {
+            List<ColorsetData> list = new List<ColorsetData>();
+            list.AddRange(colorsets);
+            return list;
+        }
+
+        public bool IsOpenColorset(EColorsetType type)
+        {
+            foreach(EColorsetType colorset in playerColorsets.colorsets)
+            {
+                if (colorset == type)
+                    return true;
+            }
+            return false;
+        }
+
+        public bool SetActiveColorset(EColorsetType type)
+        {
+            if(playerColorsets.activeColorset == type)
+            return false;
+
+            if (playerColorsets.colorsets.Contains(type))
+            {
+                playerColorsets.activeColorset = type;
+                SavePlayerColorsets();
+                E_PlayerColorsetUpdate?.Invoke();
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool OpenColorset(EColorsetType type)
+        {
+            if(!playerColorsets.colorsets.Contains(type))
+            {
+                int cost = Array.Find(colorsets, (c) => { return c.colorset == type; }).cost;
+
+                if(MasterStoreManager.instance.SubstractGold(cost))
+                {
+                    playerColorsets.colorsets.Add(type);
+                    SavePlayerColorsets();
+                    E_PlayerColorsetUpdate?.Invoke();
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void SavePlayerColorsets()
         {
@@ -72,15 +129,6 @@ namespace Store.Colorset
         {
             public EColorsetType activeColorset = EColorsetType.DEFAULT;
             public List<EColorsetType> colorsets = new List<EColorsetType>();
-        }
-
-        [Serializable]
-        private class Colorset
-        {
-            public EColorsetType colorset = EColorsetType.DEFAULT;
-            public Texture maintTexture = null;
-            public int cost = 1;
-
         }
     }
 }

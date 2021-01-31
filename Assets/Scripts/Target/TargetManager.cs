@@ -40,12 +40,18 @@ namespace Target
                 if (!garbage.isActive)
                     return;
                 AddGarbage(garbage.garbageType);
+                AddReward(garbage.garbageType);
                 garbage.isActive = false;
                 ++garbageCount;
                 AddAllCount();
                 garbage.HideEffect();
                 E_CollectGarbage?.Invoke(garbage.garbageType);
             }
+        }
+
+        public void StartNewRun()
+        {
+
         }
 
         public void AddGarbage(GarbageType type)
