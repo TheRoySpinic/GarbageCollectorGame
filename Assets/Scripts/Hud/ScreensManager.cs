@@ -17,6 +17,9 @@ namespace HUD
         public static event Action E_UpdateActiveScreen;
 
         [SerializeField]
+        private GameObject tint = null;
+
+        [SerializeField]
         private GameObject gameHud = null;
 
         [SerializeField]
@@ -52,6 +55,8 @@ namespace HUD
             instance.activeScreens.Add(instance.gameHud);
             E_ShowGameHud?.Invoke();
             E_UpdateActiveScreen?.Invoke();
+
+            instance.tint.SetActive(false);
         }
 
         public static void HideGameHud()
@@ -67,12 +72,16 @@ namespace HUD
             instance.activeScreens.Add(instance.menuHud);
             E_ShowMenuHud?.Invoke();
             E_UpdateActiveScreen?.Invoke();
+
+            instance.tint.SetActive(false);
         }
 
         public static void HideMenuHud()
         {
             instance.menuHud.SetActive(false);
             instance.activeScreens.Remove(instance.menuHud);
+
+            instance.tint.SetActive(false);
         }
 
         public static void ShowColorsetStore()
@@ -82,12 +91,16 @@ namespace HUD
             instance.activeScreens.Add(instance.colorsetStore);
             E_ShowColorsetStore?.Invoke();
             E_UpdateActiveScreen?.Invoke();
+
+            instance.tint.SetActive(true);
         }
 
         public static void HideColorsetStore()
         {
             instance.colorsetStore.SetActive(false);
             instance.activeScreens.Remove(instance.colorsetStore);
+
+            instance.tint.SetActive(false);
         }
 
         public static void ShowBuyStore()
@@ -103,6 +116,8 @@ namespace HUD
         {
             instance.buyStore.SetActive(false);
             instance.activeScreens.Remove(instance.buyStore);
+
+            instance.tint.SetActive(false);
         }
 
         public static void ShowGarage()
@@ -112,12 +127,16 @@ namespace HUD
             instance.activeScreens.Add(instance.garage);
             E_ShowGarage?.Invoke();
             E_UpdateActiveScreen?.Invoke();
+
+            instance.tint.SetActive(true);
         }
 
         public static void HideGarage()
         {
             instance.garage.SetActive(false);
             instance.activeScreens.Remove(instance.garage);
+
+            instance.tint.SetActive(false);
         }
 
         public static void HideAllActiveScreens()
@@ -126,6 +145,9 @@ namespace HUD
             {
                 screen.SetActive(false);
             }
+
+            instance.tint.SetActive(false);
+
             instance.activeScreens.Clear();
         }
     }
