@@ -5076,9 +5076,13 @@ MonoBehaviour:
   - -5.5
   segments:
   - name: start
+    scenarioMode: 0
     segmentDifficulty: 0
-    minSectorSize: 40
-    maxSectorSize: 80
+    biomeType: 1
+    minBiomeSize: 40
+    maxBiomeSize: 50
+    betven: []
+    after: []
     segmentPrefabs:
     - {fileID: 6040468451132367597, guid: 13cd4cbbf1b3d6d47be9b1181a4a41b8, type: 3}
     - {fileID: 3571238990193810119, guid: 24917481a5257504cac5efead39398c5, type: 3}

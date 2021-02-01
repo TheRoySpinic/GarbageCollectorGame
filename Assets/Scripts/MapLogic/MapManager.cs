@@ -47,7 +47,7 @@ namespace Map
                 Debug.LogError("[MapManager] Fill queue. SegmentPrefab count is loss that 3!!! Please add more segment prefab. Current difficulty: " + currentDifficulty);
             }
 
-            int segmentSize = UnityEngine.Random.Range(mapSegment.minSectorSize, mapSegment.maxSectorSize);
+            int segmentSize = UnityEngine.Random.Range(mapSegment.minBiomeSize, mapSegment.maxBiomeSize);
 
             int[] indexes = new int[segmentSize];
 
@@ -86,9 +86,15 @@ namespace Map
         private class MapSegmentDifficulty
         {
             public string name = "";
+            public bool scenarioMode = false;
             public int segmentDifficulty = 0;
-            public int minSectorSize = 40;
-            public int maxSectorSize = 50;
+            public EBiomeType biomeType = EBiomeType.DEFAULT;
+            public int minBiomeSize = 40;
+            public int maxBiomeSize = 50;
+
+            [Header("Transfers")]
+            public GameObject[] betven = null;
+            public GameObject[] after = null;
             [Header("Prefabs")]
             public GameObject[] segmentPrefabs = null;
         }
