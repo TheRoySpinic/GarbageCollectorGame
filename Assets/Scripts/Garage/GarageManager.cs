@@ -13,6 +13,8 @@ namespace Garage
 
         [SerializeField]
         private PlayerCarGradeData playerCarGrades = null;
+        
+        private CarGradeConfig gradeConfig = null;
 
         private void Awake()
         {
@@ -32,9 +34,9 @@ namespace Garage
 
         }
 
-        private void GradeLevelUp(EGradeType gradeType, ECarType currentCarType)
+        private void GradeLevelUp(EGradeType gradeType)
         {
-
+            
         }
 
 
@@ -58,11 +60,11 @@ namespace Garage
         private class PlayerCarGradeData
         {
             public ECarType activeCar = ECarType.DEFAULT;
-            public CarGradeData[] ownedCars = new CarGradeData[1];
+            public CarGradePlayerData[] ownedCars = new CarGradePlayerData[1];
         }
 
         [System.Serializable]
-        private class CarGradeData
+        private class CarGradePlayerData
         {
             public ECarType carType = ECarType.DEFAULT;
             public GradeLevel[] grades = null;

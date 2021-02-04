@@ -26,7 +26,7 @@ namespace HUD
         private GameObject menuHud = null;
 
         [SerializeField]
-        private GameObject garage = null;
+        private GameObject[] garage = null;
 
         [SerializeField]
         private GameObject colorsetStore = null;
@@ -123,8 +123,9 @@ namespace HUD
         public static void ShowGarage()
         {
             HideAllActiveScreens();
-            instance.garage.SetActive(true);
-            instance.activeScreens.Add(instance.garage);
+            instance.garage[0].SetActive(true);
+            instance.garage[1].SetActive(true);
+            instance.activeScreens.Add(instance.garage[0]);
             E_ShowGarage?.Invoke();
             E_UpdateActiveScreen?.Invoke();
 
@@ -133,8 +134,9 @@ namespace HUD
 
         public static void HideGarage()
         {
-            instance.garage.SetActive(false);
-            instance.activeScreens.Remove(instance.garage);
+            instance.garage[0].SetActive(false);
+            instance.garage[1].SetActive(false);
+            instance.activeScreens.Remove(instance.garage[0]);
 
             instance.tint.SetActive(false);
         }
@@ -147,6 +149,8 @@ namespace HUD
             }
 
             instance.tint.SetActive(false);
+
+            instance.garage[1].SetActive(false);
 
             instance.activeScreens.Clear();
         }
