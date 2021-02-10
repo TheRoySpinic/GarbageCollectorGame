@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Tools;
 using UnityEngine;
 
 namespace HUD
@@ -20,7 +21,7 @@ namespace HUD
 
         private void UpdateGold()
         {
-            text.text = MasterStoreManager.gold.ToString();
+            text.text = TextFormater.FormatGold(MasterStoreManager.gold);
         }
     }
 }

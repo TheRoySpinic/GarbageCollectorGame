@@ -8,7 +8,7 @@ namespace Garage
     public class CarGradeData
     {
         public ECarType carType = ECarType.NONE;
-        int carCost = 1;
-        GradeData[] grades = null;
+        public int carCost = 1;
+        public GradeData[] grades = null;
     }
 }
