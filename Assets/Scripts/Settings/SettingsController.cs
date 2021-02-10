@@ -6,6 +6,7 @@ public class SettingsController : MonoBehaviour
 {
     private void Awake()
     {
-        QualitySettings.vSyncCount = 1;
+        //QualitySettings.vSyncCount = 1;
+        QualitySettings.maxQueuedFrames = 40;
     }
 }
