@@ -46,7 +46,7 @@ namespace Popups
             if(GarageManager.instance.GetGradeCost(gradeType) > MasterStoreManager.gold)
             {
                 needGold.gameObject.SetActive(true);
-                needGold.text = "Need another: " + TextFormater.FormatGold(MasterStoreManager.gold - GarageManager.instance.GetGradeCost(gradeType));
+                needGold.text = "Need another: " + TextFormater.FormatGold(GarageManager.instance.GetGradeCost(gradeType) - MasterStoreManager.gold);
 
                 cost.color = Color.red;
             }
