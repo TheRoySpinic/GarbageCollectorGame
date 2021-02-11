@@ -2798,7 +2798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.01373291}
+  m_AnchoredPosition: {x: 0, y: -0.013671875}
   m_SizeDelta: {x: 0, y: 0.02746582}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &373348125
@@ -4223,6 +4223,7 @@ GameObject:
   - component: {fileID: 527366335}
   - component: {fileID: 527366334}
   - component: {fileID: 527366333}
+  - component: {fileID: 527366336}
   m_Layer: 5
   m_Name: MenuHud
   m_TagString: Untagged
@@ -4315,6 +4316,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &527366336
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527366331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27cc8eaf90ca83f49ae33e0991386190, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &540125161
 GameObject:
   m_ObjectHideFlags: 0
