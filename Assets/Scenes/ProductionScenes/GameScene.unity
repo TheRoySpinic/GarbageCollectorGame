@@ -5386,28 +5386,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565b82b069ef17e45b08534cd0b208d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBiome: 1
   currentDifficulty: 0
   lineShifts:
   - 5.5
   - 0
   - -5.5
-  segments:
-  - name: start
-    scenarioMode: 0
-    segmentDifficulty: 0
-    biomeType: 1
-    minBiomeSize: 40
-    maxBiomeSize: 50
-    betven: []
-    after: []
+  biomes:
+  - biomeType: 1
     segmentPrefabs:
-    - {fileID: 8704918517578374111, guid: 5b66f0d952dcdc746a0fcd2a13281686, type: 3}
-    - {fileID: 3280226475800950270, guid: ee1be9bb8030bad4cb7f9c5a1f0ea2de, type: 3}
-    - {fileID: 3608327126592133837, guid: e434f1e7f513d43489808590b513c98e, type: 3}
-    - {fileID: 754099067681868252, guid: 3aeeb561c600a404fa42c80690b887b2, type: 3}
-    - {fileID: 1533446237085313903, guid: af5ca00345854004289fee1c290c16d7, type: 3}
-    - {fileID: 8020326240464701105, guid: 82236f699e7ac7641ba16cc7c6046deb, type: 3}
-    - {fileID: 7552137781761466298, guid: fa6faed3dc70b8244ae145f3545b534e, type: 3}
+    - name: 
+      scenarioMode: 0
+      segmentDifficulty: 0
+      minBiomeSize: 0
+      maxBiomeSize: 0
+      before: []
+      after: []
+      segmentPrefabs: []
+  segmentToNextDifficulty: 0
 --- !u!4 &656982112
 Transform:
   m_ObjectHideFlags: 0

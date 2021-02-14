@@ -9,6 +9,10 @@ namespace Map
     {
         public const int LINE_COUNT = 3;
 
+        [SerializeField]
+        public EBiomeType currentBiome = EBiomeType.DEFAULT;
+        private EBiomeType nextBiome = EBiomeType.DEFAULT;
+        [SerializeField]
         public int currentDifficulty = 0;
 
         public static MapManager instance = null;
@@ -17,14 +21,28 @@ namespace Map
 
         [Header("Segments"), Space]
         [SerializeField]
-        private MapSegmentDifficulty[] segments = null;
+        private MapBiome[] biomes = null;
+
+        [SerializeField]
+        private int segmentToNextDifficulty = 2;
 
         private Queue<GameObject> segmentQueue = new Queue<GameObject>();
+
+
+        private int segmentCoplete = 0;
 
         private void Awake()
         {
             if (instance == null)
                 instance = this;
+
+
+            nextBiome = currentBiome;
+        }
+
+        public void ClearData()
+        {
+
         }
 
         public GameObject GetNextSegment(out float size)
@@ -40,9 +58,13 @@ namespace Map
 
         private void FillQueue()
         {
-            MapSegmentDifficulty mapSegment = GetSegmentsByDifficulty(currentDifficulty);
+            currentBiome = nextBiome;
 
-            if(mapSegment.segmentPrefabs.Length < 3)
+            MapBiomeSegment mapSegment = null;
+
+            mapSegment = GetRandomeBiomeSegment(currentBiome);
+
+            if (mapSegment.segmentPrefabs.Length < 3)
             {
                 Debug.LogError("[MapManager] Fill queue. SegmentPrefab count is loss that 3!!! Please add more segment prefab. Current difficulty: " + currentDifficulty);
             }
@@ -51,49 +73,96 @@ namespace Map
 
             int[] indexes = new int[segmentSize];
 
-            for (int i = 0; i < indexes.Length; i++)
+            if(mapSegment.before.Length > 0)
             {
-                if(i < 2)
+                foreach(GameObject o in mapSegment.before)
                 {
-                    indexes[i] = UnityEngine.Random.Range(0, mapSegment.segmentPrefabs.Length);
-                    continue;
+                    segmentQueue.Enqueue(o);
                 }
-
-                int step = 0;
-                while(step < 100)
+            }
+            if (mapSegment.scenarioMode)
+            {
+                foreach(GameObject o in mapSegment.segmentPrefabs)
                 {
-                    indexes[i] = UnityEngine.Random.Range(0, mapSegment.segmentPrefabs.Length);
-                    if(indexes[i] != indexes[i-1] && indexes[i] != indexes[i-2])
+                    segmentQueue.Enqueue(o);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < indexes.Length; i++)
+                {
+                    if (i < 2)
                     {
-                        break;
+                        indexes[i] = UnityEngine.Random.Range(0, mapSegment.segmentPrefabs.Length);
+                        continue;
                     }
-                    step++;
-                }
 
-                segmentQueue.Enqueue(mapSegment.segmentPrefabs[indexes[i]]);
+                    int step = 0;
+                    while (step < 100)
+                    {
+                        indexes[i] = UnityEngine.Random.Range(0, mapSegment.segmentPrefabs.Length);
+                        if (indexes[i] != indexes[i - 1] && indexes[i] != indexes[i - 2])
+                        {
+                            break;
+                        }
+                        step++;
+                    }
+
+                    segmentQueue.Enqueue(mapSegment.segmentPrefabs[indexes[i]]);
+                }
             }
 
-            if (segments.Length - 1 > currentDifficulty)
-                ++currentDifficulty;
+            if (mapSegment.after.Length > 0)
+            {
+                foreach (GameObject o in mapSegment.after)
+                {
+                    segmentQueue.Enqueue(o);
+                }
+            }
+
+            if (biomes.Length > 1)
+            {
+                nextBiome = biomes[UnityEngine.Random.Range(0, biomes.Length)].biomeType;
+            }
         }
 
-        private MapSegmentDifficulty GetSegmentsByDifficulty(int difficulty)
+        private MapBiome GetBiomeSegments(EBiomeType biomeType)
         {
-            return Array.Find<MapSegmentDifficulty>(segments, (segment) => { return segment.segmentDifficulty == difficulty; });
+            return Array.Find(biomes, (b) => { return b.biomeType.Equals(biomeType); });
+        }
+
+        private MapBiomeSegment GetBiomeSegmentByDifficulty(EBiomeType biomeType, int difficulty)
+        {
+            return Array.Find(GetBiomeSegments(biomeType).segmentPrefabs, (s) => { return s.segmentDifficulty == difficulty; });
+        }
+
+        private MapBiomeSegment GetRandomeBiomeSegment(EBiomeType biomeType)
+        {
+            MapBiome biome = GetBiomeSegments(biomeType);
+
+            return biome.segmentPrefabs[UnityEngine.Random.Range(0, biome.segmentPrefabs.Length)];
+        }
+
+
+        [System.Serializable]
+        private class MapBiome
+        {
+            public EBiomeType biomeType = EBiomeType.DEFAULT;
+            [Header("Segments")]
+            public MapBiomeSegment[] segmentPrefabs = null;
         }
 
         [System.Serializable]
-        private class MapSegmentDifficulty
+        private class MapBiomeSegment
         {
             public string name = "";
             public bool scenarioMode = false;
             public int segmentDifficulty = 0;
-            public EBiomeType biomeType = EBiomeType.DEFAULT;
             public int minBiomeSize = 40;
             public int maxBiomeSize = 50;
 
             [Header("Transfers")]
-            public GameObject[] betven = null;
+            public GameObject[] before = null;
             public GameObject[] after = null;
             [Header("Prefabs")]
             public GameObject[] segmentPrefabs = null;
