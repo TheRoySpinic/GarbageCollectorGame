@@ -4230,7 +4230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &527366332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5395,97 +5395,9 @@ MonoBehaviour:
   biomes:
   - biomeType: 1
     segmentPrefabs:
-    - name: Default
+    - name: 
       scenarioMode: 0
       segmentDifficulty: 0
-<<<<<<< HEAD
-      minBiomeSize: 10
-      maxBiomeSize: 20
-      before:
-      - {fileID: 1122796435024143044, guid: 31a57e10eb3a51f4a846c64fdeede572, type: 3}
-      after:
-      - {fileID: 2070314961351854287, guid: ecec41912d3e3af459db2e59fe985c84, type: 3}
-      - {fileID: 1675605328021460227, guid: ccb7a742ea4134743966d9ebb5d4cc9d, type: 3}
-      - {fileID: 3163353169463453633, guid: 2156e60f36853094988f86b9613c0de4, type: 3}
-      - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
-      - {fileID: 6249639018335515258, guid: fc2d2d0b67b802c4aae41f486edb0021, type: 3}
-      segmentPrefabs:
-      - {fileID: 6040468451132367597, guid: 13cd4cbbf1b3d6d47be9b1181a4a41b8, type: 3}
-      - {fileID: 3571238990193810119, guid: 24917481a5257504cac5efead39398c5, type: 3}
-      - {fileID: 902618020442958059, guid: cc1b2396d936cfa4aad8dfab29ea53dd, type: 3}
-      - {fileID: 4425192248702566917, guid: e845083f36dbf7341a4cd96d31e865bb, type: 3}
-      - {fileID: 3957518926710627226, guid: 15fb392fb4d006245aa94f6f4bd62854, type: 3}
-      - {fileID: 268801858286848944, guid: 92b68a74b4765e844a47fa252b798935, type: 3}
-      - {fileID: 8556535944483962233, guid: 06dffc43b670aae4d91e092c439c962a, type: 3}
-      - {fileID: 4998031202166144144, guid: 76c2c5c200978674ebd768b2a54b0088, type: 3}
-      - {fileID: 7667917946054951222, guid: 05ec1f678eb493148966a3bc38124af1, type: 3}
-      - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
-  - biomeType: 2
-    segmentPrefabs:
-    - name: Forest
-      scenarioMode: 0
-      segmentDifficulty: 0
-      minBiomeSize: 10
-      maxBiomeSize: 20
-      before:
-      - {fileID: 6674057828936949760, guid: d45255ff2558eeb489118d02f2111727, type: 3}
-      after:
-      - {fileID: 3108869385824509931, guid: 81de53c7b7633e4409d39b498d7f96a4, type: 3}
-      - {fileID: 1675605328021460227, guid: ccb7a742ea4134743966d9ebb5d4cc9d, type: 3}
-      - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
-      - {fileID: 3163353169463453633, guid: 2156e60f36853094988f86b9613c0de4, type: 3}
-      segmentPrefabs:
-      - {fileID: 1418227571593169665, guid: b5a556a66c0fd2a4f86192daed1092ee, type: 3}
-      - {fileID: 3599247835206865866, guid: b0f13a26272a4a04caf6bf123514e5a3, type: 3}
-      - {fileID: 3697484376709309960, guid: 0ce58996a2e5646449f5041929c57ad6, type: 3}
-      - {fileID: 4101011736196311388, guid: 88d1a95d16bf16b4683bbd3252d6c9f2, type: 3}
-      - {fileID: 1987209154763744226, guid: 09cd8f63687a04b418887c5e2370a676, type: 3}
-      - {fileID: 6938561339601375713, guid: 1ea597f4eede863458cc7f4d905693aa, type: 3}
-      - {fileID: 7868026530792648711, guid: fa0c927c171844b44a1d339458de3e43, type: 3}
-  - biomeType: 4
-    segmentPrefabs:
-    - name: Field
-      scenarioMode: 0
-      segmentDifficulty: 0
-      minBiomeSize: 10
-      maxBiomeSize: 20
-      before:
-      - {fileID: 392097856357389561, guid: d51705f1ca109b541a5f1fa74e00e414, type: 3}
-      after:
-      - {fileID: 3285408786698258406, guid: 3c59965819134b842b43cd436c225e7c, type: 3}
-      - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
-      - {fileID: 3163353169463453633, guid: 2156e60f36853094988f86b9613c0de4, type: 3}
-      - {fileID: 6249639018335515258, guid: fc2d2d0b67b802c4aae41f486edb0021, type: 3}
-      segmentPrefabs:
-      - {fileID: 6500647966314987645, guid: a3fc1fc23d5340246b39914aab0dc748, type: 3}
-      - {fileID: 3436745901307784187, guid: 1020ab5ca9123164cb15bc07c12e4413, type: 3}
-      - {fileID: 725088488839012801, guid: 7103663235385d143bd64115c1254348, type: 3}
-      - {fileID: 3010711707815466537, guid: e6ac96a3f80367d439abf25a9df5c89f, type: 3}
-      - {fileID: 6113313177191485179, guid: 2a3163f877c0d6043bf92300a4ed813d, type: 3}
-      - {fileID: 7087198965148729933, guid: 5936868c02340e14dab154b795ab7161, type: 3}
-  - biomeType: 3
-    segmentPrefabs:
-    - name: Bridge
-      scenarioMode: 0
-      segmentDifficulty: 0
-      minBiomeSize: 10
-      maxBiomeSize: 20
-      before:
-      - {fileID: 8808825250679167500, guid: c75b799b6be59814bbbf0d21019a940f, type: 3}
-      after:
-      - {fileID: 7141660769508911, guid: e4a41f7abc16c674ea920d7fe5ba1e63, type: 3}
-      - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
-      - {fileID: 3163353169463453633, guid: 2156e60f36853094988f86b9613c0de4, type: 3}
-      - {fileID: 1675605328021460227, guid: ccb7a742ea4134743966d9ebb5d4cc9d, type: 3}
-      segmentPrefabs:
-      - {fileID: 8704918517578374111, guid: 5b66f0d952dcdc746a0fcd2a13281686, type: 3}
-      - {fileID: 3280226475800950270, guid: ee1be9bb8030bad4cb7f9c5a1f0ea2de, type: 3}
-      - {fileID: 3608327126592133837, guid: e434f1e7f513d43489808590b513c98e, type: 3}
-      - {fileID: 754099067681868252, guid: 3aeeb561c600a404fa42c80690b887b2, type: 3}
-      - {fileID: 1533446237085313903, guid: af5ca00345854004289fee1c290c16d7, type: 3}
-      - {fileID: 8020326240464701105, guid: 82236f699e7ac7641ba16cc7c6046deb, type: 3}
-      - {fileID: 7552137781761466298, guid: fa6faed3dc70b8244ae145f3545b534e, type: 3}
-=======
       minBiomeSize: 0
       maxBiomeSize: 0
       before: []
@@ -5493,7 +5405,6 @@ MonoBehaviour:
       segmentPrefabs:
       - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
     lineShifts: []
->>>>>>> 529fd5cd65cafb247c45785a548876e64d8b5e93
   segmentToNextDifficulty: 0
 --- !u!4 &656982112
 Transform:
