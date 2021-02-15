@@ -5398,6 +5398,7 @@ MonoBehaviour:
     - name: Default
       scenarioMode: 0
       segmentDifficulty: 0
+<<<<<<< HEAD
       minBiomeSize: 10
       maxBiomeSize: 20
       before:
@@ -5484,6 +5485,14 @@ MonoBehaviour:
       - {fileID: 1533446237085313903, guid: af5ca00345854004289fee1c290c16d7, type: 3}
       - {fileID: 8020326240464701105, guid: 82236f699e7ac7641ba16cc7c6046deb, type: 3}
       - {fileID: 7552137781761466298, guid: fa6faed3dc70b8244ae145f3545b534e, type: 3}
+=======
+      minBiomeSize: 0
+      maxBiomeSize: 0
+      before: []
+      after: []
+      segmentPrefabs: []
+    lineShifts: []
+>>>>>>> 529fd5cd65cafb247c45785a548876e64d8b5e93
   segmentToNextDifficulty: 0
 --- !u!4 &656982112
 Transform:

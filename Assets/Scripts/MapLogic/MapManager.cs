@@ -66,7 +66,8 @@ namespace Map
 
             if (mapSegment.segmentPrefabs.Length < 3)
             {
-                Debug.LogError("[MapManager] Fill queue. SegmentPrefab count is loss that 3!!! Please add more segment prefab. Current difficulty: " + currentDifficulty);
+                Debug.LogError("[MapManager] Fill queue. SegmentPrefab count is loss that 3!!! Please add more segment prefab. Current biome: " + 
+                    currentBiome.ToString() + ", difficulty: " + currentDifficulty);
             }
 
             int segmentSize = UnityEngine.Random.Range(mapSegment.minBiomeSize, mapSegment.maxBiomeSize);
@@ -122,8 +123,18 @@ namespace Map
 
             if (biomes.Length > 1)
             {
-                nextBiome = biomes[UnityEngine.Random.Range(0, biomes.Length)].biomeType;
+                int step = 0;
+                while (currentBiome == nextBiome && step < 100)
+                {
+                    nextBiome = biomes[UnityEngine.Random.Range(0, biomes.Length)].biomeType;
+                    ++step;
+                }
             }
+        }
+
+        private float[] GetBiomeLineShifts(EBiomeType biomeType)
+        {
+            return Array.Find(biomes, (b) => { return b.biomeType.Equals(biomeType); }).lineShifts;
         }
 
         private MapBiome GetBiomeSegments(EBiomeType biomeType)
@@ -150,6 +161,8 @@ namespace Map
             public EBiomeType biomeType = EBiomeType.DEFAULT;
             [Header("Segments")]
             public MapBiomeSegment[] segmentPrefabs = null;
+
+            public float[] lineShifts = null;
         }
 
         [System.Serializable]
