@@ -5395,6 +5395,42 @@ MonoBehaviour:
   biomes:
   - biomeType: 1
     segmentPrefabs:
+    - name: Default
+      scenarioMode: 0
+      segmentDifficulty: 0
+      minBiomeSize: 10
+      maxBiomeSize: 20
+      before: []
+      after: []
+      segmentPrefabs:
+      - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
+    lineShifts: []
+  - biomeType: 1
+    segmentPrefabs:
+    - name: 
+      scenarioMode: 0
+      segmentDifficulty: 0
+      minBiomeSize: 0
+      maxBiomeSize: 0
+      before: []
+      after: []
+      segmentPrefabs:
+      - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
+    lineShifts: []
+  - biomeType: 1
+    segmentPrefabs:
+    - name: 
+      scenarioMode: 0
+      segmentDifficulty: 0
+      minBiomeSize: 0
+      maxBiomeSize: 0
+      before: []
+      after: []
+      segmentPrefabs:
+      - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
+    lineShifts: []
+  - biomeType: 1
+    segmentPrefabs:
     - name: 
       scenarioMode: 0
       segmentDifficulty: 0
