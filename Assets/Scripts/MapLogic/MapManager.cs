@@ -23,13 +23,13 @@ namespace Map
         [SerializeField]
         private MapBiome[] biomes = null;
 
-        [SerializeField]
-        private int segmentToNextDifficulty = 2;
+        //[SerializeField]
+        //private int segmentToNextDifficulty = 2;
 
         private Queue<GameObject> segmentQueue = new Queue<GameObject>();
 
 
-        private int segmentCoplete = 0;
+        //private int segmentCoplete = 0;
 
         private void Awake()
         {
