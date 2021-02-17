@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4c129e0828ed04c4fbb05557b08b1eac
+guid: d7e84a3932249514bb2b03d3138de13e
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,58 +7,88 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car2_wheels_1
+      name: car2_wheels_1.001
     second: {fileID: 2100000, guid: 81896a5d6d02a8a4f8758d3e91d80a19, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car2_wheels_2
+      name: car2_wheels_2.001
     second: {fileID: 2100000, guid: a85b07e9124fc9c468a885a07e2a90e9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car2_wheels_3
+      name: car2_wheels_3.001
     second: {fileID: 2100000, guid: 24a217577273be645974e2ccadefab5a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_container_2
-    second: {fileID: 2100000, guid: 0b9b250f842f1614da6fdcc0cc855139, type: 2}
+      name: car_garbage_1
+    second: {fileID: 2100000, guid: 297818247928af243bb50e83722428fa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_trailer_2_1
-    second: {fileID: 2100000, guid: 8e88574a7017e1644ab7e5d9d3c7258a, type: 2}
+      name: car_garbage_1_2
+    second: {fileID: 2100000, guid: e9b974b552142314c91283020a4fb160, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_2
-    second: {fileID: 2100000, guid: 0b61cd53a69bb144ea19a292b9dcad3c, type: 2}
+      name: car_garbage_2
+    second: {fileID: 2100000, guid: 8c4a7011ee2cd3a44be0eac196ff1a8f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_3
-    second: {fileID: 2100000, guid: 63a54626c84ad7e4095e57cd212a4908, type: 2}
+      name: car_garbage_3_windows
+    second: {fileID: 2100000, guid: 45ceb0c4d12371b49a04e99eb02e8af0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_4
-    second: {fileID: 2100000, guid: f1948b4d6d9e91b40bdb6960b05e07a8, type: 2}
+      name: car_garbage_4
+    second: {fileID: 2100000, guid: 190b3d88e276fa34fb364b9fccc9c69e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_red_emission
+      name: car_garbage_5
+    second: {fileID: 2100000, guid: 2cc307ed23848034ab7b8befb5c9bc8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: car_garbage_6_emission
+    second: {fileID: 2100000, guid: d9873daecbd2b8f4ca4a2d18ab36f8d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: car_garbage_7_emission
     second: {fileID: 2100000, guid: 480738f4c79b3a842ae988d52ec376d5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_white_emission
+      name: car_garbage_8_emission
     second: {fileID: 2100000, guid: daba4e46162b702428de03ef10b96ba2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: car_truck_2_window
-    second: {fileID: 2100000, guid: 1d3b3ce2eda19254ca1e3b566ca47a38, type: 2}
+      name: car_truck_1_mirror
+    second: {fileID: 2100000, guid: 806fe3a6e24872546b10851fa3a46f95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trash_1
+    second: {fileID: 2100000, guid: aa6f148752ca5d54c8853ddb78005130, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trash_2
+    second: {fileID: 2100000, guid: 3351bdf36fd69ea47b92ddb24a6326d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trash_3
+    second: {fileID: 2100000, guid: 8260f3e37407c594dba8a598e5e93549, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: trash_4
+    second: {fileID: 2100000, guid: 0246203acaeed5a49ac6ffbd3c8a27c7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
