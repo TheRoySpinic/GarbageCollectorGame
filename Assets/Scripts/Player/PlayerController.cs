@@ -12,6 +12,7 @@ namespace Player
         public static bool enableInput = false;
 
         private int currentLine = 1;
+        private float targetPos = 0;
 
         private bool canMoveLeft = true;
         private bool canMoveRight = true;
@@ -41,54 +42,76 @@ namespace Player
             if (!HealthManager.isAlive || !enableInput)
                 return;
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (false)
             {
-                Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-
-                if (touchPosition.y < Screen.height / 3)
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
-                    if (touchPosition.x < Screen.width / 2)
-                    {
+                    Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
+                    if (touchPosition.y < Screen.height / 3)
+                    {
+                        if (touchPosition.x < Screen.width / 2)
+                        {
+
+                            StopCoroutine(MoveRight());
+                            StartCoroutine(MoveLeft());
+                        }
+                        else
+                        {
+                            StopCoroutine(MoveLeft());
+                            StartCoroutine(MoveRight());
+                        }
+                    }
+                }
+#if UNITY_EDITOR
+                if (Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
+                {
+                    left = Input.GetAxis("Horizontal") < 0;
+                    right = Input.GetAxis("Horizontal") > 0;
+
+                    phase = TouchPhase.Began;
+                }
+                else if (Input.GetAxis("Horizontal") == 0)
+                {
+                    phase = TouchPhase.Canceled;
+                }
+
+                if (phase == TouchPhase.Began)
+                {
+                    if (left)
+                    {
                         StopCoroutine(MoveRight());
                         StartCoroutine(MoveLeft());
                     }
-                    else
+                    if (right)
                     {
                         StopCoroutine(MoveLeft());
                         StartCoroutine(MoveRight());
                     }
-                }
-            }
-#if UNITY_EDITOR
-            if(Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
-            {
-                left = Input.GetAxis("Horizontal") < 0;
-                right = Input.GetAxis("Horizontal") > 0;
 
-                phase = TouchPhase.Began;
-            }
-            else if (Input.GetAxis("Horizontal") == 0)
-            {
-                phase = TouchPhase.Canceled;
-            }
-
-            if (phase == TouchPhase.Began)
-            {
-                if (left)
-                {
-                    StopCoroutine(MoveRight());
-                    StartCoroutine(MoveLeft());
+                    phase = TouchPhase.Stationary;
                 }
-                if (right)
-                {
-                    StopCoroutine(MoveLeft());
-                    StartCoroutine(MoveRight());
-                }
-                
-                phase = TouchPhase.Stationary;
-            }
 #endif
+            }
+            else
+            {
+                if (Input.touchCount > 0 || Input.GetMouseButton(0))
+                {
+                    Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+
+                    if (touchPosition.y < Screen.height / 2)
+                    {
+                        targetPos = touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f);
+                    }
+                }
+
+                if(car.transform.position.z != targetPos)
+                {
+                    car.transform.position = Vector3.MoveTowards(car.transform.position,
+                        new Vector3(car.transform.position.x, car.transform.position.y, targetPos), 
+                        0.1f);
+                }
+            }
         }
 
         private IEnumerator MoveLeft()
