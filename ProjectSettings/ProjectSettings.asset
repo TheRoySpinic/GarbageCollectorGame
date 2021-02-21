@@ -772,7 +772,13 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Analytics: 1
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 1
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -785,10 +791,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 2490f8cd-7a0a-432a-90b8-47266092c00f
+  cloudProjectId: ab4121ac-da54-41ae-98e0-da1a01a25e2a
   framebufferDepthMemorylessMode: 0
-  projectName: Xyita
-  organizationId: spinogryzzz_unity
+  projectName: Garbage Collector
+  organizationId: vlad981125
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
