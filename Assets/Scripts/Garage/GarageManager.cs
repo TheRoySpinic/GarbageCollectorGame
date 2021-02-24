@@ -14,10 +14,11 @@ namespace Garage
         public static GarageManager instance = null;
 
         public static Action E_GradeUpgrade;
+        public static Action E_ColorUpgrade;
 
 
         [SerializeField]
-        private PlayerCarGradeData playerCarGrades = null;
+        private PlayerCarsData playerCarGrades = null;
         [SerializeField]
         private CarGradeConfig gradeConfig = null;
 
@@ -148,7 +149,7 @@ namespace Garage
         {
             if (PlayerPrefs.GetString(PLAYERPREFS_GRADE_PLAYERDATA_FIELD).Length > 0)
             {
-                playerCarGrades = JsonUtility.FromJson<PlayerCarGradeData>(PlayerPrefs.GetString(PLAYERPREFS_GRADE_PLAYERDATA_FIELD));
+                playerCarGrades = JsonUtility.FromJson<PlayerCarsData>(PlayerPrefs.GetString(PLAYERPREFS_GRADE_PLAYERDATA_FIELD));
                 return true;
             }
             return false;

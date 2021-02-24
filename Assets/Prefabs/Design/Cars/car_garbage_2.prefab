@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 7366449266068921681}
   - component: {fileID: 5878667566300697332}
   - component: {fileID: 8534829580226553406}
+  - component: {fileID: 8524485983474123456}
   m_Layer: 0
   m_Name: car_garbage_2
   m_TagString: Untagged
@@ -260,6 +261,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8524485983474123456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886139641106647019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581c0bfcdef996341ad3098266d6f265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carColors:
+  - brighter: {r: 0, g: 0.5, b: 0.010046244, a: 1}
+    darker: {r: 0, g: 0.3, b: 0.011764706, a: 1}
+  - brighter: {r: 1, g: 0.31399238, b: 0, a: 1}
+    darker: {r: 0.6509434, g: 0.20421754, b: 0, a: 1}
+  - brighter: {r: 0, g: 0.015625, b: 1, a: 1}
+    darker: {r: 0, g: 0.00917485, b: 0.5849056, a: 1}
+  - brighter: {r: 1, g: 0, b: 0, a: 1}
+    darker: {r: 0.603, g: 0, b: 0, a: 1}
 --- !u!1 &8057033072480191113
 GameObject:
   m_ObjectHideFlags: 0
