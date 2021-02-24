@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1632046362531607646}
   - component: {fileID: 1456957131482161495}
   - component: {fileID: 6330517183818174325}
+  - component: {fileID: 8653173511011751677}
+  - component: {fileID: 2965215014489303753}
   m_Layer: 0
   m_Name: box_wooden_2_22
   m_TagString: Untagged
@@ -81,6 +83,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8653173511011751677
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696544630772917834}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2965215014489303753
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696544630772917834}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08490524, y: 0.85121465, z: 0.28674728}
+  m_Center: {x: 0.010243425, y: 0.00020886958, z: -0.0029808134}
 --- !u!1 &1177522858573501404
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +123,8 @@ GameObject:
   - component: {fileID: 1125163860611448971}
   - component: {fileID: 8297754466940554193}
   - component: {fileID: 4958521487718034625}
+  - component: {fileID: 8513269759532981524}
+  - component: {fileID: 5716942537244162135}
   m_Layer: 0
   m_Name: box_wooden_2_12
   m_TagString: Untagged
@@ -162,6 +195,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8513269759532981524
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177522858573501404}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5716942537244162135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177522858573501404}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12541461, y: 0.82782674, z: 0.12541474}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1848029945867007773
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +235,8 @@ GameObject:
   - component: {fileID: 5823413862497168246}
   - component: {fileID: 8271206406961426625}
   - component: {fileID: 4625062102464146329}
+  - component: {fileID: 2313400640583051056}
+  - component: {fileID: 4086323061146262063}
   m_Layer: 0
   m_Name: box_wooden_2_28
   m_TagString: Untagged
@@ -243,6 +307,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2313400640583051056
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848029945867007773}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4086323061146262063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848029945867007773}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84017086, y: 0.0801978, z: 0.2721942}
+  m_Center: {x: -0.00000028312206, y: -0.009763756, z: -0.004147999}
 --- !u!1 &1890450405977630744
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +347,8 @@ GameObject:
   - component: {fileID: 4552987682642706075}
   - component: {fileID: 1925717908315273356}
   - component: {fileID: 703028463086543255}
+  - component: {fileID: 4010224488586457735}
+  - component: {fileID: 2043584388991721962}
   m_Layer: 0
   m_Name: box_wooden_2_3
   m_TagString: Untagged
@@ -324,6 +419,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4010224488586457735
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890450405977630744}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2043584388991721962
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890450405977630744}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17986368, y: 0.17986368, z: 1.2190632}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2406876853792999075
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +459,8 @@ GameObject:
   - component: {fileID: 7947832462457337661}
   - component: {fileID: 6535643278360068445}
   - component: {fileID: 8500026985876752123}
+  - component: {fileID: 6488438175116761330}
+  - component: {fileID: 7281918678791238041}
   m_Layer: 0
   m_Name: box_wooden_2_30
   m_TagString: Untagged
@@ -405,6 +531,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6488438175116761330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406876853792999075}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7281918678791238041
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406876853792999075}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.841805, y: 0.09176862, z: 0.2694497}
+  m_Center: {x: -0.00035765767, y: -0.01002167, z: -0.0034618154}
 --- !u!1 &2876992353578275868
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +571,8 @@ GameObject:
   - component: {fileID: 4392411504649420339}
   - component: {fileID: 2803707446865246402}
   - component: {fileID: 6559388928819892481}
+  - component: {fileID: 1812881038983732168}
+  - component: {fileID: 1404185520059615628}
   m_Layer: 0
   m_Name: box_wooden_2_29
   m_TagString: Untagged
@@ -486,6 +643,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1812881038983732168
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876992353578275868}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1404185520059615628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2876992353578275868}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84135073, y: 0.09682369, z: 0.27299237}
+  m_Center: {x: 0.00020867586, y: -0.010357289, z: -0.002282299}
 --- !u!1 &2907472480829657752
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +683,8 @@ GameObject:
   - component: {fileID: 1817469821474402494}
   - component: {fileID: 1868078403013179675}
   - component: {fileID: 5330431974517002102}
+  - component: {fileID: 4159358438210835753}
+  - component: {fileID: 4234683940490065413}
   m_Layer: 0
   m_Name: box_wooden_2_7
   m_TagString: Untagged
@@ -567,6 +755,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &4159358438210835753
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907472480829657752}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4234683940490065413
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907472480829657752}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84017086, y: 0.07622629, z: 0.27170652}
+  m_Center: {x: 0.00000028312206, y: 0.009825397, z: -0.0039997995}
 --- !u!1 &3141288651360109028
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +795,8 @@ GameObject:
   - component: {fileID: 6726891120641925119}
   - component: {fileID: 4539969013185889619}
   - component: {fileID: 6614633389990551852}
+  - component: {fileID: 6966955136310944030}
+  - component: {fileID: 866052945415551419}
   m_Layer: 0
   m_Name: box_wooden_2_24
   m_TagString: Untagged
@@ -648,6 +867,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6966955136310944030
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141288651360109028}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &866052945415551419
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3141288651360109028}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17986368, y: 0.17986368, z: 1.2190632}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3298200460537285608
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +907,8 @@ GameObject:
   - component: {fileID: 1007420733412437616}
   - component: {fileID: 3587942158389772032}
   - component: {fileID: 8309839997459589306}
+  - component: {fileID: 1275845419554908884}
+  - component: {fileID: 4984072008346849393}
   m_Layer: 0
   m_Name: box_wooden_2_27
   m_TagString: Untagged
@@ -729,6 +979,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1275845419554908884
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298200460537285608}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4984072008346849393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298200460537285608}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.81161046, y: 0.15063715, z: 0.15063731}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3682914614098113213
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +1019,8 @@ GameObject:
   - component: {fileID: 5189932063484300178}
   - component: {fileID: 51337986263112224}
   - component: {fileID: 201754581029655650}
+  - component: {fileID: 7911953836921244477}
+  - component: {fileID: 4790538058704545005}
   m_Layer: 0
   m_Name: box_wooden_2_18
   m_TagString: Untagged
@@ -810,6 +1091,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &7911953836921244477
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682914614098113213}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4790538058704545005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682914614098113213}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27686667, y: 0.8799472, z: 0.09336212}
+  m_Center: {x: 0.002906479, y: 0.00031864643, z: 0.0102204345}
 --- !u!1 &3811272077232498695
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +1131,8 @@ GameObject:
   - component: {fileID: 6496584812303546435}
   - component: {fileID: 9110786535034548948}
   - component: {fileID: 9111315793239247207}
+  - component: {fileID: 3337567158108155664}
+  - component: {fileID: 4688560289736935359}
   m_Layer: 0
   m_Name: box_wooden_2_23
   m_TagString: Untagged
@@ -891,6 +1203,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3337567158108155664
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811272077232498695}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4688560289736935359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811272077232498695}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0626425, y: 0.85002685, z: 0.28595078}
+  m_Center: {x: 0.010018351, y: -0.00000029802322, z: -0.003672421}
 --- !u!1 &3928528560000113732
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +1243,8 @@ GameObject:
   - component: {fileID: 6594682912930701374}
   - component: {fileID: 2688913992786149756}
   - component: {fileID: 2375097043760458463}
+  - component: {fileID: 2909509784677267839}
+  - component: {fileID: 7108196634545685989}
   m_Layer: 0
   m_Name: box_wooden_2_2
   m_TagString: Untagged
@@ -972,6 +1315,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2909509784677267839
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928528560000113732}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7108196634545685989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928528560000113732}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.81161046, y: 0.15063715, z: 0.15063731}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4116644877680645807
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,6 +1355,8 @@ GameObject:
   - component: {fileID: 7398077133251526742}
   - component: {fileID: 8090935516266290638}
   - component: {fileID: 1259084879109301547}
+  - component: {fileID: 3144025985322077156}
+  - component: {fileID: 3641022001020867775}
   m_Layer: 0
   m_Name: box_wooden_2_14
   m_TagString: Untagged
@@ -1053,6 +1427,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3144025985322077156
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116644877680645807}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3641022001020867775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116644877680645807}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08490524, y: 0.85121465, z: 0.28674728}
+  m_Center: {x: 0.010243425, y: 0.00020886958, z: -0.0029808134}
 --- !u!1 &4471569695835456310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1467,8 @@ GameObject:
   - component: {fileID: 3368340757484154081}
   - component: {fileID: 3319035982994620906}
   - component: {fileID: 4759111098983547634}
+  - component: {fileID: 3412665091529041719}
+  - component: {fileID: 8818581051300341737}
   m_Layer: 0
   m_Name: box_wooden_2_5
   m_TagString: Untagged
@@ -1134,6 +1539,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3412665091529041719
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471569695835456310}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &8818581051300341737
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471569695835456310}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.84180534, y: 0.08772521, z: 0.26903683}
+  m_Center: {x: 0.00035770237, y: 0.010072904, z: -0.0033097863}
 --- !u!1 &4542648055036910481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1579,8 @@ GameObject:
   - component: {fileID: 3247332614516058097}
   - component: {fileID: 3678228481367635085}
   - component: {fileID: 1539497972992821404}
+  - component: {fileID: 5894370909533315235}
+  - component: {fileID: 789761215943296686}
   m_Layer: 0
   m_Name: box_wooden_2_17
   m_TagString: Untagged
@@ -1215,6 +1651,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5894370909533315235
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542648055036910481}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &789761215943296686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542648055036910481}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27524388, y: 0.8756155, z: 0.061146155}
+  m_Center: {x: 0.0030789152, y: -0.00000031292439, z: 0.010174735}
 --- !u!1 &4582051511285808812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1691,8 @@ GameObject:
   - component: {fileID: 1356700870664901674}
   - component: {fileID: 67198455690709366}
   - component: {fileID: 7775860915355027938}
+  - component: {fileID: 7811920731081479553}
+  - component: {fileID: 8318600836858640222}
   m_Layer: 0
   m_Name: box_wooden_2_16
   m_TagString: Untagged
@@ -1296,6 +1763,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &7811920731081479553
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4582051511285808812}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &8318600836858640222
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4582051511285808812}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12541461, y: 0.8523974, z: 0.12541474}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4943144898453578781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1803,8 @@ GameObject:
   - component: {fileID: 421665110801135376}
   - component: {fileID: 4267520178829543318}
   - component: {fileID: 487817119493280166}
+  - component: {fileID: 9096228342831380723}
+  - component: {fileID: 7227310186995653633}
   m_Layer: 0
   m_Name: box_wooden_2_26
   m_TagString: Untagged
@@ -1377,6 +1875,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &9096228342831380723
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943144898453578781}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7227310186995653633
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943144898453578781}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17986368, y: 0.17986368, z: 1.2190632}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5434580848148433730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1915,8 @@ GameObject:
   - component: {fileID: 5940597823868975246}
   - component: {fileID: 2216830646621031639}
   - component: {fileID: 5998416305994052312}
+  - component: {fileID: 8229356054951672131}
+  - component: {fileID: 8004869061780091946}
   m_Layer: 0
   m_Name: box_wooden_2_4
   m_TagString: Untagged
@@ -1458,6 +1987,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8229356054951672131
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434580848148433730}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &8004869061780091946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434580848148433730}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.81161046, y: 0.15063715, z: 0.15063731}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5881401197216447369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +2027,8 @@ GameObject:
   - component: {fileID: 8663678583048632733}
   - component: {fileID: 8669415019179731409}
   - component: {fileID: 397376165623614025}
+  - component: {fileID: 236939678998935274}
+  - component: {fileID: 2193090139670304735}
   m_Layer: 0
   m_Name: box_wooden_2_6
   m_TagString: Untagged
@@ -1539,6 +2099,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &236939678998935274
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881401197216447369}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2193090139670304735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881401197216447369}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8413508, y: 0.10076339, z: 0.27368426}
+  m_Center: {x: -0.00020866096, y: 0.010390647, z: -0.002125308}
 --- !u!1 &5942155508817072156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +2139,8 @@ GameObject:
   - component: {fileID: 3122140362087095325}
   - component: {fileID: 3715996425448273}
   - component: {fileID: 4197518755483273334}
+  - component: {fileID: 1597409961584827820}
+  - component: {fileID: 7864020849295651864}
   m_Layer: 0
   m_Name: box_wooden_2_8
   m_TagString: Untagged
@@ -1620,6 +2211,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1597409961584827820
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942155508817072156}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7864020849295651864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942155508817072156}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12541461, y: 0.82782674, z: 0.12541474}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6295298271778641911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,6 +2251,8 @@ GameObject:
   - component: {fileID: 3867560085474212087}
   - component: {fileID: 530717092796642264}
   - component: {fileID: 4838925323743749068}
+  - component: {fileID: 8769656869405227959}
+  - component: {fileID: 1343765198864472347}
   m_Layer: 0
   m_Name: box_wooden_2_9
   m_TagString: Untagged
@@ -1701,6 +2323,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8769656869405227959
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6295298271778641911}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1343765198864472347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6295298271778641911}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27524388, y: 0.8756155, z: 0.0611462}
+  m_Center: {x: -0.0030789152, y: -0.00000031292439, z: -0.010174736}
 --- !u!1 &6333521938296650732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +2363,8 @@ GameObject:
   - component: {fileID: 9103415544963611626}
   - component: {fileID: 6158010414025891480}
   - component: {fileID: 4460549430566225897}
+  - component: {fileID: 6494217886124902679}
+  - component: {fileID: 2159603954590986991}
   m_Layer: 0
   m_Name: box_wooden_2_13
   m_TagString: Untagged
@@ -1782,6 +2435,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6494217886124902679
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333521938296650732}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2159603954590986991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333521938296650732}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0626425, y: 0.85002685, z: 0.28595078}
+  m_Center: {x: 0.010018351, y: -0.00000029802322, z: -0.003672421}
 --- !u!1 &6430630674299154049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +2475,8 @@ GameObject:
   - component: {fileID: 489207332511137515}
   - component: {fileID: 3479940684417596876}
   - component: {fileID: 8955613528421012723}
+  - component: {fileID: 6967524378991880931}
+  - component: {fileID: 4580692326969603086}
   m_Layer: 0
   m_Name: box_wooden_2_11
   m_TagString: Untagged
@@ -1863,6 +2547,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &6967524378991880931
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430630674299154049}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4580692326969603086
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430630674299154049}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27544877, y: 0.8763443, z: 0.07378678}
+  m_Center: {x: -0.0035414249, y: -0.00013265014, z: -0.010022387}
 --- !u!1 &6584955948574504366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +2587,8 @@ GameObject:
   - component: {fileID: 4218197206732031651}
   - component: {fileID: 3272937831123578989}
   - component: {fileID: 4710241274772911582}
+  - component: {fileID: 5159946438083101731}
+  - component: {fileID: 2024118559583234020}
   m_Layer: 0
   m_Name: box_wooden_2_21
   m_TagString: Untagged
@@ -1944,6 +2659,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5159946438083101731
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584955948574504366}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2024118559583234020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584955948574504366}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.073480204, y: 0.8507657, z: 0.2858867}
+  m_Center: {x: 0.010022387, y: -0.00013263524, z: -0.0036591291}
 --- !u!1 &6592826569736288882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +2699,8 @@ GameObject:
   - component: {fileID: 9218091843136067960}
   - component: {fileID: 1174491038158215356}
   - component: {fileID: 1862909442513442417}
+  - component: {fileID: 2301428378255610634}
+  - component: {fileID: 6516597102878210213}
   m_Layer: 0
   m_Name: box_wooden_2_20
   m_TagString: Untagged
@@ -2025,6 +2771,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2301428378255610634
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592826569736288882}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6516597102878210213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592826569736288882}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12541461, y: 0.82782674, z: 0.12541474}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7893750508764082331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,6 +2811,8 @@ GameObject:
   - component: {fileID: 7368068528152461190}
   - component: {fileID: 9034367103617351279}
   - component: {fileID: 1121870575647988041}
+  - component: {fileID: 1462817503490729522}
+  - component: {fileID: 8183523126099210078}
   m_Layer: 0
   m_Name: box_wooden_2_25
   m_TagString: Untagged
@@ -2106,6 +2883,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1462817503490729522
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893750508764082331}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &8183523126099210078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893750508764082331}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.81161046, y: 0.15063715, z: 0.15063731}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8126671810500439654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,6 +2923,8 @@ GameObject:
   - component: {fileID: 8727266233984042161}
   - component: {fileID: 1630385987724569814}
   - component: {fileID: 6113987015828283110}
+  - component: {fileID: 5299985276246897255}
+  - component: {fileID: 5938112455544667952}
   m_Layer: 0
   m_Name: box_wooden_2_10
   m_TagString: Untagged
@@ -2187,6 +2995,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5299985276246897255
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126671810500439654}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5938112455544667952
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126671810500439654}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2784138, y: 0.87994653, z: 0.09784687}
+  m_Center: {x: -0.0038364679, y: 0.00031861663, z: -0.009908911}
 --- !u!1 &8132093290853149967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,6 +3035,8 @@ GameObject:
   - component: {fileID: 7393609991766326125}
   - component: {fileID: 1995426448495480636}
   - component: {fileID: 3478555304484799812}
+  - component: {fileID: 685883435620413775}
+  - component: {fileID: 5818628206448165044}
   m_Layer: 0
   m_Name: box_wooden_2_15
   m_TagString: Untagged
@@ -2268,6 +3107,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &685883435620413775
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132093290853149967}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5818628206448165044
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132093290853149967}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.073480204, y: 0.8507657, z: 0.2858867}
+  m_Center: {x: 0.010022387, y: -0.00013263524, z: -0.0036591291}
 --- !u!1 &8954536830805932847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,6 +3147,8 @@ GameObject:
   - component: {fileID: 6085027305788169338}
   - component: {fileID: 7843567451892563282}
   - component: {fileID: 1669217109968218545}
+  - component: {fileID: 5879151195917317748}
+  - component: {fileID: 873331779158286011}
   m_Layer: 0
   m_Name: box_wooden_2_19
   m_TagString: Untagged
@@ -2349,6 +3219,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5879151195917317748
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954536830805932847}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &873331779158286011
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954536830805932847}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27544874, y: 0.8763443, z: 0.07378681}
+  m_Center: {x: 0.0035414174, y: -0.00013265014, z: 0.010022392}
 --- !u!1 &9104989996652502503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,6 +3259,9 @@ GameObject:
   - component: {fileID: 8435449385697232733}
   - component: {fileID: 4809676248647878904}
   - component: {fileID: 7303589934103444530}
+  - component: {fileID: 5863832507826272909}
+  - component: {fileID: 4841245012389597998}
+  - component: {fileID: 3651012509533090309}
   m_Layer: 0
   m_Name: box_wooden_2
   m_TagString: Untagged
@@ -2459,3 +3361,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5863832507826272909
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104989996652502503}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4841245012389597998
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104989996652502503}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17986368, y: 0.17986368, z: 1.2190632}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3651012509533090309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104989996652502503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce63b82d9815bda48a269a29229151ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  frezeWhileNoDamage: 1

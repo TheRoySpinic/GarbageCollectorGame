@@ -1381,14 +1381,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178725316}
-  m_LocalRotation: {x: 0.27059805, y: 0.6532815, z: -0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: -23, y: 41, z: 0}
+  m_LocalRotation: {x: 0.24184473, y: 0.66446304, z: -0.24184473, w: 0.66446304}
+  m_LocalPosition: {x: -23, y: 33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1264626227}
   m_Father: {fileID: 1732732833}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 90, z: 0}
 --- !u!114 &178725320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5343,8 +5343,8 @@ MonoBehaviour:
     - name: Default
       scenarioMode: 0
       segmentDifficulty: 0
-      minBiomeSize: 10
-      maxBiomeSize: 20
+      minBiomeSize: 100
+      maxBiomeSize: 150
       before:
       - {fileID: 1122796435024143044, guid: 31a57e10eb3a51f4a846c64fdeede572, type: 3}
       after:
@@ -5353,7 +5353,16 @@ MonoBehaviour:
       - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
       - {fileID: 6249639018335515258, guid: fc2d2d0b67b802c4aae41f486edb0021, type: 3}
       segmentPrefabs:
-      - {fileID: 6001526831017937026, guid: f357cc50cad3cbf45b2385ba74efc9de, type: 3}
+      - {fileID: 6040468451132367597, guid: 13cd4cbbf1b3d6d47be9b1181a4a41b8, type: 3}
+      - {fileID: 3571238990193810119, guid: 24917481a5257504cac5efead39398c5, type: 3}
+      - {fileID: 902618020442958059, guid: cc1b2396d936cfa4aad8dfab29ea53dd, type: 3}
+      - {fileID: 4425192248702566917, guid: e845083f36dbf7341a4cd96d31e865bb, type: 3}
+      - {fileID: 3957518926710627226, guid: 15fb392fb4d006245aa94f6f4bd62854, type: 3}
+      - {fileID: 268801858286848944, guid: 92b68a74b4765e844a47fa252b798935, type: 3}
+      - {fileID: 8556535944483962233, guid: 06dffc43b670aae4d91e092c439c962a, type: 3}
+      - {fileID: 4998031202166144144, guid: 76c2c5c200978674ebd768b2a54b0088, type: 3}
+      - {fileID: 7667917946054951222, guid: 05ec1f678eb493148966a3bc38124af1, type: 3}
+      - {fileID: 5476701717300814238, guid: c09d2936d862655468435904662216c6, type: 3}
     lineShifts: []
   - biomeType: 2
     segmentPrefabs:
