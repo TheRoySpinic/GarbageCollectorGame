@@ -129,7 +129,7 @@ namespace HUD
             E_ShowGarage?.Invoke();
             E_UpdateActiveScreen?.Invoke();
 
-            instance.tint.SetActive(true);
+            instance.tint.SetActive(false);
         }
 
         public static void HideGarage()
@@ -137,8 +137,6 @@ namespace HUD
             instance.garage[0].SetActive(false);
             instance.garage[1].SetActive(false);
             instance.activeScreens.Remove(instance.garage[0]);
-
-            instance.tint.SetActive(false);
         }
 
         public static void HideAllActiveScreens()

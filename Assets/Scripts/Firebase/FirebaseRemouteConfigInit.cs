@@ -14,13 +14,12 @@ namespace Firebase.RemouteConfig
 
         public static FirebaseRemouteConfigInit instance;
 
-        DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
+        //DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
 
 
         void Awake()
         {
             instance = this;
-
             SetDefault();
 
             FirebaseInit.E_InilializeFirebase += FirebaseItinAction;

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Garage
+namespace Garage.UI
 {
     public class FillGradeList : MonoBehaviour
     {

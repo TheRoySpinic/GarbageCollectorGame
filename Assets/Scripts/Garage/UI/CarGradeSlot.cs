@@ -7,7 +7,7 @@ using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Garage
+namespace Garage.UI
 {
     public class CarGradeSlot : MonoBehaviour
     {
