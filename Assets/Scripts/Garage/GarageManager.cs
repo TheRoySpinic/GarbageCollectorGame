@@ -1,4 +1,5 @@
-﻿using Popups;
+﻿using Player;
+using Popups;
 using Store;
 using System;
 using System.Collections;
@@ -18,6 +19,11 @@ namespace Garage
 
 
         [SerializeField]
+        private CarMesh carMesh = null;
+        [SerializeField]
+        private GameObject carSlot = null;
+
+        [SerializeField]
         private PlayerCarsData playerCarGrades = null;
         [SerializeField]
         private CarGradeConfig gradeConfig = null;
@@ -27,12 +33,29 @@ namespace Garage
         [SerializeField]
         private GradeText[] gradeTexts = null;
 
+        [SerializeField]
+        private GameObject[] carPrefabs = null;
+
         private void Awake()
         {
             if (instance == null)
                 instance = this;
 
             LoadPlayerGradeData();
+
+            if(carMesh == null)
+            {
+                Debug.Log("Attempt to load CarMesh...");
+                carMesh = carSlot.transform.GetChild(0).GetComponent<CarMesh>();
+                if(carMesh != null)
+                {
+                    Debug.Log("Load CarMesh");
+                }
+                else
+                {
+                    Debug.LogError("Load CarMesh failed!!!");
+                }
+            }
         }
 
         public void SetActiveCar(ECarType carType)
@@ -43,6 +66,15 @@ namespace Garage
         public void OpenCar(ECarType carType)
         {
 
+        }
+
+        public GameObject GetCarPrefab(int index)
+        {
+            if(index > 0 && index < carPrefabs.Length)
+            {
+                return carPrefabs[index];
+            }
+            return null;
         }
 
         public void GradeLevelUp(EGradeType gradeType)

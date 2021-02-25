@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 5878667566300697332}
   - component: {fileID: 8534829580226553406}
   - component: {fileID: 8524485983474123456}
+  - component: {fileID: 2812307689055123739}
   m_Layer: 0
   m_Name: car_garbage_2
   m_TagString: Untagged
@@ -282,6 +283,21 @@ MonoBehaviour:
     darker: {r: 0, g: 0.00917485, b: 0.5849056, a: 1}
   - brighter: {r: 1, g: 0, b: 0, a: 1}
     darker: {r: 0.603, g: 0, b: 0, a: 1}
+  material_brighter: {fileID: 2100000, guid: a82de03e03777f648bd5013a1609d541, type: 2}
+  material_darker: {fileID: 2100000, guid: b4079a588e57351489a49885dfbd4982, type: 2}
+--- !u!114 &2812307689055123739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886139641106647019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba7f59f922784d4aa27af31da1df564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carColors: {fileID: 0}
 --- !u!1 &8057033072480191113
 GameObject:
   m_ObjectHideFlags: 0

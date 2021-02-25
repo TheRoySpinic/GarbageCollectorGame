@@ -30,6 +30,8 @@ namespace Player
         private GameObject car = null;
         [SerializeField]
         private new GameObject camera = null;
+        
+        private CarMesh carMesh = null;
 
 #if UNITY_EDITOR
         private bool left;
@@ -102,6 +104,8 @@ namespace Player
                     if (touchPosition.y < Screen.height / 2)
                     {
                         targetPos = touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f);
+
+                        targetPos = Mathf.Clamp(targetPos, 6.0f, -6.0f); //ЗАМЕНИТЬ НА СВОЙСТВА!!!
                     }
                 }
 
