@@ -17,7 +17,7 @@ namespace Garage
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
         public static Action E_ColorUpgrade_Fail;
-        public static Action E_ActiveCarUpdate;
+        public static Action<ECarType> E_ActiveCarUpdate;
 
         [SerializeField]
         private CarMesh carMesh = null;
@@ -37,7 +37,7 @@ namespace Garage
 
         [Header("Cars")]
         [SerializeField]
-        private GameObject[] carPrefabs = null;
+        private CarPrefab[] carPrefabs = null;
 
         private void Awake()
         {
@@ -63,8 +63,8 @@ namespace Garage
 
         public void SetActiveCar(ECarType carType)
         {
-            GetActiveCarGrades().carType = carType;
-            E_ActiveCarUpdate?.Invoke();
+            GetPlayerCarGrades().carType = carType;
+            E_ActiveCarUpdate?.Invoke(carType);
         }
 
         public void OpenCar(ECarType carType)
@@ -74,9 +74,14 @@ namespace Garage
             //добавляем новый объект в открытые
         }
         
+        public ECarType GetActiveCarType()
+        {
+            return playerCarGrades.activeCar;
+        }
+
         public int GetActiveCarColorIndex()
         {
-            return GetActiveCarGrades().colorIndex;
+            return GetPlayerCarGrades().colorIndex;
         }
 
         public void ColorClickAction(int index)
@@ -86,18 +91,29 @@ namespace Garage
                     OpenColor(index);
         }
 
+        public GameObject GetCarSlot()
+        {
+            return carSlot;
+        }
+
         public CarMesh GetCarMesh()
         {
             return carMesh;
         }
 
-        public GameObject GetCarPrefab(int index)
+        public void SetCarMesh(CarMesh carMesh)
         {
-            if(index >= 0 && index < carPrefabs.Length)
-            {
-                return carPrefabs[index];
-            }
-            return null;
+            this.carMesh = carMesh;
+        }
+
+        public CarPrefab[] GetCarPrefabs()
+        {
+            return carPrefabs;
+        }
+
+        public GameObject GetCarPrefab(ECarType carType)
+        {
+            return Array.Find(carPrefabs, (p) => { return p.carType.Equals(carType); }).prefab;
         }
 
         public void GradeLevelUp(EGradeType gradeType)
@@ -181,10 +197,10 @@ namespace Garage
 
         public int GetCurentGradeLevel(EGradeType gradeType)
         {
-            return Array.Find(GetActiveCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
+            return Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
         }
 
-        public CarGradePlayerData GetActiveCarGrades()
+        public CarGradePlayerData GetPlayerCarGrades()
         {
             return Array.Find(playerCarGrades.ownedCars, (c) => { return c.carType.Equals(playerCarGrades.activeCar); });
         }
@@ -197,9 +213,9 @@ namespace Garage
         
         private bool SetCarColor(int index)
         {
-            if (index >= 0 && index < GetActiveCarGrades().colors.Length && GetActiveCarGrades().colors[index])
+            if (index >= 0 && index < GetPlayerCarGrades().colors.Length && GetPlayerCarGrades().colors[index])
             {
-                GetActiveCarGrades().colorIndex = index;
+                GetPlayerCarGrades().colorIndex = index;
                 SavePlayerGradeData();
                 E_ColorUpgrade?.Invoke();
                 return true;
@@ -214,7 +230,7 @@ namespace Garage
                 return;
             }
 
-            CarGradePlayerData playerData = GetActiveCarGrades();
+            CarGradePlayerData playerData = GetPlayerCarGrades();
 
             CarGradeData data = GetCarGradeData();
 
@@ -253,7 +269,7 @@ namespace Garage
 
         private void IncrementGradeLevel(EGradeType gradeType)
         {
-            Array.Find(GetActiveCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
+            Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
         }
 
         private void SavePlayerGradeData()
@@ -285,6 +301,13 @@ namespace Garage
             public EGradeType gradeType = EGradeType.NONE;
             public string name = "";
             public string modifyerName = "";
+        }
+
+        [Serializable]
+        public class CarPrefab
+        {
+            public ECarType carType = ECarType.NONE;
+            public GameObject prefab = null;
         }
     }
 }

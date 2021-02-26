@@ -7,6 +7,9 @@ namespace Garage
     public enum ECarType
     {
         NONE,
-        DEFAULT
+        DEFAULT,
+        FAST,
+        TANK,
+        HUMMER
     }
 }

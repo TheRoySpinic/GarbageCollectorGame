@@ -38,7 +38,7 @@ namespace Garage.UI
 
             Instantiate(spacer, content.transform);
 
-            CarGradePlayerData carGrade = GarageManager.instance.GetActiveCarGrades();
+            CarGradePlayerData carGrade = GarageManager.instance.GetPlayerCarGrades();
             foreach(GradeLevel level in carGrade.grades)
             {
                 Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(level.gradeType, level.level);
