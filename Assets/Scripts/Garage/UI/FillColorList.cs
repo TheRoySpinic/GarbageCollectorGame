@@ -34,7 +34,22 @@ namespace Garage.UI
 
         private void FillList()
         {
-            
+            ClearList();
+
+            Color[] colors = GarageManager.instance.GetCarMesh().carColors.GetCarColors();
+
+            for(int i = 0; i< colors.Length; i++)
+            {
+                Instantiate(slot, content.transform).GetComponent<CarColorSlot>().SetData(colors[i], i);
+            }
+        }
+
+        private void ClearList()
+        {
+            while(content.transform.childCount > 0)
+            {
+                DestroyImmediate(content.transform.GetChild(0).gameObject);
+            }
         }
     }
 }

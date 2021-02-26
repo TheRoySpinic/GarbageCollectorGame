@@ -14,14 +14,17 @@ namespace Garage.Car
         [SerializeField]
         private Material material_darker = null;
 
-        public void UpdateCarColor(int index)
+        private void Awake()
         {
-            if(index > 0 && index < carColors.Length)
-            {
-                material_brighter.color = carColors[index].brighter;
-                material_darker.color = carColors[index].darker;
-            }
+            GarageManager.E_ColorUpgrade -= UpdateColorEvent;
+            GarageManager.E_ColorUpgrade += UpdateColorEvent;
         }
+
+        private void OnDestroy()
+        {
+            GarageManager.E_ColorUpgrade -= UpdateColorEvent;
+        }
+
 
         public Color[] GetCarColors()
         {
@@ -36,6 +39,22 @@ namespace Garage.Car
 
             return result;
         }
+
+
+        private void UpdateColorEvent()
+        {
+            UpdateCarColor(GarageManager.instance.GetActiveCarColorIndex());
+        }
+
+        private void UpdateCarColor(int index)
+        {
+            if(index > 0 && index < carColors.Length)
+            {
+                material_brighter.color = carColors[index].brighter;
+                material_darker.color = carColors[index].darker;
+            }
+        }
+
 
         [System.Serializable]
         private class CarColor

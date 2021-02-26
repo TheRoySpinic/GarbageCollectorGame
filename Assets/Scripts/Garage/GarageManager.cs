@@ -16,13 +16,14 @@ namespace Garage
 
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
-
+        public static Action E_ActiveCarUpdate;
 
         [SerializeField]
         private CarMesh carMesh = null;
         [SerializeField]
         private GameObject carSlot = null;
 
+        [Header("Grade parameter")]
         [SerializeField]
         private PlayerCarsData playerCarGrades = null;
         [SerializeField]
@@ -33,6 +34,7 @@ namespace Garage
         [SerializeField]
         private GradeText[] gradeTexts = null;
 
+        [Header("Cars")]
         [SerializeField]
         private GameObject[] carPrefabs = null;
 
@@ -45,27 +47,46 @@ namespace Garage
 
             if(carMesh == null)
             {
-                Debug.Log("Attempt to load CarMesh...");
+                Debug.Log("Attempt to find CarMesh...");
                 carMesh = carSlot.transform.GetChild(0).GetComponent<CarMesh>();
                 if(carMesh != null)
                 {
-                    Debug.Log("Load CarMesh");
+                    Debug.Log("Find CarMesh");
                 }
                 else
                 {
-                    Debug.LogError("Load CarMesh failed!!!");
+                    Debug.LogError("Find CarMesh failed!!!");
                 }
             }
         }
 
         public void SetActiveCar(ECarType carType)
         {
-
+            GetActiveCarGrades().carType = carType;
+            E_ActiveCarUpdate?.Invoke();
         }
 
         public void OpenCar(ECarType carType)
         {
+            //смотрим есть ли машина в открытых
+            //тянем цену
+            //добавляем новый объект в открытые
+        }
 
+        public void SetCarColor(int index)
+        {
+            GetActiveCarGrades().colorIndex = index;
+            E_ColorUpgrade?.Invoke();
+        }
+
+        public int GetActiveCarColorIndex()
+        {
+            return GetActiveCarGrades().colorIndex;
+        }
+
+        public CarMesh GetCarMesh()
+        {
+            return carMesh;
         }
 
         public GameObject GetCarPrefab(int index)
@@ -81,7 +102,7 @@ namespace Garage
         {
             if(gradeType.Equals(EGradeType.NONE))
             {
-                Debug.LogWarning("Invalide gradeType");
+                Debug.LogError("Invalide gradeType");
                 return;
             }
 
@@ -149,6 +170,11 @@ namespace Garage
             CarGradeData gradeConfig = GetCarGradeData();
 
             return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).gradeCost[level];
+        }
+
+        public int GetCarCost(ECarType carType)
+        {
+            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); }).carCost;
         }
 
         public int GetCurentGradeLevel(EGradeType gradeType)
