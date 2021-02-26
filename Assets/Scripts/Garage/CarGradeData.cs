@@ -10,5 +10,6 @@ namespace Garage
         public ECarType carType = ECarType.NONE;
         public int carCost = 1;
         public GradeData[] grades = null;
+        public int[] colorsCost = { 0 };
     }
 }

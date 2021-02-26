@@ -408,8 +408,8 @@ MeshRenderer:
   - {fileID: 2100000, guid: ab07cc2d8da99de4291c971e8a15a8fb, type: 2}
   - {fileID: 2100000, guid: 27d3115dfbfafab459a9a0534553d86a, type: 2}
   - {fileID: 2100000, guid: 190b3d88e276fa34fb364b9fccc9c69e, type: 2}
-  - {fileID: 2100000, guid: e9b974b552142314c91283020a4fb160, type: 2}
-  - {fileID: 2100000, guid: 297818247928af243bb50e83722428fa, type: 2}
+  - {fileID: 2100000, guid: a82de03e03777f648bd5013a1609d541, type: 2}
+  - {fileID: 2100000, guid: b4079a588e57351489a49885dfbd4982, type: 2}
   - {fileID: 2100000, guid: 3057fde93f622724b944453231f68020, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -458,12 +458,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carColors:
-  - brighter: {r: 0, g: 0.5, b: 0.010046244, a: 1}
+  - brighter: {r: 0, g: 0.41509432, b: 0.009728773, a: 1}
     darker: {r: 0, g: 0.3, b: 0.011764706, a: 1}
   - brighter: {r: 1, g: 0.31399238, b: 0, a: 1}
     darker: {r: 0.6509434, g: 0.20421754, b: 0, a: 1}
   - brighter: {r: 0, g: 0.015625, b: 1, a: 1}
     darker: {r: 0, g: 0.00917485, b: 0.5849056, a: 1}
+  - brighter: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    darker: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  - brighter: {r: 1, g: 0, b: 0.73324823, a: 1}
+    darker: {r: 0.6509434, g: 0, b: 0.47735867, a: 1}
+  - brighter: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
+    darker: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   material_brighter: {fileID: 2100000, guid: a82de03e03777f648bd5013a1609d541, type: 2}
   material_darker: {fileID: 2100000, guid: b4079a588e57351489a49885dfbd4982, type: 2}
 --- !u!114 &-675724547995661297

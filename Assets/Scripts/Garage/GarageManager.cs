@@ -16,6 +16,7 @@ namespace Garage
 
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
+        public static Action E_ColorUpgrade_Fail;
         public static Action E_ActiveCarUpdate;
 
         [SerializeField]
@@ -72,16 +73,17 @@ namespace Garage
             //тянем цену
             //добавляем новый объект в открытые
         }
-
-        public void SetCarColor(int index)
-        {
-            GetActiveCarGrades().colorIndex = index;
-            E_ColorUpgrade?.Invoke();
-        }
-
+        
         public int GetActiveCarColorIndex()
         {
             return GetActiveCarGrades().colorIndex;
+        }
+
+        public void ColorClickAction(int index)
+        {
+            if(GetActiveCarColorIndex() != index)
+                if (!SetCarColor(index))
+                    OpenColor(index);
         }
 
         public CarMesh GetCarMesh()
@@ -91,7 +93,7 @@ namespace Garage
 
         public GameObject GetCarPrefab(int index)
         {
-            if(index > 0 && index < carPrefabs.Length)
+            if(index >= 0 && index < carPrefabs.Length)
             {
                 return carPrefabs[index];
             }
@@ -192,6 +194,62 @@ namespace Garage
             return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(playerCarGrades.activeCar); });
         }
 
+        
+        private bool SetCarColor(int index)
+        {
+            if (index >= 0 && index < GetActiveCarGrades().colors.Length && GetActiveCarGrades().colors[index])
+            {
+                GetActiveCarGrades().colorIndex = index;
+                SavePlayerGradeData();
+                E_ColorUpgrade?.Invoke();
+                return true;
+            }
+            return false;
+        }
+
+        private void OpenColor(int index)
+        {
+            if (index < 0)
+            {
+                return;
+            }
+
+            CarGradePlayerData playerData = GetActiveCarGrades();
+
+            CarGradeData data = GetCarGradeData();
+
+            if(index > playerData.colors.Length - 1)
+            {
+                if(index > data.colorsCost.Length - 1)
+                {
+                    E_ColorUpgrade_Fail?.Invoke();
+                    return;
+                }
+
+                bool[] newColors = new bool[data.colorsCost.Length];
+
+                for(int i = 0; i < playerData.colors.Length; i++)
+                {
+                    newColors[i] = playerData.colors[i];
+                }
+
+                playerData.colors = newColors;
+            }
+
+            if(!playerData.colors[index])
+            {
+                if(MasterStoreManager.instance.SubstractGold(data.colorsCost[index]))
+                {
+                    playerData.colors[index] = true;
+                    if(!SetCarColor(index))
+                        SavePlayerGradeData();
+                }
+                else
+                {
+                    //Попап неудачной покупки
+                }
+            }
+        }
 
         private void IncrementGradeLevel(EGradeType gradeType)
         {

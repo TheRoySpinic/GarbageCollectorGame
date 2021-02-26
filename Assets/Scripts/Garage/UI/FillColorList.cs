@@ -38,7 +38,9 @@ namespace Garage.UI
 
             Color[] colors = GarageManager.instance.GetCarMesh().carColors.GetCarColors();
 
-            for(int i = 0; i< colors.Length; i++)
+            Instantiate(spacer, content.transform);
+
+            for (int i = 0; i< colors.Length; i++)
             {
                 Instantiate(slot, content.transform).GetComponent<CarColorSlot>().SetData(colors[i], i);
             }

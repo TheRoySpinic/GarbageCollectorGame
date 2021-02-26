@@ -9,6 +9,8 @@ namespace Garage.UI
     {
         [SerializeField]
         private Image icon = null;
+        [SerializeField]
+        private GameObject check = null;
 
         private int index = -1;
 
@@ -16,11 +18,12 @@ namespace Garage.UI
         {
             this.index = index;
             icon.color = color;
+            check.SetActive(GarageManager.instance.GetActiveCarColorIndex() == index);
         }
 
         public void ClickAction()
         {
-
+            GarageManager.instance.ColorClickAction(index);
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Garage.Car
         {
             GarageManager.E_ColorUpgrade -= UpdateColorEvent;
             GarageManager.E_ColorUpgrade += UpdateColorEvent;
+
+            UpdateColorEvent();
         }
 
         private void OnDestroy()
@@ -48,7 +50,7 @@ namespace Garage.Car
 
         private void UpdateCarColor(int index)
         {
-            if(index > 0 && index < carColors.Length)
+            if(index >= 0 && index < carColors.Length)
             {
                 material_brighter.color = carColors[index].brighter;
                 material_darker.color = carColors[index].darker;
