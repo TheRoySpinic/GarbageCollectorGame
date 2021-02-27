@@ -30,6 +30,10 @@ namespace Player
         private GameObject car = null;
         [SerializeField]
         private new GameObject camera = null;
+        
+        private CarMesh carMesh = null;
+
+        private bool useLineControll = false;
 
 #if UNITY_EDITOR
         private bool left;
@@ -42,7 +46,7 @@ namespace Player
             if (!HealthManager.isAlive || !enableInput)
                 return;
 
-            if (false)
+            if (useLineControll)
             {
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
@@ -101,7 +105,7 @@ namespace Player
 
                     if (touchPosition.y < Screen.height / 2)
                     {
-                        targetPos = touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f);
+                        targetPos = Mathf.Clamp(touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f), -6.0f, 6.0f); //Не забыть убрать говно
                     }
                 }
 
@@ -112,6 +116,11 @@ namespace Player
                         0.1f);
                 }
             }
+        }
+
+        public CarMesh GetCarMesh()
+        {
+            return carMesh;
         }
 
         private IEnumerator MoveLeft()

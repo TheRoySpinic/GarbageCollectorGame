@@ -1,4 +1,5 @@
-﻿using Popups;
+﻿using Player;
+using Popups;
 using Store;
 using System;
 using System.Collections;
@@ -15,8 +16,15 @@ namespace Garage
 
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
+        public static Action E_ColorUpgrade_Fail;
+        public static Action<ECarType> E_ActiveCarUpdate;
 
+        [SerializeField]
+        private CarMesh carMesh = null;
+        [SerializeField]
+        private GameObject carSlot = null;
 
+        [Header("Grade parameter")]
         [SerializeField]
         private PlayerCarsData playerCarGrades = null;
         [SerializeField]
@@ -27,29 +35,92 @@ namespace Garage
         [SerializeField]
         private GradeText[] gradeTexts = null;
 
+        [Header("Cars")]
+        [SerializeField]
+        private CarPrefab[] carPrefabs = null;
+
         private void Awake()
         {
             if (instance == null)
                 instance = this;
 
             LoadPlayerGradeData();
+
+            if(carMesh == null)
+            {
+                Debug.Log("Attempt to find CarMesh...");
+                carMesh = carSlot.transform.GetChild(0).GetComponent<CarMesh>();
+                if(carMesh != null)
+                {
+                    Debug.Log("Find CarMesh");
+                }
+                else
+                {
+                    Debug.LogError("Find CarMesh failed!!!");
+                }
+            }
         }
 
         public void SetActiveCar(ECarType carType)
         {
-
+            GetPlayerCarGrades().carType = carType;
+            E_ActiveCarUpdate?.Invoke(carType);
         }
 
         public void OpenCar(ECarType carType)
         {
+            //смотрим есть ли машина в открытых
+            //тянем цену
+            //добавляем новый объект в открытые
+        }
+        
+        public ECarType GetActiveCarType()
+        {
+            return playerCarGrades.activeCar;
+        }
 
+        public int GetActiveCarColorIndex()
+        {
+            return GetPlayerCarGrades().colorIndex;
+        }
+
+        public void ColorClickAction(int index)
+        {
+            if(GetActiveCarColorIndex() != index)
+                if (!SetCarColor(index))
+                    OpenColor(index);
+        }
+
+        public GameObject GetCarSlot()
+        {
+            return carSlot;
+        }
+
+        public CarMesh GetCarMesh()
+        {
+            return carMesh;
+        }
+
+        public void SetCarMesh(CarMesh carMesh)
+        {
+            this.carMesh = carMesh;
+        }
+
+        public CarPrefab[] GetCarPrefabs()
+        {
+            return carPrefabs;
+        }
+
+        public GameObject GetCarPrefab(ECarType carType)
+        {
+            return Array.Find(carPrefabs, (p) => { return p.carType.Equals(carType); }).prefab;
         }
 
         public void GradeLevelUp(EGradeType gradeType)
         {
             if(gradeType.Equals(EGradeType.NONE))
             {
-                Debug.LogWarning("Invalide gradeType");
+                Debug.LogError("Invalide gradeType");
                 return;
             }
 
@@ -119,12 +190,17 @@ namespace Garage
             return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).gradeCost[level];
         }
 
-        public int GetCurentGradeLevel(EGradeType gradeType)
+        public int GetCarCost(ECarType carType)
         {
-            return Array.Find(GetActiveCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
+            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); }).carCost;
         }
 
-        public CarGradePlayerData GetActiveCarGrades()
+        public int GetCurentGradeLevel(EGradeType gradeType)
+        {
+            return Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
+        }
+
+        public CarGradePlayerData GetPlayerCarGrades()
         {
             return Array.Find(playerCarGrades.ownedCars, (c) => { return c.carType.Equals(playerCarGrades.activeCar); });
         }
@@ -134,10 +210,66 @@ namespace Garage
             return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(playerCarGrades.activeCar); });
         }
 
+        
+        private bool SetCarColor(int index)
+        {
+            if (index >= 0 && index < GetPlayerCarGrades().colors.Length && GetPlayerCarGrades().colors[index])
+            {
+                GetPlayerCarGrades().colorIndex = index;
+                SavePlayerGradeData();
+                E_ColorUpgrade?.Invoke();
+                return true;
+            }
+            return false;
+        }
+
+        private void OpenColor(int index)
+        {
+            if (index < 0)
+            {
+                return;
+            }
+
+            CarGradePlayerData playerData = GetPlayerCarGrades();
+
+            CarGradeData data = GetCarGradeData();
+
+            if(index > playerData.colors.Length - 1)
+            {
+                if(index > data.colorsCost.Length - 1)
+                {
+                    E_ColorUpgrade_Fail?.Invoke();
+                    return;
+                }
+
+                bool[] newColors = new bool[data.colorsCost.Length];
+
+                for(int i = 0; i < playerData.colors.Length; i++)
+                {
+                    newColors[i] = playerData.colors[i];
+                }
+
+                playerData.colors = newColors;
+            }
+
+            if(!playerData.colors[index])
+            {
+                if(MasterStoreManager.instance.SubstractGold(data.colorsCost[index]))
+                {
+                    playerData.colors[index] = true;
+                    if(!SetCarColor(index))
+                        SavePlayerGradeData();
+                }
+                else
+                {
+                    //Попап неудачной покупки
+                }
+            }
+        }
 
         private void IncrementGradeLevel(EGradeType gradeType)
         {
-            Array.Find(GetActiveCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
+            Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
         }
 
         private void SavePlayerGradeData()
@@ -169,6 +301,13 @@ namespace Garage
             public EGradeType gradeType = EGradeType.NONE;
             public string name = "";
             public string modifyerName = "";
+        }
+
+        [Serializable]
+        public class CarPrefab
+        {
+            public ECarType carType = ECarType.NONE;
+            public GameObject prefab = null;
         }
     }
 }
