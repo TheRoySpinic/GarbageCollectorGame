@@ -1,4 +1,6 @@
 ﻿using Map;
+using Player.Control;
+using Player.Control.Joystic;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -33,7 +35,13 @@ namespace Player
         
         private CarMesh carMesh = null;
 
-        private bool useLineControll = false;
+        [SerializeField]
+        private ECarControlType controlType = ECarControlType.FREE_CONTROL;
+
+        [SerializeField]
+        private Joystick dynamicJoystic = null;
+        [SerializeField]
+        private Joystick fixedJoystic = null;
 
 #if UNITY_EDITOR
         private bool left;
@@ -51,75 +59,81 @@ namespace Player
             if (!HealthManager.isAlive || !enableInput)
                 return;
 
-            if (useLineControll)
+            switch (controlType)
             {
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                {
-                    Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-
-                    if (touchPosition.y < Screen.height / 3)
+                case ECarControlType.LINES:
+                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                     {
-                        if (touchPosition.x < Screen.width / 2)
-                        {
+                        Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
+                        if (touchPosition.y < Screen.height / 3)
+                        {
+                            if (touchPosition.x < Screen.width / 2)
+                            {
+
+                                StopCoroutine(MoveRight());
+                                StartCoroutine(MoveLeft());
+                            }
+                            else
+                            {
+                                StopCoroutine(MoveLeft());
+                                StartCoroutine(MoveRight());
+                            }
+                        }
+                    }
+#if UNITY_EDITOR
+                    if (Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
+                    {
+                        left = Input.GetAxis("Horizontal") < 0;
+                        right = Input.GetAxis("Horizontal") > 0;
+
+                        phase = TouchPhase.Began;
+                    }
+                    else if (Input.GetAxis("Horizontal") == 0)
+                    {
+                        phase = TouchPhase.Canceled;
+                    }
+
+                    if (phase == TouchPhase.Began)
+                    {
+                        if (left)
+                        {
                             StopCoroutine(MoveRight());
                             StartCoroutine(MoveLeft());
                         }
-                        else
+                        if (right)
                         {
                             StopCoroutine(MoveLeft());
                             StartCoroutine(MoveRight());
                         }
-                    }
-                }
-#if UNITY_EDITOR
-                if (Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
-                {
-                    left = Input.GetAxis("Horizontal") < 0;
-                    right = Input.GetAxis("Horizontal") > 0;
 
-                    phase = TouchPhase.Began;
-                }
-                else if (Input.GetAxis("Horizontal") == 0)
-                {
-                    phase = TouchPhase.Canceled;
-                }
-
-                if (phase == TouchPhase.Began)
-                {
-                    if (left)
-                    {
-                        StopCoroutine(MoveRight());
-                        StartCoroutine(MoveLeft());
+                        phase = TouchPhase.Stationary;
                     }
-                    if (right)
-                    {
-                        StopCoroutine(MoveLeft());
-                        StartCoroutine(MoveRight());
-                    }
-
-                    phase = TouchPhase.Stationary;
-                }
 #endif
-            }
-            else
-            {
-                if (Input.touchCount > 0 || Input.GetMouseButton(0))
-                {
-                    Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
+                    break;
 
-                    if (touchPosition.y < Screen.height / 2)
+                case ECarControlType.FREE_CONTROL:
+                    if (Input.touchCount > 0 || Input.GetMouseButton(0))
                     {
-                        targetPos = Mathf.Clamp(touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f), -6.0f, 6.0f); //Не забыть убрать говно
-                    }
-                }
+                        Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
-                if(car.transform.position.z != targetPos)
-                {
-                    car.transform.position = Vector3.MoveTowards(car.transform.position,
-                        new Vector3(car.transform.position.x, car.transform.position.y, targetPos), 
-                        Time.deltaTime * 10);
-                }
+                        if (touchPosition.y < Screen.height / 2)
+                        {
+                            targetPos = Mathf.Clamp(touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f), -6.0f, 6.0f); //Не забыть убрать говно
+                        }
+                    }
+
+                    if (car.transform.position.z != targetPos)
+                    {
+                        car.transform.position = Vector3.MoveTowards(car.transform.position,
+                            new Vector3(car.transform.position.x, car.transform.position.y, targetPos),
+                            Time.deltaTime * 10);
+                    }
+                    break;
+                    
+                case ECarControlType.DYNAMIC_JOYSTIC:
+
+                    break;
             }
         }
 
