@@ -1,10 +1,11 @@
-﻿using Player;
+﻿using HUD;
+using Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Garage
+namespace Garage.UI
 {
     public class SwitchCar : MonoBehaviour
     {
@@ -15,21 +16,26 @@ namespace Garage
 
         private void Awake()
         {
-            GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
-            GarageManager.E_ActiveCarUpdate += LoadCarPrefab;
+            GarageManager.E_ViewCarUpdate -= LoadCarPrefab;
+            GarageManager.E_ViewCarUpdate += LoadCarPrefab;
 
-            LoadCarPrefab(GarageManager.instance.GetActiveCarType());
+            ScreensManager.E_ShowGarage -= UpdateButtons;
+            ScreensManager.E_ShowGarage += UpdateButtons;
+            
+            LoadCarPrefab(GarageManager.instance.GetViewCarType());
         }
 
         private void OnDestroy()
         {
+            GarageManager.E_ViewCarUpdate -= LoadCarPrefab;
             GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
+            ScreensManager.E_ShowGarage -= UpdateButtons;
         }
 
 
         public void PreviusClickAction()
         {
-            ECarType currentCar = GarageManager.instance.GetActiveCarType();
+            ECarType currentCar = GarageManager.instance.GetViewCarType();
             GarageManager.CarPrefab[] carPrefabs = GarageManager.instance.GetCarPrefabs();
 
             if(carPrefabs[0].carType.Equals(currentCar))
@@ -43,7 +49,7 @@ namespace Garage
 
         public void NextClickAction()
         {
-            ECarType currentCar = GarageManager.instance.GetActiveCarType();
+            ECarType currentCar = GarageManager.instance.GetViewCarType();
             GarageManager.CarPrefab[] carPrefabs = GarageManager.instance.GetCarPrefabs();
 
             if (carPrefabs[carPrefabs.Length - 1].carType.Equals(currentCar))
@@ -58,16 +64,18 @@ namespace Garage
 
         private void UpdateButtons()
         {
-            ECarType currentCar = GarageManager.instance.GetActiveCarType();
+            ECarType currentCar = GarageManager.instance.GetViewCarType();
             GarageManager.CarPrefab[] carPrefabs = GarageManager.instance.GetCarPrefabs();
 
-            previusButton.SetActive(!carPrefabs[0].carType.Equals(currentCar));
-            nextButton.SetActive(!carPrefabs[carPrefabs.Length - 1].carType.Equals(currentCar));
+            if(previusButton)
+                previusButton.SetActive(!carPrefabs[0].carType.Equals(currentCar));
+            if(nextButton)
+                nextButton.SetActive(!carPrefabs[carPrefabs.Length - 1].carType.Equals(currentCar));
         }
 
         private void LoadCarPrefab(ECarType carType)
         {
-            if(!carType.Equals(ECarType.NONE))
+            if(carType.Equals(ECarType.NONE))
             {
                 Debug.LogError("Ivalide carType!!!");
                 return;
@@ -76,7 +84,7 @@ namespace Garage
                 GarageManager.instance.GetCarSlot().transform);
             o.transform.position = GarageManager.instance.GetCarMesh().transform.position;
             o.transform.eulerAngles = GarageManager.instance.GetCarMesh().transform.eulerAngles;
-            Destroy(GarageManager.instance.GetCarMesh());
+            Destroy(GarageManager.instance.GetCarMesh().gameObject);
             GarageManager.instance.SetCarMesh(o.GetComponent<CarMesh>());
 
             UpdateButtons();

@@ -12,11 +12,13 @@ namespace Garage
     {
         public const string PLAYERPREFS_GRADE_PLAYERDATA_FIELD = "player_grades";
 
-        public static GarageManager instance = null;
+        public static GarageManager instance { get; private set; } = null;
 
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
+        public static Action E_CarMeshUpgrade;
         public static Action E_ColorUpgrade_Fail;
+        public static Action<ECarType> E_ViewCarUpdate;
         public static Action<ECarType> E_ActiveCarUpdate;
 
         [SerializeField]
@@ -39,6 +41,8 @@ namespace Garage
         [SerializeField]
         private CarPrefab[] carPrefabs = null;
 
+        private ECarType viewCar = ECarType.NONE;
+
         private void Awake()
         {
             if (instance == null)
@@ -59,29 +63,57 @@ namespace Garage
                     Debug.LogError("Find CarMesh failed!!!");
                 }
             }
+
+            viewCar = playerCarGrades.activeCar;
         }
 
         public void SetActiveCar(ECarType carType)
         {
-            GetPlayerCarGrades().carType = carType;
-            E_ActiveCarUpdate?.Invoke(carType);
+            if (IsOwnedCar(carType))
+            {
+                playerCarGrades.activeCar = carType;
+                E_ActiveCarUpdate?.Invoke(carType);
+            }
+
+            viewCar = carType;
+            E_ViewCarUpdate?.Invoke(carType);
         }
 
         public void OpenCar(ECarType carType)
         {
-            //смотрим есть ли машина в открытых
-            //тянем цену
-            //добавляем новый объект в открытые
+            if(IsOwnedCar(carType))
+            {
+                E_ViewCarUpdate?.Invoke(carType);
+                return;
+            }
+
+            if(MasterStoreManager.instance.SubstractGold(GetCarCost(carType)))
+            {
+                playerCarGrades.ownedCars.Add(new CarGradePlayerData(){ carType = carType });
+            }
+            else
+            {
+                //попап "недостаточно денег"
+            }
+
+            E_ViewCarUpdate?.Invoke(carType);
         }
         
         public ECarType GetActiveCarType()
         {
             return playerCarGrades.activeCar;
         }
+        
+        public ECarType GetViewCarType()
+        {
+            return viewCar;
+        }
 
         public int GetActiveCarColorIndex()
         {
-            return GetPlayerCarGrades().colorIndex;
+            if(GetPlayerCarGrades() != null)
+                return GetPlayerCarGrades().colorIndex;
+            return 0;
         }
 
         public void ColorClickAction(int index)
@@ -104,6 +136,7 @@ namespace Garage
         public void SetCarMesh(CarMesh carMesh)
         {
             this.carMesh = carMesh;
+            E_CarMeshUpgrade?.Invoke();
         }
 
         public CarPrefab[] GetCarPrefabs()
@@ -118,6 +151,12 @@ namespace Garage
 
         public void GradeLevelUp(EGradeType gradeType)
         {
+            if (!IsOwnedCar(viewCar))
+            {
+                // инфо-попап "в начале необходимо приобрести машину"
+                return;
+            }
+
             if(gradeType.Equals(EGradeType.NONE))
             {
                 Debug.LogError("Invalide gradeType");
@@ -158,6 +197,11 @@ namespace Garage
         public string GetGradeModifyerName(EGradeType gradeType)
         {
             return Array.Find(gradeTexts, (g) => { return g.gradeType.Equals(gradeType); }).modifyerName;
+        }
+
+        public bool IsOwnedCar(ECarType carType)
+        {
+            return Array.Find(playerCarGrades.ownedCars.ToArray(), (o) => { return o.carType.Equals(carType); }) != null;
         }
 
         public float GetGradeValue(EGradeType gradeType)
@@ -202,12 +246,17 @@ namespace Garage
 
         public CarGradePlayerData GetPlayerCarGrades()
         {
-            return Array.Find(playerCarGrades.ownedCars, (c) => { return c.carType.Equals(playerCarGrades.activeCar); });
+            return Array.Find(playerCarGrades.ownedCars.ToArray(), (c) => { return c.carType.Equals(playerCarGrades.activeCar); });
         }
 
         public CarGradeData GetCarGradeData()
         {
-            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(playerCarGrades.activeCar); });
+            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(viewCar); });
+        }
+
+        public CarGradeData GetCarGradeData(ECarType carType)
+        {
+            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); });
         }
 
         

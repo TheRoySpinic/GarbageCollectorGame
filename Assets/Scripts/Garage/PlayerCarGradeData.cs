@@ -9,7 +9,7 @@ namespace Garage
     public class PlayerCarsData
     {
         public ECarType activeCar = ECarType.DEFAULT;
-        public CarGradePlayerData[] ownedCars = new CarGradePlayerData[1];
+        public List<CarGradePlayerData> ownedCars = new List<CarGradePlayerData>();
     }
 
     [Serializable]

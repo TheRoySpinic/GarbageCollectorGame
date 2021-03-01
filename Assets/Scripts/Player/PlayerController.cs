@@ -41,6 +41,11 @@ namespace Player
         private TouchPhase phase;
 #endif
 
+        private void Awake()
+        {
+            carMesh = car.transform.GetChild(0).GetComponent<CarMesh>();
+        }
+
         private void Update()
         {
             if (!HealthManager.isAlive || !enableInput)
