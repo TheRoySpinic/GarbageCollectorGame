@@ -118,7 +118,7 @@ namespace Player
                 {
                     car.transform.position = Vector3.MoveTowards(car.transform.position,
                         new Vector3(car.transform.position.x, car.transform.position.y, targetPos), 
-                        0.1f);
+                        Time.deltaTime * 10);
                 }
             }
         }
