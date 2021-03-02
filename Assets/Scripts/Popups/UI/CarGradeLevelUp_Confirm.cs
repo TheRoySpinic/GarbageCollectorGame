@@ -22,7 +22,7 @@ namespace Popups
         [SerializeField]
         private TMP_Text needGold = null;
         [SerializeField]
-        private TMP_Text cost = null;
+        private TMP_Text costText = null;
 
         [SerializeField]
         private Image icon = null;
@@ -33,7 +33,7 @@ namespace Popups
         {
             this.gradeType = gradeType;
 
-            cost.text = TextFormater.FormatGold(GarageManager.instance.GetGradeCost(gradeType));
+            costText.text = TextFormater.FormatGold(GarageManager.instance.GetGradeCost(gradeType));
 
             textName.text = GarageManager.instance.GetGradeName(gradeType);
             modifierName.text = GarageManager.instance.GetGradeModifyerName(gradeType);
@@ -43,16 +43,18 @@ namespace Popups
 
             icon.sprite = GarageManager.instance.GetGradeIcon(gradeType);
 
-            if(GarageManager.instance.GetGradeCost(gradeType) > MasterStoreManager.gold)
+            int cost = GarageManager.instance.GetGradeCost(gradeType);
+
+            costText.color = TextFormater.GetCostColor(cost);
+
+            if(cost > MasterStoreManager.gold)
             {
                 needGold.gameObject.SetActive(true);
                 needGold.text = "Need another: " + TextFormater.FormatGold(GarageManager.instance.GetGradeCost(gradeType) - MasterStoreManager.gold);
 
-                cost.color = Color.red;
             }
             else
             {
-                cost.color = Color.white;
                 needGold.gameObject.SetActive(false);
             }
         }

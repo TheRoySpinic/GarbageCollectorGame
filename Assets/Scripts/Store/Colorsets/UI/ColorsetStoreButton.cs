@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Tools;
 
 namespace Store.Colorsets.UI
 {
-    class ColorsetStoreButton : MonoBehaviour
+    public class ColorsetStoreButton : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text colorsetName = null;
@@ -37,7 +38,8 @@ namespace Store.Colorsets.UI
             checkIcon.SetActive(ColorsetStoreManager.instance.GetActivePlayerColorset() == storeSlot.colorset);
 
             colorsetName.text = storeSlot.name;
-            costText.text = storeSlot.cost.ToString();
+            costText.text = TextFormater.FormatGold(storeSlot.cost);
+            costText.color = TextFormater.GetCostColor(storeSlot.cost);
             bgImage.sprite = storeSlot.iconSprite;
         }
 

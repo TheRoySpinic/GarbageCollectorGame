@@ -38,15 +38,8 @@ namespace Garage.UI
             if (level < data.gradeCost.Length)
             {
                 cost.text = TextFormater.FormatGold(data.gradeCost[level]);
-                if(data.gradeCost[level] > MasterStoreManager.gold || 
-                    !GarageManager.instance.IsOwnedCar(GarageManager.instance.GetViewCarType()))
-                {
-                    cost.color = Color.red;
-                }
-                else
-                {
-                    cost.color = Color.white;
-                }
+                cost.color = TextFormater.GetCostColor(data.gradeCost[level] > MasterStoreManager.gold || 
+                    !GarageManager.instance.IsOwnedCar(GarageManager.instance.GetViewCarType()));
             }
             else
             {

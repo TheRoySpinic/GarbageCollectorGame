@@ -47,14 +47,7 @@ namespace Garage.UI
             costPanel.SetActive(true);
             costText.text = TextFormater.FormatGold(cost);
 
-            if (cost > MasterStoreManager.gold)
-            {
-                costText.color = Color.red;
-            }
-            else
-            {
-                costText.color = Color.white;
-            }
+            costText.color = TextFormater.GetCostColor(cost);
         }
     }
 }
