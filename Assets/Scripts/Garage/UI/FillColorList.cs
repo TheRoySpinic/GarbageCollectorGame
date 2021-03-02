@@ -40,7 +40,15 @@ namespace Garage.UI
         {
             ClearList();
 
-            Color[] colors = GarageManager.instance.GetCarMesh().carColors.GetCarColors();
+            Color[] colors;
+            try
+            {
+                colors = GarageManager.instance.GetCarMesh().carColors.GetCarColors();
+            }
+            catch
+            {
+                return;
+            }
 
             Instantiate(spacer, content.transform);
 

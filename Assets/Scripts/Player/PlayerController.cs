@@ -1,4 +1,5 @@
-﻿using Map;
+﻿using Garage;
+using Map;
 using Player.Control;
 using Player.Control.Joystic;
 using System.Collections;
@@ -30,10 +31,14 @@ namespace Player
 
         [SerializeField]
         private GameObject car = null;
+        private Transform carTransform = null;
         [SerializeField]
         private new GameObject camera = null;
         
         private CarMesh carMesh = null;
+
+        [SerializeField]
+        private float moveSpeed = 10;
 
         [SerializeField]
         private ECarControlType controlType = ECarControlType.FREE_CONTROL;
@@ -41,7 +46,9 @@ namespace Player
         [SerializeField]
         private Joystick dynamicJoystic = null;
         [SerializeField]
-        private Joystick fixedJoystic = null;
+        private Joystick floatingJoystic = null;
+
+        private Joystick activeJoystic = null;
 
 #if UNITY_EDITOR
         private bool left;
@@ -51,7 +58,38 @@ namespace Player
 
         private void Awake()
         {
-            carMesh = car.transform.GetChild(0).GetComponent<CarMesh>();
+            carTransform = car.transform;
+
+            carMesh = carTransform.GetChild(0).GetComponent<CarMesh>();
+
+            GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
+            GarageManager.E_ActiveCarUpdate += LoadCarPrefab;
+
+            if (GarageManager.instance)
+                LoadCarPrefab(GarageManager.instance.GetActiveCarType());
+            else
+                GarageManager.E_GarageManagerReady += LoadCar;
+
+            dynamicJoystic.gameObject.SetActive(false);
+            floatingJoystic.gameObject.SetActive(false);
+
+            switch(controlType)
+            {
+                case ECarControlType.FLOATING_JOYSTIC:
+                    floatingJoystic.gameObject.SetActive(true);
+                    activeJoystic = floatingJoystic;
+                    break;
+                case ECarControlType.DYNAMIC_JOYSTIC:
+                    dynamicJoystic.gameObject.SetActive(true);
+                    activeJoystic = dynamicJoystic;
+                    break;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
+            GarageManager.E_GarageManagerReady -= LoadCar;
         }
 
         private void Update()
@@ -123,16 +161,23 @@ namespace Player
                         }
                     }
 
-                    if (car.transform.position.z != targetPos)
+                    if (carTransform.position.z != targetPos)
                     {
-                        car.transform.position = Vector3.MoveTowards(car.transform.position,
-                            new Vector3(car.transform.position.x, car.transform.position.y, targetPos),
-                            Time.deltaTime * 10);
+                        carTransform.position = Vector3.MoveTowards(carTransform.position,
+                            new Vector3(carTransform.position.x, carTransform.position.y, targetPos),
+                            Time.deltaTime * moveSpeed);
                     }
                     break;
                     
+                case ECarControlType.FLOATING_JOYSTIC:
                 case ECarControlType.DYNAMIC_JOYSTIC:
+                    if (activeJoystic.Horizontal == 0)
+                        return;
 
+                    float target = (carTransform.position + Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed).z;
+
+                    if(target > -6.0f && target < 6.0f)
+                        carTransform.Translate(Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed);
                     break;
             }
         }
@@ -142,23 +187,45 @@ namespace Player
             return carMesh;
         }
 
+
+        private void LoadCar()
+        {
+            LoadCarPrefab(GarageManager.instance.GetActiveCarType());
+        }
+
+        private void LoadCarPrefab(ECarType carType)
+        {
+            if (carType.Equals(ECarType.NONE))
+            {
+                Debug.LogError("Ivalide carType!!!");
+                return;
+            }
+            GameObject o = Instantiate(GarageManager.instance.GetCarPrefab(carType), car.transform);
+            o.transform.position = carMesh.transform.position;
+            o.transform.eulerAngles = carMesh.transform.eulerAngles;
+
+            Destroy(carMesh.gameObject);
+            carMesh = o.GetComponent<CarMesh>();
+        }
+
+
         private IEnumerator MoveLeft()
         {
             if(currentLine > 0 && canMoveLeft)
             {
                 canMoveRight = false;
-                Vector3 target = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                Vector3 target = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);
                 --currentLine;
-                while(car.transform.position.z != MapManager.instance.lineShifts[currentLine])
+                while(carTransform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, -cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
-                    car.transform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), -turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
-                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target)) * Time.deltaTime);
+                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, -cameraTurnCurve.Evaluate(Vector3.Distance(carTransform.position, target)));
+                    carTransform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(carTransform.position, target)), -turnCurve.Evaluate(Vector3.Distance(carTransform.position, target)), 0);
+                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target)) * Time.deltaTime);
                     yield return new WaitForEndOfFrame();
                 }
                 canMoveRight = true;
-                car.transform.rotation = new Quaternion();
-                car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                carTransform.rotation = new Quaternion();
+                carTransform.position = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }
 
@@ -167,19 +234,19 @@ namespace Player
             if (currentLine < MapManager.instance.lineShifts.Length - 1 && canMoveRight)
             {
                 canMoveLeft = false;
-                Vector3 target = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                Vector3 target = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);
                 ++currentLine;
-                while (car.transform.position.z != MapManager.instance.lineShifts[currentLine])
+                while (carTransform.position.z != MapManager.instance.lineShifts[currentLine])
                 {
-                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, cameraTurnCurve.Evaluate(Vector3.Distance(car.transform.position, target)));
-                    car.transform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(car.transform.position, target)), turnCurve.Evaluate(Vector3.Distance(car.transform.position, target)), 0);
-                    car.transform.position = Vector3.MoveTowards(car.transform.position, new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(car.transform.position, target))* Time.deltaTime);
+                    camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, cameraTurnCurve.Evaluate(Vector3.Distance(carTransform.position, target)));
+                    carTransform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(carTransform.position, target)), turnCurve.Evaluate(Vector3.Distance(carTransform.position, target)), 0);
+                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target))* Time.deltaTime);
                     yield return new WaitForEndOfFrame();
                 }
 
                 canMoveLeft = true;
-                car.transform.rotation = new Quaternion();
-                car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, MapManager.instance.lineShifts[currentLine]);
+                carTransform.rotation = new Quaternion();
+                carTransform.position = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);
             }
         }
     }

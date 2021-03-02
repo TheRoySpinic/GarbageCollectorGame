@@ -24,10 +24,12 @@ namespace Player
         private float accelerationSpeed = 0.001f;
 
         private new Rigidbody rigidbody = null;
+        private Transform tr = null;
 
         private void Awake()
         {
             instance = this;
+            tr = transform;
             rigidbody = GetComponent<Rigidbody>();
         }
 
@@ -42,7 +44,7 @@ namespace Player
                 currentSpeed = Vector3.Lerp(currentSpeed, targetSpeed, fromZeroAccelerationSpeed);
             }
 
-            rigidbody.MovePosition(transform.position + (currentSpeed * Time.deltaTime));
+            rigidbody.MovePosition(tr.position + (currentSpeed * Time.deltaTime));
 
             if(PlayerController.enableInput)
                 targetSpeed.Set(targetSpeed.x + accelerationSpeed, targetSpeed.y, targetSpeed.z);

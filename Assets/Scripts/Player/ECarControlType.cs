@@ -8,7 +8,7 @@ namespace Player.Control
     {
         LINES,
         FREE_CONTROL,
-        FIXED_JOYSTIC,
+        FLOATING_JOYSTIC,
         DYNAMIC_JOYSTIC
     }
 }

@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 7101793359568252732}
   - component: {fileID: 7185482690316606054}
   - component: {fileID: 4754590321746968283}
+  - component: {fileID: 5664561632502683774}
   m_Layer: 0
   m_Name: car_garbage_3
   m_TagString: Untagged
@@ -304,6 +305,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carColors: {fileID: 0}
+--- !u!65 &5664561632502683774
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759042912968543977}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.5, y: 4.1, z: 2.91}
+  m_Center: {x: 3.6805263, y: 2.7727468, z: 0}
 --- !u!1 &8924246317230373641
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,15 +10,17 @@ namespace Map
         private Vector3 speed = new Vector3();
 
         private new Rigidbody rigidbody = null;
+        private Transform tr = null;
 
         private void Awake()
         {
+            tr = transform;
             rigidbody = GetComponent<Rigidbody>();
         }
 
         private void FixedUpdate()
         {
-            rigidbody.MovePosition(transform.position + (speed * Time.deltaTime));
+            rigidbody.MovePosition(tr.position + (speed * Time.deltaTime));
         }
     }
 }

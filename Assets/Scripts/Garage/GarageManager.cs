@@ -13,6 +13,8 @@ namespace Garage
         public const string PLAYERPREFS_GRADE_PLAYERDATA_FIELD = "player_grades";
 
         public static GarageManager instance { get; private set; } = null;
+        
+        public static Action E_GarageManagerReady;
 
         public static Action E_GradeUpgrade;
         public static Action E_ColorUpgrade;
@@ -65,6 +67,8 @@ namespace Garage
             }
 
             viewCar = playerCarGrades.activeCar;
+
+            E_GarageManagerReady?.Invoke();
         }
 
         public void SetActiveCar(ECarType carType)
@@ -90,6 +94,7 @@ namespace Garage
             if(MasterStoreManager.instance.SubstractGold(GetCarCost(carType)))
             {
                 playerCarGrades.ownedCars.Add(new CarGradePlayerData(){ carType = carType });
+                SavePlayerGradeData();
             }
             else
             {
@@ -246,7 +251,7 @@ namespace Garage
 
         public CarGradePlayerData GetPlayerCarGrades()
         {
-            return Array.Find(playerCarGrades.ownedCars.ToArray(), (c) => { return c.carType.Equals(playerCarGrades.activeCar); });
+            return Array.Find(playerCarGrades.ownedCars.ToArray(), (c) => { return c.carType.Equals(viewCar); });
         }
 
         public CarGradeData GetCarGradeData()
@@ -257,6 +262,26 @@ namespace Garage
         public CarGradeData GetCarGradeData(ECarType carType)
         {
             return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); });
+        }
+
+        public int GetColorCost(int index)
+        {
+            CarGradeData data = GetCarGradeData();
+            return data.colorsCost[index];
+        }
+
+        public int GetColorCost(ECarType carType, int index)
+        {
+            CarGradeData data = GetCarGradeData(carType);
+            return data.colorsCost[index];
+        }
+
+        public bool IsOwnedColor(int index)
+        {
+            CarGradePlayerData playerData = GetPlayerCarGrades();
+            if (playerData == null || playerData.colors.Length <= index)
+                return false;
+            return playerData.colors[index];
         }
 
         
