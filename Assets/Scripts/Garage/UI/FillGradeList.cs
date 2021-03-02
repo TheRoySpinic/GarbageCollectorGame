@@ -24,12 +24,21 @@ namespace Garage.UI
 
             GarageManager.E_GradeUpgrade -= FillList;
             GarageManager.E_GradeUpgrade += FillList;
+
+            GarageManager.E_ViewCarUpdate -= UpdateList;
+            GarageManager.E_ViewCarUpdate += UpdateList;
         }
 
         private void OnDestroy()
         {
             ScreensManager.E_ShowGarage -= FillList;
             GarageManager.E_GradeUpgrade -= FillList;
+            GarageManager.E_ViewCarUpdate -= UpdateList;
+        }
+
+        private void UpdateList(ECarType carType)
+        {
+            FillList();
         }
 
         private void FillList()
@@ -38,10 +47,21 @@ namespace Garage.UI
 
             Instantiate(spacer, content.transform);
 
-            CarGradePlayerData carGrade = GarageManager.instance.GetPlayerCarGrades();
-            foreach(GradeLevel level in carGrade.grades)
+            if (GarageManager.instance.IsOwnedCar(GarageManager.instance.GetViewCarType()))
             {
-                Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(level.gradeType, level.level);
+                CarGradePlayerData carGrade = GarageManager.instance.GetPlayerCarGrades();
+                foreach (GradeLevel level in carGrade.grades)
+                {
+                    Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(level.gradeType, level.level);
+                }
+            }
+            else
+            {
+                GradeData[] data = GarageManager.instance.GetCarGradeData(GarageManager.instance.GetViewCarType()).grades;
+                foreach (GradeData grade in data)
+                {
+                    Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(grade.gradeType, 0);
+                }
             }
 
             Instantiate(spacer, content.transform);

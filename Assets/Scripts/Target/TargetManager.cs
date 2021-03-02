@@ -9,7 +9,7 @@ namespace Target
 {
     public class TargetManager : MonoBehaviour
     {
-        public static TargetManager instance = null;
+        public static TargetManager instance { get; private set; } = null;
 
         public static Action<GarbageType> E_CollectGarbage;
 
@@ -20,6 +20,7 @@ namespace Target
 
         private int garbageCount = 0;
         private int allCount = 0;
+
         private void Awake()
         {
             if (instance == null)

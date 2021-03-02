@@ -24,12 +24,16 @@ namespace Garage.UI
 
             GarageManager.E_ColorUpgrade -= FillList;
             GarageManager.E_ColorUpgrade += FillList;
+
+            GarageManager.E_CarMeshUpgrade -= FillList;
+            GarageManager.E_CarMeshUpgrade += FillList;
         }
 
         private void OnDestroy()
         {
             ScreensManager.E_ShowGarage -= FillList;
             GarageManager.E_ColorUpgrade -= FillList;
+            GarageManager.E_CarMeshUpgrade -= FillList;
         }
 
         private void FillList()

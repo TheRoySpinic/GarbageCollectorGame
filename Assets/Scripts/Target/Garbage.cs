@@ -24,6 +24,11 @@ namespace Target
 
         private void Update()
         {
+            if(TargetManager.instance == null)
+            {
+                Debug.LogError("TargetManager in null!!!");
+                return;
+            }
             if(transform.position.x < TargetManager.instance.gameObject.transform.position.x - 15)
             {
                 TargetManager.instance.AddAllCount();

@@ -45,7 +45,8 @@ namespace Garage.Car
 
         private void UpdateColorEvent()
         {
-            UpdateCarColor(GarageManager.instance.GetActiveCarColorIndex());
+            if(GarageManager.instance)
+                UpdateCarColor(GarageManager.instance.GetActiveCarColorIndex());
         }
 
         private void UpdateCarColor(int index)
