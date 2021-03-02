@@ -12,6 +12,8 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController instance = null;
+
         public static bool enableInput = false;
 
         private int currentLine = 1;
@@ -58,6 +60,9 @@ namespace Player
 
         private void Awake()
         {
+            if (instance == null)
+                instance = this;
+
             carTransform = car.transform;
 
             carMesh = carTransform.GetChild(0).GetComponent<CarMesh>();
@@ -69,21 +74,8 @@ namespace Player
                 LoadCarPrefab(GarageManager.instance.GetActiveCarType());
             else
                 GarageManager.E_GarageManagerReady += LoadCar;
-
-            dynamicJoystic.gameObject.SetActive(false);
-            floatingJoystic.gameObject.SetActive(false);
-
-            switch(controlType)
-            {
-                case ECarControlType.FLOATING_JOYSTIC:
-                    floatingJoystic.gameObject.SetActive(true);
-                    activeJoystic = floatingJoystic;
-                    break;
-                case ECarControlType.DYNAMIC_JOYSTIC:
-                    dynamicJoystic.gameObject.SetActive(true);
-                    activeJoystic = dynamicJoystic;
-                    break;
-            }
+            
+            UpdateControlers();
         }
 
         private void OnDestroy()
@@ -187,6 +179,31 @@ namespace Player
             return carMesh;
         }
 
+        public void SetControlType(ECarControlType type)
+        {
+            controlType = type;
+
+            UpdateControlers();
+        }
+
+
+        private void UpdateControlers()
+        {
+            dynamicJoystic.gameObject.SetActive(false);
+            floatingJoystic.gameObject.SetActive(false);
+
+            switch (controlType)
+            {
+                case ECarControlType.FLOATING_JOYSTIC:
+                    floatingJoystic.gameObject.SetActive(true);
+                    activeJoystic = floatingJoystic;
+                    break;
+                case ECarControlType.DYNAMIC_JOYSTIC:
+                    dynamicJoystic.gameObject.SetActive(true);
+                    activeJoystic = dynamicJoystic;
+                    break;
+            }
+        }
 
         private void LoadCar()
         {

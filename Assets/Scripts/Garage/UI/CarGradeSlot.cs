@@ -30,9 +30,6 @@ namespace Garage.UI
             CarGradeData gradeConfig = GarageManager.instance.GetCarGradeData();
             GradeData data = Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); });
 
-            gradeValue.text = GarageManager.instance.GetGradeValue(gradeType, level).ToString();
-            gradeLevel.text = (level + 1) + " LVL";
-
             icon.sprite = GarageManager.instance.GetGradeIcon(gradeType);
 
             if (level < data.gradeCost.Length)
@@ -44,7 +41,12 @@ namespace Garage.UI
             else
             {
                 cost.text = "MAX LEVEL";
+                cost.color = TextFormater.GetCostColor(true);
+                return;
             }
+
+            gradeValue.text = GarageManager.instance.GetGradeValue(gradeType, level).ToString();
+            gradeLevel.text = (level + 1) + " LVL";
         }
 
         public void ClickAction()

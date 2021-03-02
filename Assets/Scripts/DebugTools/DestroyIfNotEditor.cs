@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameDebug
+namespace DebugTools
 {
     public class DestroyIfNotEditor : MonoBehaviour
     {
