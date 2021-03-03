@@ -14,6 +14,7 @@ namespace HUD
         public static event Action E_ShowGarage;
         public static event Action E_ShowColorsetStore;
         public static event Action E_ShowBuyStore;
+        public static event Action E_ShowSettings;
         public static event Action E_UpdateActiveScreen;
 
         [SerializeField]
@@ -33,6 +34,9 @@ namespace HUD
 
         [SerializeField]
         private GameObject buyStore = null;
+
+        [SerializeField]
+        private GameObject settings = null;
 
         private List<GameObject> activeScreens = new List<GameObject>();
 
@@ -116,6 +120,23 @@ namespace HUD
         {
             instance.buyStore.SetActive(false);
             instance.activeScreens.Remove(instance.buyStore);
+
+            instance.tint.SetActive(false);
+        }
+
+        public static void ShowSettings()
+        {
+            HideAllActiveScreens();
+            instance.settings.SetActive(true);
+            instance.activeScreens.Add(instance.settings);
+            E_ShowSettings?.Invoke();
+            E_UpdateActiveScreen?.Invoke();
+        }
+
+        public static void HideSettings()
+        {
+            instance.settings.SetActive(false);
+            instance.activeScreens.Remove(instance.settings);
 
             instance.tint.SetActive(false);
         }
