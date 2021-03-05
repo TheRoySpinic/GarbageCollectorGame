@@ -28,9 +28,7 @@ namespace HUD
 
         public void OpenMenu()
         {
-            PlayerController.enableInput = false;
-            MovePlayerCar.SetSpeed(Vector3.zero);
-            ScreensManager.ShowMenuHud();
+            ArrivalManager.instance.EndArrival();
         }
     }
 }

@@ -16,10 +16,10 @@ namespace Player
 
         [SerializeField]
         private float stopSpeed = 0.02f;
-
+        /*
         [SerializeField]
         private float fromZeroAccelerationSpeed = 0.01f;
-
+        */
         [SerializeField]
         private float accelerationSpeed = 0.001f;
 
@@ -39,10 +39,11 @@ namespace Player
             {
                 currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, stopSpeed);
             }
-            else if (currentSpeed != targetSpeed)
+            /*
+            if (currentSpeed != targetSpeed)
             {
                 currentSpeed = Vector3.Lerp(currentSpeed, targetSpeed, fromZeroAccelerationSpeed);
-            }
+            }*/
 
             rigidbody.MovePosition(tr.position + (currentSpeed * Time.deltaTime));
 
@@ -52,7 +53,13 @@ namespace Player
 
         public static void SetSpeed(Vector3 newSpeed)
         {
-            instance.targetSpeed = newSpeed;
+            //instance.targetSpeed = newSpeed;
+            instance.currentSpeed = newSpeed;
+        }
+
+        public static void SetZeroPosition()
+        {
+            instance.tr.position = Vector3.zero;
         }
     }
 }

@@ -71,6 +71,9 @@ namespace HUD
 
         public static void ShowMenuHud()
         {
+            if (instance.activeScreens.Contains(instance.menuHud))
+                return;
+
             HideAllActiveScreens();
             instance.menuHud.SetActive(true);
             instance.activeScreens.Add(instance.menuHud);

@@ -6413,6 +6413,13 @@ MonoBehaviour:
   nextSegmentSizeStep: 10
   minSegmentDestroyDistance: 120
   createNewSegmentDistance: 120
+  arrivalBase:
+  - {fileID: 3163353169463453633, guid: 2156e60f36853094988f86b9613c0de4, type: 3}
+  - {fileID: 2275636900041672986, guid: 2ca085c73f8fb8f4c8b311a8a9f99451, type: 3}
+  - {fileID: 6249639018335515258, guid: fc2d2d0b67b802c4aae41f486edb0021, type: 3}
+  - {fileID: 4845042456452021983, guid: a3be56c1818449e47a62daade6f5b19d, type: 3}
+  previewBase:
+  - {fileID: 4998031202166144144, guid: 76c2c5c200978674ebd768b2a54b0088, type: 3}
 --- !u!4 &704221653
 Transform:
   m_ObjectHideFlags: 0
@@ -15692,7 +15699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732732832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178725319}
@@ -15934,7 +15941,6 @@ MonoBehaviour:
   currentSpeed: {x: 0, y: 0, z: 0}
   targetSpeed: {x: 0, y: 0, z: 0}
   stopSpeed: 0.02
-  fromZeroAccelerationSpeed: 0.01
   accelerationSpeed: 0.001
 --- !u!114 &1732732839
 MonoBehaviour:

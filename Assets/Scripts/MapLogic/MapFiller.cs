@@ -37,7 +37,7 @@ namespace Map
         private Transform firstTransform = null;
         private Transform lastTransform = null;
 
-        private bool previewMode = false;
+        private bool previewMode = true;
 
         override public void Init()
         {
@@ -69,29 +69,50 @@ namespace Map
             previewMode = mode;
         }
 
-        public void ReloadMap()
+        public void ReloadMap(bool previewMode)
         {
-            if(previewMode)
-            {
+            SetPreviewMode(previewMode);
 
-            }
-            else
-            {
-                FillMap();
-            }
+            FillMap();
         }
 
 
         private void FillMap()
         {
-            //чистим что уже на сцене и ставим новое
+            ClearMap();
 
-            firstTransform = activeSegments[0].transform;
-            lastTransform = activeSegments[activeSegments.Count - 1].transform;
+            foreach(GameObject o in previewMode ? previewBase : arrivalBase)
+            {
+                GameObject segment = Instantiate(o, mapTransform);
+
+                lastTransform = segment.transform;
+
+                lastTransform.localPosition = firstTransform != null ? 
+                    new Vector3(lastTransform.localPosition.x + lastTransform.GetComponent<MapSegment>().prefabSize, lastTransform.localPosition.y, lastTransform.localPosition.z) 
+                    : Vector3.zero;
+
+                if (!firstTransform)
+                    firstTransform = segment.transform;
+
+                activeSegments.Add(segment);
+            }
+
             for (int i = 0; i < startSegmentsCount; i++)
             {
                 CreateMapSegment();
             }
+        }
+
+        private void ClearMap()
+        {
+            while(mapTransform.childCount > 0)
+            {
+                DestroyImmediate(activeSegments[0]);
+                activeSegments.RemoveAt(0);
+            }
+
+            firstTransform = null;
+            lastTransform = null;
         }
 
         private void CreateMapSegment()
