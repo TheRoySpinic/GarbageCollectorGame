@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using Base;
+using Player;
 using Popups;
 using Store;
 using System;
@@ -8,11 +9,9 @@ using UnityEngine;
 
 namespace Garage
 {
-    public class GarageManager : MonoBehaviour
+    public class GarageManager : SingletonGen<GarageManager>
     {
         public const string PLAYERPREFS_GRADE_PLAYERDATA_FIELD = "player_grades";
-
-        public static GarageManager instance { get; private set; } = null;
         
         public static Action E_GarageManagerReady;
 
@@ -45,11 +44,8 @@ namespace Garage
 
         private ECarType viewCar = ECarType.NONE;
 
-        private void Awake()
+        override public void Init()
         {
-            if (instance == null)
-                instance = this;
-
             LoadPlayerGradeData();
 
             if(carMesh == null)
