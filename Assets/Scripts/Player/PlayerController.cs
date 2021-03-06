@@ -186,6 +186,18 @@ namespace Player
             UpdateControlers();
         }
 
+        public void SetCarBasePosition()
+        {
+            if(controlType.Equals(ECarControlType.LINES))
+            {
+                currentLine = 1;
+            }
+
+            targetPos = 0;
+
+            carTransform.localPosition = Vector3.zero;
+        }
+
 
         private void UpdateControlers()
         {

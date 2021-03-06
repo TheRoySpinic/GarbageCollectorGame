@@ -1,25 +1,18 @@
-﻿using Garage;
+﻿using Base;
+using Garage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Popups
 {
-    public class PopupManager : MonoBehaviour
+    public class PopupManager : SingletonGen<PopupManager>
     {
-        public static PopupManager instance = null;
 
         [SerializeField]
         private GameObject tint = null;
         [SerializeField]
         private CarGradeLevelUp_Confirm upgradeConfirm = null;
-
-
-        private void Awake()
-        {
-            if (instance == null)
-                instance = this;
-        }
 
         public static void ShowUpgradeConfirm(EGradeType gradeType)
         {
@@ -34,6 +27,16 @@ namespace Popups
             instance.tint.SetActive(false);
 
             instance.upgradeConfirm.gameObject.SetActive(false);
+        }
+
+        public static void ShowArrivalResult()
+        {
+
+        }
+
+        public static void HideArrivalResult()
+        {
+
         }
     }
 }

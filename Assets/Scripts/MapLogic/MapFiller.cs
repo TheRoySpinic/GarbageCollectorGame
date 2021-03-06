@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Base;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Map
 {
-    public class MapFiller : MonoBehaviour
+    public class MapFiller : SingletonGen<MapFiller>
     {
         public static Action E_CreateSegment;
         [SerializeField]
@@ -17,45 +18,112 @@ namespace Map
 
         [Header("Setup"), Space]
         [SerializeField]
+        private float startSegmentsCount = 12;
+        [SerializeField]
         private float nextSegmentSizeStep = 10;
         [SerializeField]
         private float minSegmentDestroyDistance = 10;
         [SerializeField]
         private float createNewSegmentDistance = 100;
 
-        private void Awake()
+        [Header("Base segments")]
+        [SerializeField]
+        private List<GameObject> arrivalBase = new List<GameObject>();
+        [SerializeField]
+        private List<GameObject> previewBase = new List<GameObject>();
+
+        private Transform mapTransform = null;
+        private Transform carTransform = null;
+        private Transform firstTransform = null;
+        private Transform lastTransform = null;
+
+        private bool previewMode = true;
+
+        override public void Init()
         {
+            mapTransform = transform;
+            carTransform = playerCar.transform;
+
             FillMap();
         }
 
         private void Update()
         {
-            if (transform.TransformPoint(activeSegments[0].transform.position).x < playerCar.transform.position.x
-                && Vector3.Distance(activeSegments[0].transform.position, playerCar.transform.position) > minSegmentDestroyDistance)
+            if (mapTransform.TransformPoint(firstTransform.position).x < carTransform.position.x
+                && Vector3.Distance(firstTransform.position, carTransform.position) > minSegmentDestroyDistance)
             {
                 Destroy(activeSegments[0]);
                 activeSegments.RemoveAt(0);
+                firstTransform = activeSegments[0].transform;
             }
 
-            if (Vector3.Distance(activeSegments[activeSegments.Count - 1].transform.position, playerCar.transform.position) < createNewSegmentDistance)
+            if (Vector3.Distance(lastTransform.transform.position, carTransform.position) < createNewSegmentDistance)
             {
                 CreateMapSegment();
             }
         }
 
+
+        public void SetPreviewMode(bool mode)
+        {
+            previewMode = mode;
+        }
+
+        public void ReloadMap(bool previewMode)
+        {
+            SetPreviewMode(previewMode);
+
+            FillMap();
+        }
+
+
         private void FillMap()
         {
-            for (int i = 0; i < 12; i++)
+            ClearMap();
+
+            foreach(GameObject o in previewMode ? previewBase : arrivalBase)
+            {
+                GameObject segment = Instantiate(o, mapTransform);
+
+                lastTransform = segment.transform;
+
+                lastTransform.localPosition = firstTransform != null ? 
+                    new Vector3(lastTransform.localPosition.x + lastTransform.GetComponent<MapSegment>().prefabSize, lastTransform.localPosition.y, lastTransform.localPosition.z) 
+                    : Vector3.zero;
+
+                if (!firstTransform)
+                    firstTransform = segment.transform;
+
+                activeSegments.Add(segment);
+            }
+
+            for (int i = 0; i < startSegmentsCount; i++)
             {
                 CreateMapSegment();
             }
+        }
+
+        private void ClearMap()
+        {
+            while(mapTransform.childCount > 0)
+            {
+                DestroyImmediate(activeSegments[0]);
+                activeSegments.RemoveAt(0);
+            }
+
+            firstTransform = null;
+            lastTransform = null;
         }
 
         private void CreateMapSegment()
         {
-            GameObject segment = Instantiate(GetNextSegment(), transform);
-            segment.transform.localPosition = new Vector3(activeSegments[activeSegments.Count - 1].transform.localPosition.x + nextSegmentSizeStep, segment.transform.localPosition.y, segment.transform.localPosition.z);
+            //если превью мод- ставим превью сегменты
+
+            GameObject segment = Instantiate(GetNextSegment(), mapTransform);
+            Transform sgTrasform = segment.transform;
+            sgTrasform.localPosition = new Vector3(lastTransform.localPosition.x + nextSegmentSizeStep, sgTrasform.localPosition.y, sgTrasform.localPosition.z);
             activeSegments.Add(segment);
+            lastTransform = sgTrasform;
             E_CreateSegment?.Invoke();
         }
 
