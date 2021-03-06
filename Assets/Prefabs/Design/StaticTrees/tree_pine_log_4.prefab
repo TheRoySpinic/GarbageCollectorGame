@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3830036942251216304}
   - component: {fileID: 182639718608847381}
   - component: {fileID: 2696577087059146463}
+  - component: {fileID: 5774128972431191625}
+  - component: {fileID: 7484388692604946454}
+  - component: {fileID: 5048598685681649071}
   m_Layer: 0
   m_Name: tree_pine_log_4
   m_TagString: Untagged
@@ -82,3 +85,46 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5774128972431191625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498206397765359370}
+  m_Material: {fileID: 13400000, guid: d732357900892464a9bf517a6156a952, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.01804, y: 1.9279573, z: 7.305648}
+  m_Center: {x: 0.058423676, y: 0.0058487696, z: -0.037502296}
+--- !u!54 &7484388692604946454
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498206397765359370}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5048598685681649071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4498206397765359370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce63b82d9815bda48a269a29229151ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  frezeWhileNoDamage: 1
