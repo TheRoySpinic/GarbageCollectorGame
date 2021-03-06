@@ -49,6 +49,20 @@ namespace Map
 
         private void Update()
         {
+            //Временный кастыль для восстановления после (пока) неизвестной ошибки, определить, удалить
+            if(mapTransform == null)
+            {
+                if (transform != null)
+                    mapTransform = transform;
+                else
+                {
+                    Debug.LogError("[MapFiller] Critical error!!! Transfom is null");
+                    Application.Quit();
+                }
+                Debug.LogWarning("[MapFiller] Restore after lost transform");
+            }
+            //----------------------------
+
             if (mapTransform.TransformPoint(firstTransform.position).x < carTransform.position.x
                 && Vector3.Distance(firstTransform.position, carTransform.position) > minSegmentDestroyDistance)
             {
