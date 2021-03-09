@@ -49,12 +49,15 @@ namespace Map
 
         private void Update()
         {
-            if (Vector3.Distance(lastTransform.transform.position, carTransform.position) < createNewSegmentDistance)
+            if (lastTransform == null)
+                FillMap();
+
+            if (Vector3.Distance(lastTransform.position, carTransform.position) < createNewSegmentDistance)
             {
                 CreateMapSegment();
             }
 
-            if (mapTransform.TransformPoint(firstTransform.position).x < carTransform.position.x
+            if (activeSegments.Count > 0 && mapTransform.TransformPoint(firstTransform.position).x < carTransform.position.x
                 && Vector3.Distance(firstTransform.position, carTransform.position) > minSegmentDestroyDistance)
             {
                 Destroy(activeSegments[0]);
@@ -117,17 +120,11 @@ namespace Map
 
         private void CreateMapSegment()
         {
-            if(previewMode)
-            {
-                GameObject psegment = Instantiate(previewBase[UnityEngine.Random.Range(0, previewBase.Count - 1)], mapTransform);
-                Transform psgTrasform = psegment.transform;
-                psgTrasform.localPosition = new Vector3(lastTransform.localPosition.x + nextSegmentSizeStep, psgTrasform.localPosition.y, psgTrasform.localPosition.z);
-                activeSegments.Add(psegment);
-                lastTransform = psgTrasform;
-                return;
-            }
+            GameObject prefab = previewMode ? previewBase[UnityEngine.Random.Range(0, previewBase.Count - 1)] : GetNextSegment();
+            nextSegmentSizeStep = previewMode ? prefab.GetComponent<MapSegment>().prefabSize : nextSegmentSizeStep;
 
-            GameObject segment = Instantiate(GetNextSegment(), mapTransform);
+
+            GameObject segment = Instantiate(prefab, mapTransform);
             Transform sgTrasform = segment.transform;
             sgTrasform.localPosition = new Vector3(lastTransform.localPosition.x + nextSegmentSizeStep, sgTrasform.localPosition.y, sgTrasform.localPosition.z);
             activeSegments.Add(segment);

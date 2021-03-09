@@ -15,6 +15,11 @@ namespace Arrival
         public static Action E_Start;
         public static Action E_End;
 
+        [SerializeField]
+        private Camera gameCamera = null;
+        [SerializeField]
+        private Camera menuCamera = null;
+
         public override void Init()
         {
             SceneLoader.E_LoadScene -= BaseState;
@@ -55,6 +60,9 @@ namespace Arrival
             ShowEffect.Blackout();
             yield return new WaitForSeconds(0.3f);
 
+            menuCamera.gameObject.SetActive(false);
+            gameCamera.gameObject.SetActive(true);
+
             MapFiller.instance.ReloadMap(false);
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
@@ -66,6 +74,8 @@ namespace Arrival
             ShowEffect.Blackout();
             yield return new WaitForSeconds(0.3f);
 
+            gameCamera.gameObject.SetActive(false);
+            menuCamera.gameObject.SetActive(true);
             BaseState();
         }
     }

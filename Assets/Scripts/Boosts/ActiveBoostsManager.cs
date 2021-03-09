@@ -53,18 +53,19 @@ namespace Boosts
 
         public void AddBoost(EBoostType boostType)
         {
-            if(balance == null)
+            if (balance == null)
                 balance = GameBalance.GetBoostBalance();
 
             Boost contains = Array.Find(activeBoosts.ToArray(), (b) => { return b.boostType.Equals(boostType); });
+            Boost boostData = Array.Find(balance.boosts.ToArray(), (b) => { return b.boostType.Equals(boostType); });
 
             if (contains != null)
             {
-                contains.timeLeft = Array.Find(balance.boosts.ToArray(), (b) => { return b.boostType.Equals(boostType); }).timeLeft;
+                contains.timeLeft = boostData.timeLeft;
             }
             else
             {
-                Boost boost = Array.Find(balance.boosts.ToArray(), (b)=> { return b.boostType.Equals(boostType); });
+                Boost boost = new Boost(boostData);
 
                 if (boost == null)
                     boost = new Boost() { boostType = boostType };

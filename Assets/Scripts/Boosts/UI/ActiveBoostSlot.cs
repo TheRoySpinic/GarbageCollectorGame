@@ -16,9 +16,9 @@ namespace Boosts.UI
         [Header("Animation"), Space]
         [SerializeField, Range(0,1)]
         private float pulseRange = 0.2f;
-
+        
         [SerializeField]
-        private Animator animation = null;
+        private new Animator animation = null;
 
         private bool trigerIsSet = false;
 
@@ -30,7 +30,7 @@ namespace Boosts.UI
         {
             if(remainTime > 0)
             {
-                if(!trigerIsSet && remainTime < remainTime * pulseRange)
+                if(!trigerIsSet && remainTime < baseRemainTime * pulseRange)
                 {
                     animation.SetTrigger("Pulse");
                     trigerIsSet = true;
@@ -51,11 +51,6 @@ namespace Boosts.UI
             baseRemainTime = ActiveBoostsManager.instance.GetBaseRemainingTime(boostType);
 
             icon.sprite = ActiveBoostsManager.instance.GetBoostSprite(boostType);
-        }
-
-        public void ClickAction()
-        {
-
         }
     }
 }

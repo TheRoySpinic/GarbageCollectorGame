@@ -17,7 +17,7 @@ namespace Boosts.Map
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.CompareTag("Player"))
+            if(isActive && other.transform.parent.parent.gameObject.CompareTag("Player"))
             {
                 ActiveBoostsManager.instance.AddBoost(boostType);
                 HideEffect();
