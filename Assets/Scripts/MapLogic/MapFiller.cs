@@ -49,19 +49,10 @@ namespace Map
 
         private void Update()
         {
-            //Временный кастыль для восстановления после (пока) неизвестной ошибки, определить, удалить
-            if(mapTransform == null)
+            if (Vector3.Distance(lastTransform.transform.position, carTransform.position) < createNewSegmentDistance)
             {
-                if (transform != null)
-                    mapTransform = transform;
-                else
-                {
-                    Debug.LogError("[MapFiller] Critical error!!! Transfom is null");
-                    Application.Quit();
-                }
-                Debug.LogWarning("[MapFiller] Restore after lost transform");
+                CreateMapSegment();
             }
-            //----------------------------
 
             if (mapTransform.TransformPoint(firstTransform.position).x < carTransform.position.x
                 && Vector3.Distance(firstTransform.position, carTransform.position) > minSegmentDestroyDistance)
@@ -69,11 +60,6 @@ namespace Map
                 Destroy(activeSegments[0]);
                 activeSegments.RemoveAt(0);
                 firstTransform = activeSegments[0].transform;
-            }
-
-            if (Vector3.Distance(lastTransform.transform.position, carTransform.position) < createNewSegmentDistance)
-            {
-                CreateMapSegment();
             }
         }
 
@@ -131,7 +117,15 @@ namespace Map
 
         private void CreateMapSegment()
         {
-            //если превью мод- ставим превью сегменты
+            if(previewMode)
+            {
+                GameObject psegment = Instantiate(previewBase[UnityEngine.Random.Range(0, previewBase.Count - 1)], mapTransform);
+                Transform psgTrasform = psegment.transform;
+                psgTrasform.localPosition = new Vector3(lastTransform.localPosition.x + nextSegmentSizeStep, psgTrasform.localPosition.y, psgTrasform.localPosition.z);
+                activeSegments.Add(psegment);
+                lastTransform = psgTrasform;
+                return;
+            }
 
             GameObject segment = Instantiate(GetNextSegment(), mapTransform);
             Transform sgTrasform = segment.transform;

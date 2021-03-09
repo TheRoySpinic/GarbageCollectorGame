@@ -163,8 +163,15 @@ namespace Garage
                 Debug.LogError("Invalide gradeType");
                 return;
             }
-
-            PopupManager.ShowUpgradeConfirm(gradeType);
+            
+            if(GetCurentGradeLevel(gradeType) < Array.Find(GetCarGradeData().grades, (g) => { return g.gradeType.Equals(gradeType); }).gradeCost.Length)
+            {
+                PopupManager.ShowUpgradeConfirm(gradeType);
+            }
+            else
+            {
+                //попап "максимальный уровень"
+            }
         }
 
         public void GradeLevelUp_Confirm(EGradeType gradeType)
@@ -332,7 +339,7 @@ namespace Garage
                 }
                 else
                 {
-                    //Попап неудачной покупки
+                    //Попап неудачной покупки "недостаточно денег"
                 }
             }
         }

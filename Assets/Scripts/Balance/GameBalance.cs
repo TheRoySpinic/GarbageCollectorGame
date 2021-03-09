@@ -1,30 +1,20 @@
-﻿using System.Collections;
+﻿using Base;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Balance
 {
-    public class GameBalance : MonoBehaviour
+    public class GameBalance : SingletonGen<GameBalance>
     {
-        public static GameBalance instance;
-
         [SerializeField]
         private PlayerBalance playerBalance = new PlayerBalance();
 
         [SerializeField]
         private MapBalance mapBalance = new MapBalance();
 
-        private void Awake()
-        {
-            if (instance == null)
-                instance = this;
-        }
-
-        private void OnDestroy()
-        {
-            if (instance.Equals(this))
-                instance = null;
-        }
+        [SerializeField]
+        private BoostBalance boostBalance = new BoostBalance();
 
         public static PlayerBalance GetPlayerBalance()
         {
@@ -38,6 +28,14 @@ namespace Balance
         {
             if (instance != null)
                 return instance.mapBalance;
+
+            return null;
+        }
+
+        public static BoostBalance GetBoostBalance()
+        {
+            if (instance != null)
+                return instance.boostBalance;
 
             return null;
         }
