@@ -1,11 +1,13 @@
 ﻿using Balance;
 using Base;
+using Boosts;
 using HUD;
 using Map;
 using Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Target;
 using UnityEngine;
 
 namespace Arrival
@@ -46,6 +48,7 @@ namespace Arrival
 
         private void BaseState()
         {
+            ActiveBoostsManager.instance.DisableAllBoost();
             MapFiller.instance.ReloadMap(true);
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
@@ -63,6 +66,8 @@ namespace Arrival
             menuCamera.gameObject.SetActive(false);
             gameCamera.gameObject.SetActive(true);
 
+            ActiveBoostsManager.instance.DisableAllBoost();
+            TargetManager.instance.StartNewRun();
             MapFiller.instance.ReloadMap(false);
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;

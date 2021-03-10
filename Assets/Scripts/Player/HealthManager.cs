@@ -35,7 +35,7 @@ namespace Player
         {
             if (!isTakeDamage)
             {
-                Debug.LogWarning("[HealthManager] isTakeDamage false!");
+                Debug.Log("[HealthManager] isTakeDamage false");
                 return;
             }
             health -= damage;
@@ -46,6 +46,11 @@ namespace Player
                 E_Die?.Invoke();
                 isAlive = false;
             }
+        }
+
+        public void SetIsTakeDamage(bool takeDamage)
+        {
+            isTakeDamage = takeDamage;
         }
 
         public void RestoreHealth(int restore)

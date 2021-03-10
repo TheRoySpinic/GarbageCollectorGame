@@ -7,6 +7,7 @@ namespace Player.Control
     public enum ECarControlType
     {
         LINES,
+        SWIPE,
         FREE_CONTROL,
         FLOATING_JOYSTIC,
         DYNAMIC_JOYSTIC

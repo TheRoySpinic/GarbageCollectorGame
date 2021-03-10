@@ -21,6 +21,8 @@ namespace Target
         private int garbageCount = 0;
         private int allCount = 0;
 
+        private int sumArrivalReward = 0;
+
         private void Awake()
         {
             if (instance == null)
@@ -52,7 +54,10 @@ namespace Target
 
         public void StartNewRun()
         {
-
+            grabPercent = 0;
+            garbageCount = 0;
+            allCount = 0;
+            sumArrivalReward = 0;
         }
 
         public void AddGarbage(GarbageType type)
@@ -77,6 +82,8 @@ namespace Target
         {
             int reward = 0;
             reward = Array.Find(GameBalance.GetMapBalance().garbageSpawnsConfig, (a) => { return a.garbageType == garbageType; }).baseReward;
+
+            sumArrivalReward += reward;
 
             MasterStoreManager.instance.AddGold(reward);
         }

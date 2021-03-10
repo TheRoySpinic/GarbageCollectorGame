@@ -1,4 +1,5 @@
-﻿using Garage;
+﻿using Base;
+using Garage;
 using Map;
 using Player.Control;
 using Player.Control.Joystic;
@@ -10,10 +11,8 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : SingletonGen<PlayerController>
     {
-        public static PlayerController instance = null;
-
         public static bool enableInput = false;
 
         private int currentLine = 1;
@@ -41,6 +40,7 @@ namespace Player
 
         [SerializeField]
         private float moveSpeed = 10;
+        private float baseMoveSpeed = 10;
 
         [SerializeField]
         private ECarControlType controlType = ECarControlType.FREE_CONTROL;
@@ -58,10 +58,9 @@ namespace Player
         private TouchPhase phase;
 #endif
 
-        private void Awake()
+        override public void Init()
         {
-            if (instance == null)
-                instance = this;
+            baseMoveSpeed = moveSpeed;
 
             carTransform = car.transform;
 
@@ -78,7 +77,7 @@ namespace Player
             UpdateControlers();
         }
 
-        private void OnDestroy()
+        override public void Destroy()
         {
             GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
             GarageManager.E_GarageManagerReady -= LoadCar;
@@ -196,6 +195,21 @@ namespace Player
             targetPos = 0;
 
             carTransform.localPosition = Vector3.zero;
+        }
+
+        public float GetMoveSpeed()
+        {
+            return moveSpeed;
+        }
+
+        public void SetMoveSpeed(float newSpeed)
+        {
+            moveSpeed = newSpeed;
+        }
+
+        public void ResetMoveSpeed()
+        {
+            moveSpeed = baseMoveSpeed;
         }
 
 

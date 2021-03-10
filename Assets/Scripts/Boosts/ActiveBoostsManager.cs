@@ -93,6 +93,14 @@ namespace Boosts
             return Array.Find(balance.boosts.ToArray(), (b) => { return b.boostType.Equals(boostType); }).timeLeft;
         }
 
+        public void DisableAllBoost()
+        {
+            foreach(Boost boost in activeBoosts)
+            {
+                boost.timeLeft = 0;
+            }
+        }
+
     
         [Serializable]
         private class BoostIcon
