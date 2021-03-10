@@ -1290,6 +1290,8 @@ GameObject:
   - component: {fileID: 178725321}
   - component: {fileID: 178725317}
   - component: {fileID: 178725320}
+  - component: {fileID: 178725322}
+  - component: {fileID: 178725323}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1355,13 +1357,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178725316}
-  m_LocalRotation: {x: 0.24184473, y: 0.66446304, z: -0.24184473, w: 0.66446304}
-  m_LocalPosition: {x: -23, y: 33, z: 0}
+  m_LocalRotation: {x: 0.23021138, y: 0.6685826, z: -0.23021138, w: 0.6685826}
+  m_LocalPosition: {x: -20.5, y: 24.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1732732833}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 40, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 38, y: 90, z: 0}
 --- !u!114 &178725320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,9 +1437,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCar: {fileID: 471268783}
-  speed: 3
-  maxLeft: 3
-  maxRight: -3
+  speed: 4
+  maxLeft: 4
+  maxRight: -4
+--- !u!95 &178725322
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178725316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5030397114d5d9459d5d953cc8a0344, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &178725323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178725316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d5a3fa8d3680d46a40df5e726f3614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 178725322}
 --- !u!1 &189709641
 GameObject:
   m_ObjectHideFlags: 0
@@ -16366,7 +16400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7167d1d2aa976104e8b6891e86bdee07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTakeDamage: 0
+  isTakeDamage: 1
 --- !u!114 &1732732838
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ namespace Player
         public static HealthManager instance;
 
         public static Action<int> E_UpdateHealth;
+        public static Action E_Damage;
         public static Action E_Die;
 
         [SerializeField]
@@ -39,6 +40,7 @@ namespace Player
                 return;
             }
             health -= damage;
+            E_Damage?.Invoke();
             E_UpdateHealth?.Invoke(health);
 
             if (health <= 0)
@@ -56,6 +58,12 @@ namespace Player
         public void RestoreHealth(int restore)
         {
             health = health + restore > maxHealth ? maxHealth : health + restore;
+            E_UpdateHealth?.Invoke(health);
+        }
+
+        public void ResetHealth()
+        {
+            health = maxHealth;
             E_UpdateHealth?.Invoke(health);
         }
     }

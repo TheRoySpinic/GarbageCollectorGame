@@ -66,6 +66,7 @@ namespace Arrival
             menuCamera.gameObject.SetActive(false);
             gameCamera.gameObject.SetActive(true);
 
+            HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             TargetManager.instance.StartNewRun();
             MapFiller.instance.ReloadMap(false);
