@@ -25,6 +25,7 @@ namespace GoogleMobileAds.Unity
 {
     public class BannerClient : BaseAdDummyClient, IBannerClient
     {
+#pragma warning disable
         // Ad event fired when the banner ad has been received.
         public event EventHandler<EventArgs> OnAdLoaded;
         // Ad event fired when the banner ad has failed to load.
@@ -37,6 +38,7 @@ namespace GoogleMobileAds.Unity
         public event EventHandler<EventArgs> OnAdLeavingApplication;
         // Ad event fired when the banner ad is estimated to have earned money.
         public event EventHandler<AdValueEventArgs> OnPaidEvent;
+#pragma warning restore
 
         private Dictionary<AdSize, string> prefabAds = new Dictionary<AdSize, string>()
         {

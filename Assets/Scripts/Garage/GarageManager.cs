@@ -274,6 +274,8 @@ namespace Garage
 
         public CarGradeData GetCarGradeData()
         {
+            if (gradeConfig == null)
+                return null;
             return gradeConfig.GetCarData(viewCar);
         }
 
