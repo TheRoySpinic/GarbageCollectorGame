@@ -49,9 +49,6 @@ namespace Map
 
         private void Update()
         {
-            if (lastTransform == null)
-                FillMap();
-
             if (Vector3.Distance(lastTransform.position, carTransform.position) < createNewSegmentDistance)
             {
                 CreateMapSegment();
