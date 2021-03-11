@@ -47,7 +47,15 @@ namespace Garage
 
         override public void Init()
         {
-            gradeConfig = GameBalance.GetCarGradeConfig();
+            if (GameBalance.configReady)
+            {
+                LoadConfig();
+            }
+            else
+            {
+                GameBalance.E_ConfigReady -= LoadConfig;
+                GameBalance.E_ConfigReady += LoadConfig;
+            }
 
             LoadPlayerGradeData();
 
@@ -264,6 +272,8 @@ namespace Garage
 
         public int GetCurentGradeLevel(EGradeType gradeType)
         {
+            if (GetPlayerCarGrades() == null)
+                return 0;
             return Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
         }
 
@@ -364,6 +374,11 @@ namespace Garage
         private void IncrementGradeLevel(EGradeType gradeType)
         {
             Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
+        }
+
+        private void LoadConfig()
+        {
+            gradeConfig = GameBalance.GetCarGradeConfig();
         }
 
         private void SavePlayerGradeData()

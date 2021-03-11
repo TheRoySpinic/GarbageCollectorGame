@@ -2,6 +2,7 @@
 using Firebase.RemoteConfig;
 using Firebase.RemouteConfig;
 using Garage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace Balance
 {
     public class GameBalance : SingletonGen<GameBalance>
     {
+        public static Action E_ConfigReady;
+        public static bool configReady = false;
+
         [SerializeField]
         private StoreBalance storeBalance = new StoreBalance();
 
@@ -84,6 +88,9 @@ namespace Balance
             mapBalance = JsonUtility.FromJson<MapBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("mapBalance").StringValue);
             boostBalance = JsonUtility.FromJson<BoostBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("boostBalance").StringValue);
             carConfig = JsonUtility.FromJson<CarGradeConfig>(FirebaseRemoteConfig.DefaultInstance.GetValue("carConfig").StringValue);
+
+            configReady = true;
+            E_ConfigReady?.Invoke();
         }
     }
 }

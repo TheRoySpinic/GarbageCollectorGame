@@ -60,7 +60,15 @@ namespace Player
 
         override public void Init()
         {
-            baseMoveSpeed = moveSpeed;
+            if(GarageManager.instance != null)
+            {
+                SetCarSpeed();
+            }
+            else
+            {
+                GarageManager.E_Ready -= SetCarSpeed;
+                GarageManager.E_Ready += SetCarSpeed;
+            }
 
             carTransform = car.transform;
 
@@ -81,6 +89,7 @@ namespace Player
         {
             GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
             GarageManager.E_GarageManagerReady -= LoadCar;
+            GarageManager.E_Ready -= SetCarSpeed;
         }
 
         private void Update()
@@ -251,6 +260,12 @@ namespace Player
             carMesh = o.GetComponent<CarMesh>();
 
             moveSpeed = GarageManager.instance.GetActiveCarSpeed();
+        }
+
+        private void SetCarSpeed()
+        {
+            moveSpeed = GarageManager.instance.GetActiveCarSpeed();
+            baseMoveSpeed = moveSpeed;
         }
 
 
