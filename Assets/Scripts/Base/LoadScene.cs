@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadScene : MonoBehaviour
+namespace Base
 {
-    [SerializeField]
-    private string sceneName = "MenuScene";
-
-    private void Start()
+    public class LoadScene : MonoBehaviour
     {
-        Base.SceneLoader.LoadScene(sceneName);
+        [SerializeField]
+        private string sceneName = "MenuScene";
+
+        private void Start()
+        {
+            SceneLoader.LoadScene(sceneName);
+        }
     }
 }

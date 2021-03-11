@@ -1,4 +1,5 @@
-﻿using Firebase.Extensions;
+﻿using Balance;
+using Firebase.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace Firebase.RemouteConfig
             switch (info.LastFetchStatus)
             {
                 case RemoteConfig.LastFetchStatus.Success:
-                    RemoteConfig.FirebaseRemoteConfig.DefaultInstance.FetchAndActivateAsync();
+                    RemoteConfig.FirebaseRemoteConfig.DefaultInstance.ActivateAsync();
                     Debug.Log(String.Format("[F_RC] Remote data loaded and ready (last fetch time {0}).", info.FetchTime));
                     Debug.Log("remouteConfig_debug: " + RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("remouteConfig_debug").StringValue);
                     E_FetchRemouteConfig_Success?.Invoke();
@@ -85,6 +86,11 @@ namespace Firebase.RemouteConfig
             Dictionary<string, object> defaults = new Dictionary<string, object>();
 
             defaults.Add("remouteConfig_debug", "default local string");
+            defaults.Add("carConfig", JsonUtility.ToJson(GameBalance.GetCarGradeConfig()));
+            defaults.Add("boostBalance", JsonUtility.ToJson(GameBalance.GetBoostBalance()));
+            defaults.Add("mapBalance", JsonUtility.ToJson(GameBalance.GetMapBalance()));
+            defaults.Add("playerBalance", JsonUtility.ToJson(GameBalance.GetPlayerBalance()));
+            defaults.Add("storeConfig", JsonUtility.ToJson(GameBalance.GetStoreBalance()));
 
             RemoteConfig.FirebaseRemoteConfig.DefaultInstance.SetDefaultsAsync(defaults);
         }
