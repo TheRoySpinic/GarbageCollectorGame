@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Arrival;
+using Garage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,13 +26,19 @@ namespace Player
         private void Awake()
         {
             instance = this;
+
+            ArrivalManager.E_Start -= LoadCarHealth;
+            ArrivalManager.E_Start += LoadCarHealth;
         }
 
         private void OnDestroy()
         {
             if (instance.Equals(this))
                 instance = null;
+
+            ArrivalManager.E_Start -= LoadCarHealth;
         }
+
 
         public void TakeDamage(int damage)
         {
@@ -64,7 +72,15 @@ namespace Player
         public void ResetHealth()
         {
             health = maxHealth;
+            isAlive = true;
             E_UpdateHealth?.Invoke(health);
+        }
+
+
+        private void LoadCarHealth()
+        {
+            maxHealth = GarageManager.instance.GetActiveCarHealth();
+            ResetHealth();
         }
     }
 }

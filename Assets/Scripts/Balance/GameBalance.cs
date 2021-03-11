@@ -1,4 +1,5 @@
 ﻿using Base;
+using Garage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,9 @@ namespace Balance
 
         [SerializeField]
         private BoostBalance boostBalance = new BoostBalance();
+
+        [SerializeField]
+        private CarGradeConfig carConfig = new CarGradeConfig();
 
         public static PlayerBalance GetPlayerBalance()
         {
@@ -36,6 +40,14 @@ namespace Balance
         {
             if (instance != null)
                 return instance.boostBalance;
+
+            return null;
+        }
+
+        public static CarGradeConfig GetCarGradeConfig()
+        {
+            if (instance != null)
+                return instance.carConfig;
 
             return null;
         }

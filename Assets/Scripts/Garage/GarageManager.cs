@@ -1,4 +1,5 @@
-﻿using Base;
+﻿using Balance;
+using Base;
 using Player;
 using Popups;
 using Store;
@@ -46,6 +47,8 @@ namespace Garage
 
         override public void Init()
         {
+            gradeConfig = GameBalance.GetCarGradeConfig();
+
             LoadPlayerGradeData();
 
             if(carMesh == null)
@@ -72,6 +75,7 @@ namespace Garage
             if (IsOwnedCar(carType))
             {
                 playerCarGrades.activeCar = carType;
+                SavePlayerGradeData();
                 E_ActiveCarUpdate?.Invoke(carType);
             }
 
@@ -90,6 +94,7 @@ namespace Garage
             if(MasterStoreManager.instance.SubstractGold(GetCarCost(carType)))
             {
                 playerCarGrades.ownedCars.Add(new CarGradePlayerData(){ carType = carType });
+                SetActiveCar(carType);
                 SavePlayerGradeData();
             }
             else
@@ -100,6 +105,16 @@ namespace Garage
             E_ViewCarUpdate?.Invoke(carType);
         }
         
+        public int GetActiveCarHealth()
+        {
+            return GetCarGradeData().baseCarHealth + (int) GetGradeValue(EGradeType.ARMOR);
+        }
+        
+        public float GetActiveCarSpeed()
+        {
+            return GetCarGradeData().baseCarSpeed + GetGradeValue(EGradeType.SPEED);
+        }
+
         public ECarType GetActiveCarType()
         {
             return playerCarGrades.activeCar;
@@ -244,7 +259,7 @@ namespace Garage
 
         public int GetCarCost(ECarType carType)
         {
-            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); }).carCost;
+            return gradeConfig.GetCarData(carType).carCost;
         }
 
         public int GetCurentGradeLevel(EGradeType gradeType)
@@ -259,12 +274,12 @@ namespace Garage
 
         public CarGradeData GetCarGradeData()
         {
-            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(viewCar); });
+            return gradeConfig.GetCarData(viewCar);
         }
 
         public CarGradeData GetCarGradeData(ECarType carType)
         {
-            return Array.Find(gradeConfig.gradeData, (g) => { return g.carType.Equals(carType); });
+            return gradeConfig.GetCarData(carType);
         }
 
         public int GetColorCost(int index)

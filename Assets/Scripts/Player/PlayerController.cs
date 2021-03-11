@@ -249,6 +249,8 @@ namespace Player
 
             Destroy(carMesh.gameObject);
             carMesh = o.GetComponent<CarMesh>();
+
+            moveSpeed = GarageManager.instance.GetActiveCarSpeed();
         }
 
 
