@@ -237,17 +237,21 @@ namespace Garage
 
         public float GetGradeValue(EGradeType gradeType)
         {
-            CarGradeData gradeConfig = GetCarGradeData();
             int level = GetCurentGradeLevel(gradeType);
 
-            return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).parameterValue[level];
+            return GetGradeValue(gradeType, level);
         }
 
         public float GetGradeValue(EGradeType gradeType, int level)
         {
             CarGradeData gradeConfig = GetCarGradeData();
 
-            return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).parameterValue[level];
+            GradeData grade = Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); });
+
+            if (grade.parameterValue.Length < level)
+                return grade.parameterValue[level];
+            else
+                return grade.parameterValue[grade.parameterValue.Length - 1];
         }
 
         public int GetGradeCost(EGradeType gradeType, int level)
