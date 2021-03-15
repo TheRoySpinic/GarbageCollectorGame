@@ -13,13 +13,9 @@ namespace Monetisation.IAP
         public IAPManager()
         {
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-            builder.AddProduct("100_gold_coins", ProductType.Consumable, new IDs
+            builder.AddProduct("1_gold_coins", ProductType.Consumable, new IDs
             {
-                {"1_gold_coins_google", GooglePlay.Name},
-                {"2_gold_coins_google", GooglePlay.Name},
-                {"3_gold_coins_google", GooglePlay.Name},
-                {"4_gold_coins_google", GooglePlay.Name},
-                {"5_gold_coins_google", GooglePlay.Name},
+                {"1_gold_coins_google", GooglePlay.Name}
             });
 
             UnityPurchasing.Initialize(this, builder);
@@ -51,6 +47,11 @@ namespace Monetisation.IAP
         public static Product[] GetProducts()
         {
             return controller.products.all;
+        }
+
+        public static Product GetProductById(string id)
+        {
+            return controller.products.WithID(id);
         }
     }
 }
