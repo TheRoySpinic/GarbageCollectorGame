@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Balance;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -52,6 +53,11 @@ namespace Monetisation.IAP
         public static Product GetProductById(string id)
         {
             return controller.products.WithID(id);
+        }
+
+        public static List<StoreProduct> GetStoreProducts()
+        {
+            return GameBalance.GetStoreBalance().storeProducts;
         }
     }
 }

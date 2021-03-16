@@ -18,7 +18,7 @@ namespace Balance
     public class StoreProduct
     {
         public string storeId = "";
-        public List<Reward> rewards = new List<Reward>();
+        public Reward reward = new Reward();
     }
 
     [Serializable]

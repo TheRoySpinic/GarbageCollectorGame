@@ -1,7 +1,9 @@
-﻿using HUD;
+﻿using Balance;
+using HUD;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Purchasing;
 
 namespace Monetisation.IAP.UI
 {
@@ -29,6 +31,15 @@ namespace Monetisation.IAP.UI
         public void PrepareStore()
         {
             ClearList();
+
+            List<StoreProduct> storeProducts = IAPManager.GetStoreProducts();
+
+            foreach(StoreProduct product in storeProducts)
+            {
+                Product productData = IAPManager.GetProductById(product.storeId);
+
+                //Создаём сторовский слот
+            }
         }
 
         private void ClearList()
