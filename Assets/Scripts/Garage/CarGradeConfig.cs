@@ -12,6 +12,9 @@ namespace Garage
 
         public CarGradeData GetCarData(ECarType carType)
         {
+            if (gradeData == null)
+                return null;
+
             return Array.Find(gradeData, (d) => { return d.carType.Equals(carType); });
         }
     }

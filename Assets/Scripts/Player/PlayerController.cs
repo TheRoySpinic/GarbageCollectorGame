@@ -60,7 +60,15 @@ namespace Player
 
         override public void Init()
         {
-            baseMoveSpeed = moveSpeed;
+            if(GarageManager.instance != null)
+            {
+                SetCarSpeed();
+            }
+            else
+            {
+                GarageManager.E_Ready -= SetCarSpeed;
+                GarageManager.E_Ready += SetCarSpeed;
+            }
 
             carTransform = car.transform;
 
@@ -81,6 +89,7 @@ namespace Player
         {
             GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
             GarageManager.E_GarageManagerReady -= LoadCar;
+            GarageManager.E_Ready -= SetCarSpeed;
         }
 
         private void Update()
@@ -253,6 +262,12 @@ namespace Player
             moveSpeed = GarageManager.instance.GetActiveCarSpeed();
         }
 
+        private void SetCarSpeed()
+        {
+            moveSpeed = GarageManager.instance.GetActiveCarSpeed();
+            baseMoveSpeed = moveSpeed;
+        }
+
 
         private IEnumerator MoveLeft()
         {
@@ -265,7 +280,7 @@ namespace Player
                 {
                     camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, -cameraTurnCurve.Evaluate(Vector3.Distance(carTransform.position, target)));
                     carTransform.rotation = Quaternion.Euler(-rotationCurve.Evaluate(Vector3.Distance(carTransform.position, target)), -turnCurve.Evaluate(Vector3.Distance(carTransform.position, target)), 0);
-                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target)) * Time.deltaTime);
+                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target)) * Time.deltaTime * moveSpeed);
                     yield return new WaitForEndOfFrame();
                 }
                 canMoveRight = true;
@@ -285,7 +300,7 @@ namespace Player
                 {
                     camera.transform.rotation = Quaternion.Euler(camera.transform.rotation.eulerAngles.x, camera.transform.rotation.eulerAngles.y, cameraTurnCurve.Evaluate(Vector3.Distance(carTransform.position, target)));
                     carTransform.rotation = Quaternion.Euler(rotationCurve.Evaluate(Vector3.Distance(carTransform.position, target)), turnCurve.Evaluate(Vector3.Distance(carTransform.position, target)), 0);
-                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target))* Time.deltaTime);
+                    carTransform.position = Vector3.MoveTowards(carTransform.position, new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]), speedCurve.Evaluate(Vector3.Distance(carTransform.position, target))* Time.deltaTime * moveSpeed);
                     yield return new WaitForEndOfFrame();
                 }
 

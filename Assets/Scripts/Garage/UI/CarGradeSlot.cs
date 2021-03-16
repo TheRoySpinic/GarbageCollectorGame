@@ -42,10 +42,9 @@ namespace Garage.UI
             {
                 cost.text = "MAX LEVEL";
                 cost.color = TextFormater.GetCostColor(true);
-                return;
             }
 
-            gradeValue.text = GarageManager.instance.GetGradeValue(gradeType, level).ToString();
+            gradeValue.text = "+" + GarageManager.instance.GetGradeValue(gradeType, level).ToString();
             gradeLevel.text = (level + 1) + " LVL";
         }
 

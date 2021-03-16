@@ -293,7 +293,7 @@ RectTransform:
   m_Children:
   - {fileID: 2053347483}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 90046123976101430, guid: 49b21a954c9c2bf42b2259f80796f62c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 90046123976101430, guid: 49b21a954c9c2bf42b2259f80796f62c,
         type: 3}
@@ -2011,6 +2011,62 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1146711651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146711654}
+  - component: {fileID: 1146711653}
+  - component: {fileID: 1146711652}
+  m_Layer: 0
+  m_Name: InitGoogleServices
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1146711652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146711651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3e5fddfe204e9408d3354636dd6404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1146711653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146711651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e158addd5eeef1c4ea604fc2377ce786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1146711654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146711651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1246212, y: 17.567484, z: 6.989395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1186163662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2661,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a482f713615085f42ab7ffc3ee7b7876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storeBalance:
+    newbyeOfferConfig:
+      storeId: 
+      parameter:
+        showCost: 1
+        minArrivalForShow: 3
+    storeProducts: []
+    offerConfigs: []
   playerBalance:
     startSpeed: {x: 20, y: 0, z: 0}
     previewSpeed: {x: 10, y: 0, z: 0}
@@ -2623,12 +2687,93 @@ MonoBehaviour:
     boosts:
     - boostType: 1
       timeLeft: 0
+      value: 0
     - boostType: 2
       timeLeft: 30
+      value: 0
     - boostType: 3
       timeLeft: 30
+      value: 0
     - boostType: 4
       timeLeft: 30
+      value: 0
+  carConfig:
+    gradeData:
+    - carType: 1
+      carCost: 0
+      grades:
+      - gradeType: 1
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      - gradeType: 2
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 10
+        - 20
+        - 30
+      - gradeType: 3
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      colorsCost: 05000000140000000f000000190000001e0000000a000000
+      baseCarHealth: 100
+      baseCarSpeed: 10
+      baseCarSize: 10
+    - carType: 2
+      carCost: 10
+      grades:
+      - gradeType: 1
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      - gradeType: 2
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 10
+        - 20
+        - 30
+      - gradeType: 3
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      colorsCost: 050000000a0000001400000014000000190000001e000000
+      baseCarHealth: 100
+      baseCarSpeed: 15
+      baseCarSize: 10
+    - carType: 3
+      carCost: 25
+      grades:
+      - gradeType: 1
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      - gradeType: 2
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 10
+        - 20
+        - 30
+      - gradeType: 3
+        gradeCost: 0a000000140000001e000000
+        parameterValue:
+        - 1
+        - 1.2
+        - 1.3
+      colorsCost: 050000000a0000000f00000014000000190000001e000000
+      baseCarHealth: 200
+      baseCarSpeed: 7
+      baseCarSize: 10
 --- !u!4 &1625051562
 Transform:
   m_ObjectHideFlags: 0
@@ -2738,7 +2883,7 @@ RectTransform:
   - {fileID: 2606721060937854196}
   - {fileID: 4585156712673259428}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2813,7 +2958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053347482
 GameObject:

@@ -47,7 +47,15 @@ namespace Garage
 
         override public void Init()
         {
-            gradeConfig = GameBalance.GetCarGradeConfig();
+            if (GameBalance.configReady)
+            {
+                LoadConfig();
+            }
+            else
+            {
+                GameBalance.E_ConfigReady -= LoadConfig;
+                GameBalance.E_ConfigReady += LoadConfig;
+            }
 
             LoadPlayerGradeData();
 
@@ -229,17 +237,21 @@ namespace Garage
 
         public float GetGradeValue(EGradeType gradeType)
         {
-            CarGradeData gradeConfig = GetCarGradeData();
             int level = GetCurentGradeLevel(gradeType);
 
-            return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).parameterValue[level];
+            return GetGradeValue(gradeType, level);
         }
 
         public float GetGradeValue(EGradeType gradeType, int level)
         {
             CarGradeData gradeConfig = GetCarGradeData();
 
-            return Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); }).parameterValue[level];
+            GradeData grade = Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); });
+
+            if (grade.parameterValue.Length < level)
+                return grade.parameterValue[level];
+            else
+                return grade.parameterValue[grade.parameterValue.Length - 1];
         }
 
         public int GetGradeCost(EGradeType gradeType, int level)
@@ -264,6 +276,8 @@ namespace Garage
 
         public int GetCurentGradeLevel(EGradeType gradeType)
         {
+            if (GetPlayerCarGrades() == null)
+                return 0;
             return Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level;
         }
 
@@ -274,6 +288,8 @@ namespace Garage
 
         public CarGradeData GetCarGradeData()
         {
+            if (gradeConfig == null)
+                return null;
             return gradeConfig.GetCarData(viewCar);
         }
 
@@ -362,6 +378,11 @@ namespace Garage
         private void IncrementGradeLevel(EGradeType gradeType)
         {
             Array.Find(GetPlayerCarGrades().grades, (g) => { return g.gradeType.Equals(gradeType); }).level++;
+        }
+
+        private void LoadConfig()
+        {
+            gradeConfig = GameBalance.GetCarGradeConfig();
         }
 
         private void SavePlayerGradeData()
