@@ -1,4 +1,6 @@
 ﻿using Balance;
+using Base;
+using Player;
 using Store;
 using System;
 using System.Collections;
@@ -7,37 +9,45 @@ using UnityEngine;
 
 namespace Target
 {
-    public class TargetManager : MonoBehaviour
+    public class TargetManager : SingletonGen<TargetManager>
     {
-        public static TargetManager instance { get; private set; } = null;
-
         public static Action<GarbageType> E_CollectGarbage;
+        public static Action E_UpdateGarbageContains;
+        public static Action E_CarIsFull;
+
+
+        public static double currentDistance { get; private set; } = 0;
 
         [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
-        [SerializeField]
-        private float grabPercent = 0;
+
+        private int maxGarbages = 100;
 
         private int garbageCount = 0;
         private int allCount = 0;
 
         private int sumArrivalReward = 0;
 
-        private void Awake()
+        private bool canGrabGarbage = true;
+
+        private Rigidbody rb = null;
+
+        public override void Init()
         {
-            if (instance == null)
-                instance = this;
+            rb = GetComponent<Rigidbody>();
         }
 
-        private void OnDestroy()
+        private void Update()
         {
-            if (instance.Equals(this))
-                instance = null;
+            if(HealthManager.isAlive)
+            {
+                currentDistance += rb.velocity.x / 2 * Time.deltaTime;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.tag.Equals("Garbage"))
+            if(HealthManager.isAlive && canGrabGarbage && other.gameObject.tag.Equals("Garbage"))
             {
                 Garbage garbage = other.gameObject.GetComponent<Garbage>();
                 if (!garbage.isActive)
@@ -50,14 +60,21 @@ namespace Target
                 garbage.HideEffect();
                 E_CollectGarbage?.Invoke(garbage.garbageType);
             }
+
+            if(garbageCount >= maxGarbages)
+            {
+                canGrabGarbage = false;
+                E_CarIsFull?.Invoke();
+                StartClear();
+            }
         }
 
         public void StartNewRun()
         {
-            grabPercent = 0;
             garbageCount = 0;
             allCount = 0;
             sumArrivalReward = 0;
+            canGrabGarbage = true;
         }
 
         public void AddGarbage(GarbageType type)
@@ -75,7 +92,6 @@ namespace Target
         public void AddAllCount()
         {
             ++allCount;
-            grabPercent = (float) garbageCount / (float) allCount;
         }
 
         public void AddReward(GarbageType garbageType)
@@ -86,6 +102,32 @@ namespace Target
             sumArrivalReward += reward;
 
             MasterStoreManager.instance.AddGold(reward);
+        }
+
+        public void SetMaxSize(int max)
+        {
+            maxGarbages = max;
+        }
+
+        public void StartClear()
+        {
+            StartCoroutine(CClear());
+        }
+
+
+        private void FinishClear()
+        {
+            canGrabGarbage = true;
+            garbageCount = 0;
+            E_UpdateGarbageContains?.Invoke();
+        }
+
+
+        private IEnumerator CClear()
+        {
+            yield return new WaitForSeconds(3);
+
+            FinishClear();
         }
 
 

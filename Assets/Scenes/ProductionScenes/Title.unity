@@ -2744,8 +2744,8 @@ MonoBehaviour:
       profitValue: 800
     offerConfigs: []
   playerBalance:
-    startSpeed: {x: 50, y: 0, z: 0}
-    previewSpeed: {x: 30, y: 0, z: 0}
+    startSpeed: {x: 30, y: 0, z: 0}
+    previewSpeed: {x: 10, y: 0, z: 0}
   mapBalance:
     garbageSpawnsConfig:
     - garbageType: 0
@@ -2779,9 +2779,9 @@ MonoBehaviour:
       - gradeType: 1
         gradeCost: 0a000000140000001e000000
         parameterValue:
-        - 1
-        - 1.2
-        - 1.3
+        - 0.1
+        - 0.2
+        - 0.3
       - gradeType: 2
         gradeCost: 0a000000140000001e000000
         parameterValue:
@@ -2796,7 +2796,7 @@ MonoBehaviour:
         - 1.3
       colorsCost: 05000000140000000f000000190000001e0000000a000000
       baseCarHealth: 100
-      baseCarSpeed: 10
+      baseCarSpeed: 1
       baseCarSize: 10
     - carType: 2
       carCost: 10
@@ -2804,9 +2804,9 @@ MonoBehaviour:
       - gradeType: 1
         gradeCost: 0a000000140000001e000000
         parameterValue:
-        - 1
-        - 1.2
-        - 1.3
+        - 0.2
+        - 0.3
+        - 0.4
       - gradeType: 2
         gradeCost: 0a000000140000001e000000
         parameterValue:
@@ -2821,7 +2821,7 @@ MonoBehaviour:
         - 1.3
       colorsCost: 050000000a0000001400000014000000190000001e000000
       baseCarHealth: 100
-      baseCarSpeed: 15
+      baseCarSpeed: 1.5
       baseCarSize: 10
     - carType: 3
       carCost: 25
@@ -2829,9 +2829,9 @@ MonoBehaviour:
       - gradeType: 1
         gradeCost: 0a000000140000001e000000
         parameterValue:
-        - 1
-        - 1.2
-        - 1.3
+        - 0.1
+        - 0.2
+        - 0.3
       - gradeType: 2
         gradeCost: 0a000000140000001e000000
         parameterValue:
@@ -2846,7 +2846,7 @@ MonoBehaviour:
         - 1.3
       colorsCost: 050000000a0000000f00000014000000190000001e000000
       baseCarHealth: 200
-      baseCarSpeed: 7
+      baseCarSpeed: 0.8
       baseCarSize: 10
 --- !u!4 &1625051562
 Transform:

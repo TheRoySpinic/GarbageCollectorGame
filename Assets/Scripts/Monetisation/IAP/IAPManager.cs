@@ -21,6 +21,50 @@ namespace Monetisation.IAP
             {
                 {"1_gold_coins_google", GooglePlay.Name}
             });
+            builder.AddProduct("2_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"2_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("3_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"3_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("4_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"4_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("5_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"5_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("6_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"6_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("7_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"7_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("8_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"8_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("9_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"9_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("10_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"10_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("11_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"11_gold_coins_google", GooglePlay.Name}
+            });
+            builder.AddProduct("12_gold_coins", ProductType.Consumable, new IDs
+            {
+                {"12_gold_coins_google", GooglePlay.Name}
+            });
 
             UnityPurchasing.Initialize(this, builder);
         }

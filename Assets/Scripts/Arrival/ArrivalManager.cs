@@ -49,10 +49,10 @@ namespace Arrival
         private void BaseState()
         {
             ActiveBoostsManager.instance.DisableAllBoost();
+            PlayerController.instance.SetCarBasePosition();
             MapFiller.instance.ReloadMap(true);
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
-            PlayerController.instance.SetCarBasePosition();
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
             MovePlayerCar.SetZeroPosition();
         }
@@ -69,10 +69,10 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             TargetManager.instance.StartNewRun();
+            PlayerController.instance.SetCarBasePosition();
             MapFiller.instance.ReloadMap(false);
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
-            PlayerController.instance.SetCarBasePosition();
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed);
         }
 
