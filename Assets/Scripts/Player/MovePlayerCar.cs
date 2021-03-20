@@ -33,7 +33,7 @@ namespace Player
             rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if(!HealthManager.isAlive)
             {

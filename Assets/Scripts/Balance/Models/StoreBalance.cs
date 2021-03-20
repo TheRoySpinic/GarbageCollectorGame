@@ -19,6 +19,7 @@ namespace Balance
     {
         public string storeId = "";
         public Reward reward = new Reward();
+        public int profitValue = -1;
     }
 
     [Serializable]

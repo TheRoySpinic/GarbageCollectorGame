@@ -293,7 +293,7 @@ RectTransform:
   m_Children:
   - {fileID: 2053347483}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 90046123976101430, guid: 49b21a954c9c2bf42b2259f80796f62c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 90046123976101430, guid: 49b21a954c9c2bf42b2259f80796f62c,
         type: 3}
@@ -2065,7 +2065,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1186163662
 GameObject:
@@ -2110,7 +2110,7 @@ Transform:
   - {fileID: 2116896300}
   - {fileID: 1582137115}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1238060861
 GameObject:
@@ -2661,17 +2661,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a482f713615085f42ab7ffc3ee7b7876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadFromFirebase: 0
   storeBalance:
     newbyeOfferConfig:
       storeId: 
       parameter:
         showCost: 1
         minArrivalForShow: 3
-    storeProducts: []
+      rewards: []
+    storeProducts:
+    - storeId: 1_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 100
+      profitValue: 0
+    - storeId: 2_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 250
+      profitValue: 25
+    - storeId: 3_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 500
+      profitValue: 50
+    - storeId: 4_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 750
+      profitValue: 75
+    - storeId: 5_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 1000
+      profitValue: 100
+    - storeId: 6_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 1500
+      profitValue: 125
+    - storeId: 7_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 2500
+      profitValue: 150
+    - storeId: 8_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 5000
+      profitValue: 200
+    - storeId: 9_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 7500
+      profitValue: 300
+    - storeId: 10_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 10000
+      profitValue: 400
+    - storeId: 11_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 15000
+      profitValue: 600
+    - storeId: 12_gold_coins
+      reward:
+        rewardType: 1
+        iconId: -1
+        value: 20000
+      profitValue: 800
     offerConfigs: []
   playerBalance:
-    startSpeed: {x: 20, y: 0, z: 0}
-    previewSpeed: {x: 10, y: 0, z: 0}
+    startSpeed: {x: 50, y: 0, z: 0}
+    previewSpeed: {x: 30, y: 0, z: 0}
   mapBalance:
     garbageSpawnsConfig:
     - garbageType: 0
@@ -2788,6 +2862,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1812723665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812723670}
+  - component: {fileID: 1812723669}
+  - component: {fileID: 1812723668}
+  - component: {fileID: 1812723667}
+  - component: {fileID: 1812723666}
+  m_Layer: 0
+  m_Name: Monetisation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1812723666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812723665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57254c5b6b488445998f23e97efc937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1812723667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812723665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48bc7aad46e8a084396d8f7067b376c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1812723668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812723665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3049c09b820ebaf4196ad70cee156077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1812723669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812723665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3e5fddfe204e9408d3354636dd6404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1812723670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812723665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 734.8412, y: 971.2743, z: -398.01312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985061991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,7 +3039,7 @@ RectTransform:
   - {fileID: 2606721060937854196}
   - {fileID: 4585156712673259428}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2958,7 +3114,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053347482
 GameObject:

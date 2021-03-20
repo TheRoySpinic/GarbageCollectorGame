@@ -14,6 +14,9 @@ namespace Monetisation.IAP.UI
         [SerializeField]
         private GameObject content = null;
 
+        [SerializeField]
+        private GameObject slotPrefab = null;
+
         private void Awake()
         {
             if (instance == null)
@@ -36,15 +39,14 @@ namespace Monetisation.IAP.UI
 
             foreach(StoreProduct product in storeProducts)
             {
-                Product productData = IAPManager.GetProductById(product.storeId);
-
-                //Создаём сторовский слот
+                Instantiate(slotPrefab, content.transform).GetComponent<IapStoreSlot>().SetData(product.storeId);
             }
         }
 
         private void ClearList()
         {
-
+            for(int i = 0; i < content.transform.childCount; i++)
+                DestroyImmediate(content.transform.GetChild(i).gameObject);
         }
     }
 }

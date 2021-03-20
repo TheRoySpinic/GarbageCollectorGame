@@ -5,6 +5,7 @@
         NONE,
         GOLD,
         CAR,
+        CAR_COLOR,
         COLLORSET,
         TIME_BOOSTER
     }

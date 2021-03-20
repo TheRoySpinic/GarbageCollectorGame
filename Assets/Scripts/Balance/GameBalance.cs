@@ -15,6 +15,10 @@ namespace Balance
         public static bool configReady = false;
 
         [SerializeField]
+        private bool loadFromFirebase = true;
+
+        [Space]
+        [SerializeField]
         private StoreBalance storeBalance = new StoreBalance();
 
         [SerializeField]
@@ -31,6 +35,10 @@ namespace Balance
 
         public override void Init()
         {
+#if !UNITY_EDITOR
+            loadFromFirebase = true;
+#endif
+
             FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= LoadConfigs;
             FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig += LoadConfigs;
         }
@@ -83,6 +91,13 @@ namespace Balance
 
         private void LoadConfigs()
         {
+            if(!loadFromFirebase)
+            {
+                configReady = true;
+                E_ConfigReady?.Invoke();
+                return;
+            }
+
             storeBalance = JsonUtility.FromJson<StoreBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("storeConfig").StringValue);
             playerBalance = JsonUtility.FromJson<PlayerBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("playerBalance").StringValue);
             mapBalance = JsonUtility.FromJson<MapBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("mapBalance").StringValue);
