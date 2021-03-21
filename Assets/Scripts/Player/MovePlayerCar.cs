@@ -12,16 +12,10 @@ namespace Player
         private Vector3 currentSpeed = new Vector3();
 
         [SerializeField]
-        private Vector3 targetSpeed = new Vector3();
+        private float stopSpeed = 0.02f;
 
         [SerializeField]
-        private float stopSpeed = 0.02f;
-        /*
-        [SerializeField]
-        private float fromZeroAccelerationSpeed = 0.01f;
-        */
-        [SerializeField]
-        private float accelerationSpeed = 0.001f;
+        private float accelerationSpeed = 0.01f;
 
         private new Rigidbody rigidbody = null;
         private Transform tr = null;
@@ -33,28 +27,27 @@ namespace Player
             rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(!HealthManager.isAlive)
             {
                 currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, stopSpeed);
             }
-            /*
-            if (currentSpeed != targetSpeed)
-            {
-                currentSpeed = Vector3.Lerp(currentSpeed, targetSpeed, fromZeroAccelerationSpeed);
-            }*/
 
             rigidbody.MovePosition(tr.position + (currentSpeed * Time.deltaTime));
 
             if(PlayerController.enableInput)
-                targetSpeed.Set(targetSpeed.x + accelerationSpeed, targetSpeed.y, targetSpeed.z);
+                currentSpeed = new Vector3(currentSpeed.x + accelerationSpeed * Time.fixedDeltaTime, currentSpeed.y, currentSpeed.z);
         }
 
-        public static void SetSpeed(Vector3 newSpeed)
+        public static void SetSpeed(Vector3 newSpeed, float newAccelerationSpeed = 0)
         {
-            //instance.targetSpeed = newSpeed;
             instance.currentSpeed = newSpeed;
+            
+            if(newAccelerationSpeed > 0)
+            {
+                instance.accelerationSpeed = newAccelerationSpeed;
+            }
         }
 
         public static void SetZeroPosition()

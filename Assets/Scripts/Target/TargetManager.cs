@@ -18,17 +18,17 @@ namespace Target
 
         public static double currentDistance { get; private set; } = 0;
 
+        public int maxGarbages { get; private set; } = 100;
+        public int garbageCount { get; private set; } = 0;
+        public bool canGrabGarbage { get; private set; } = true;
+
+
         [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
 
-        private int maxGarbages = 100;
-
-        private int garbageCount = 0;
         private int allCount = 0;
 
         private int sumArrivalReward = 0;
-
-        private bool canGrabGarbage = true;
 
         private Rigidbody rb = null;
 
@@ -59,6 +59,7 @@ namespace Target
                 AddAllCount();
                 garbage.HideEffect();
                 E_CollectGarbage?.Invoke(garbage.garbageType);
+                E_UpdateGarbageContains?.Invoke();
             }
 
             if(garbageCount >= maxGarbages)
