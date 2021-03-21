@@ -162,6 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786590548462186582}
+  - component: {fileID: 2788480006720814501}
   m_Layer: 5
   m_Name: FillBar
   m_TagString: Untagged
@@ -191,6 +192,21 @@ RectTransform:
   m_AnchoredPosition: {x: 20.899994, y: -36.8}
   m_SizeDelta: {x: 272, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2788480006720814501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7786590548462186581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974aa465b5829994a8c3d93c4b6dd4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bg: {fileID: 7786590549254151570}
+  bar: {fileID: 7786590549163055024}
+  value: 0.864
 --- !u!1 &7786590548555091388
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,11 +316,11 @@ RectTransform:
   m_Father: {fileID: 7786590548462186582}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00002056, y: 0}
-  m_SizeDelta: {x: 272, y: 48}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.00007247925}
+  m_SizeDelta: {x: 12.240001, y: 48}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7786590549163055025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -427,6 +443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786590549268846907}
+  - component: {fileID: 8580608079059888457}
   m_Layer: 5
   m_Name: GarbageBar
   m_TagString: Untagged
@@ -454,6 +471,23 @@ RectTransform:
   m_AnchoredPosition: {x: 224, y: -108.400024}
   m_SizeDelta: {x: 380, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8580608079059888457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7786590549268846906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bdcc7a69bce43940897225a9fc2ba98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capasityText: {fileID: 7786590549276395638}
+  isFullText: {fileID: 7786590549356401565}
+  dark: {fileID: 7786590549440382422}
+  check: {fileID: 7786590547374949283}
+  progressBar: {fileID: 2788480006720814501}
 --- !u!1 &7786590549276395636
 GameObject:
   m_ObjectHideFlags: 0

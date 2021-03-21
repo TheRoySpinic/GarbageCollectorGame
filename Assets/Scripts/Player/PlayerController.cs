@@ -203,7 +203,7 @@ namespace Player
 
             targetPos = 0;
 
-            carTransform.localPosition = Vector3.zero;
+            transform.position = Vector3.zero;
         }
 
         public float GetMoveSpeed()

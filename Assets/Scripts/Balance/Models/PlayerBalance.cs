@@ -9,5 +9,7 @@ namespace Balance
     {
         public Vector3 startSpeed = new Vector3();
         public Vector3 previewSpeed = new Vector3();
+
+        public float accelerationSpeed = 0.5f;
     }
 }

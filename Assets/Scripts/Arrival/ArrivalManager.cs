@@ -73,7 +73,7 @@ namespace Arrival
             MapFiller.instance.ReloadMap(false);
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
-            MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed);
+            MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed, GameBalance.GetPlayerBalance().accelerationSpeed);
         }
 
         private IEnumerator CEnd()
