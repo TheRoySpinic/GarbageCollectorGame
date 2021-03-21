@@ -26,9 +26,9 @@ namespace Target
         [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
 
-        private int allCount = 0;
+        public int allCount { get; private set; } = 0;
 
-        private int sumArrivalReward = 0;
+        public int sumArrivalReward { get; private set; } = 0;
 
         private Rigidbody rb = null;
 

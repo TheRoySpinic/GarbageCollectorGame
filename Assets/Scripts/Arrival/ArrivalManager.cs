@@ -4,6 +4,7 @@ using Boosts;
 using HUD;
 using Map;
 using Player;
+using Popups;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +49,7 @@ namespace Arrival
 
         private void BaseState()
         {
+            HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             PlayerController.instance.SetCarBasePosition();
             MapFiller.instance.ReloadMap(true);
@@ -69,11 +71,12 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             TargetManager.instance.StartNewRun();
-            PlayerController.instance.SetCarBasePosition();
             MapFiller.instance.ReloadMap(false);
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed, GameBalance.GetPlayerBalance().accelerationSpeed);
+            PlayerController.instance.SetCarBasePosition();
+            MovePlayerCar.SetZeroPosition();
         }
 
         private IEnumerator CEnd()
@@ -83,6 +86,7 @@ namespace Arrival
 
             gameCamera.gameObject.SetActive(false);
             menuCamera.gameObject.SetActive(true);
+            PopupManager.HideArrivalResult();
             BaseState();
         }
     }

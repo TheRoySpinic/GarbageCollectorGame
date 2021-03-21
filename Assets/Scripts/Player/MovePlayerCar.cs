@@ -36,7 +36,7 @@ namespace Player
 
             rigidbody.MovePosition(tr.position + (currentSpeed * Time.deltaTime));
 
-            if(PlayerController.enableInput)
+            if(PlayerController.enableInput && HealthManager.isAlive)
                 currentSpeed = new Vector3(currentSpeed.x + accelerationSpeed * Time.fixedDeltaTime, currentSpeed.y, currentSpeed.z);
         }
 

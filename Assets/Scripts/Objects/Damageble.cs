@@ -32,7 +32,7 @@ namespace Map
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (isActive && collision.gameObject.tag.Equals("Player"))
+            if (isActive && collision.gameObject.CompareTag("Player"))
             {
                 if (frezeWhileNoDamage)
                 {

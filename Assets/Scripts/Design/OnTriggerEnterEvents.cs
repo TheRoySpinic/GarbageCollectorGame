@@ -16,7 +16,7 @@ namespace Design
 
         private void OnTriggerEnter(Collider other)
         {
-            if(onlyTag.Equals("") || other.gameObject.tag.Equals(onlyTag))
+            if(onlyTag.Equals("") || other.gameObject.CompareTag(onlyTag))
             {
                 unityEvent?.Invoke();
             }

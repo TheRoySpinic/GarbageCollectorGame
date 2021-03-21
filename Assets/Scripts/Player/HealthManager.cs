@@ -1,5 +1,6 @@
 ﻿using Arrival;
 using Garage;
+using Popups;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,8 +28,8 @@ namespace Player
         {
             instance = this;
 
-            ArrivalManager.E_Start -= LoadCarHealth;
-            ArrivalManager.E_Start += LoadCarHealth;
+            ArrivalManager.E_Start -= SetCarHealth;
+            ArrivalManager.E_Start += SetCarHealth;
         }
 
         private void OnDestroy()
@@ -36,7 +37,7 @@ namespace Player
             if (instance.Equals(this))
                 instance = null;
 
-            ArrivalManager.E_Start -= LoadCarHealth;
+            ArrivalManager.E_Start -= SetCarHealth;
         }
 
 
@@ -55,6 +56,7 @@ namespace Player
             {
                 E_Die?.Invoke();
                 isAlive = false;
+                PopupManager.ShowArrivalResult();
             }
         }
 
@@ -77,7 +79,7 @@ namespace Player
         }
 
 
-        private void LoadCarHealth()
+        private void SetCarHealth()
         {
             maxHealth = GarageManager.instance.GetActiveCarHealth();
             ResetHealth();
