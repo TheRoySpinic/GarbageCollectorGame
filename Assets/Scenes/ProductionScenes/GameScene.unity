@@ -335,6 +335,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: copter
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecd76df0f1172dd45bc2f59efd07096a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd76df0f1172dd45bc2f59efd07096a, type: 3}
 --- !u!1 &96610362
@@ -7547,6 +7552,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: copter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecd76df0f1172dd45bc2f59efd07096a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd76df0f1172dd45bc2f59efd07096a, type: 3}
 --- !u!1 &1264626226
@@ -8634,6 +8644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: copter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecd76df0f1172dd45bc2f59efd07096a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd76df0f1172dd45bc2f59efd07096a, type: 3}
@@ -10355,7 +10370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: {x: 0, y: 0, z: 0}
-  targetSpeed: {x: 0, y: 0, z: 0}
   stopSpeed: 0.02
   accelerationSpeed: 0.001
 --- !u!114 &1732732839
