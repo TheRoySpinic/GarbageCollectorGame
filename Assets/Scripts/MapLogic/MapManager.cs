@@ -40,10 +40,8 @@ namespace Map
             nextBiome = currentBiome;
         }
 
-        public void ClearData()
-        {
 
-        }
+
 
         public GameObject GetNextSegment(out float size)
         {

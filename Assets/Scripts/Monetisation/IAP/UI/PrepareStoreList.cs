@@ -16,6 +16,9 @@ namespace Monetisation.IAP.UI
 
         [SerializeField]
         private GameObject slotPrefab = null;
+        
+        [SerializeField]
+        private GameObject spacer = null;
 
         private void Awake()
         {
@@ -34,6 +37,9 @@ namespace Monetisation.IAP.UI
         public void PrepareStore()
         {
             ClearList();
+
+            if(spacer != null)
+                Instantiate(spacer, content.transform);
 
             List<StoreProduct> storeProducts = IAPManager.GetStoreProducts();
 

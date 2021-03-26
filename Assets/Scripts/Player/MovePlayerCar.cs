@@ -34,7 +34,7 @@ namespace Player
                 currentSpeed = Vector3.Lerp(currentSpeed, Vector3.zero, stopSpeed);
             }
 
-            rigidbody.MovePosition(tr.position + (currentSpeed * Time.deltaTime));
+            rigidbody.MovePosition(tr.position + (currentSpeed * Time.fixedDeltaTime));
 
             if(PlayerController.enableInput && HealthManager.isAlive)
                 currentSpeed = new Vector3(currentSpeed.x + accelerationSpeed * Time.fixedDeltaTime, currentSpeed.y, currentSpeed.z);

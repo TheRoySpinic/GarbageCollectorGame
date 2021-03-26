@@ -72,6 +72,7 @@ namespace Target
 
         public void StartNewRun()
         {
+            currentDistance = 0;
             garbageCount = 0;
             allCount = 0;
             sumArrivalReward = 0;
