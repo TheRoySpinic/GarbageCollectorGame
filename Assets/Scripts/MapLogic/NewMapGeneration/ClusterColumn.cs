@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Map.Generate
 {
     [System.Serializable]
-    public class ClusterColumn : MonoBehaviour
+    public class ClusterRows
     {
         [SerializeField]
-        private Cluster[] clusters = null;
+        public List<Cluster> clusters = null;
     }
 }

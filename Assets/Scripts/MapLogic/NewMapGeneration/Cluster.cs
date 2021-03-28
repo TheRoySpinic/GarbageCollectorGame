@@ -8,25 +8,51 @@ namespace Map.Generate
     public class Cluster: MonoBehaviour
     {
         [SerializeField]
-        private EClusterType clusterType = EClusterType.NONE;
+        public EClusterType clusterType = EClusterType.NONE;
         
         [SerializeField]
         private State[] states = null;
 
-        private int lastStateIndex = -1;
+        [SerializeField]
+        private int currentStateIndex = 0;
 
-        public bool SetActiveIndex(int nextState)
+        public bool SetActiveIndex(int nextState, int parameter = -1)
         {
-            if (nextState >= 0 && nextState < states.Length)
+            HideLast();
+
+            if (nextState >= 0 && nextState < states.Length && states[nextState] != null && states[nextState].root != null)
             {
-                //Activate states
-                lastStateIndex = nextState;
+                states[nextState].root.SetActive(true);
+                states[nextState].constructEvents?.Invoke();
+
+                currentStateIndex = nextState;
+
+                if(parameter >= 0)
+                {
+                    SetupParameter(parameter);
+                }
+
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+
+
+        private void SetupParameter(int parameter)
+        {
+
+        }
+
+        private void HideLast()
+        {
+            if (currentStateIndex < 0 || currentStateIndex > states.Length - 1)
+                return;
+
+            states[currentStateIndex].destructEvents?.Invoke();
+            states[currentStateIndex].root.SetActive(false);
         }
 
 
