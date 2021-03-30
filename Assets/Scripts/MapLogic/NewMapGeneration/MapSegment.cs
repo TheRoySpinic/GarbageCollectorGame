@@ -28,6 +28,17 @@ namespace Map.Generate
             mapBalance = GameBalance.GetMapBalance();
         }
 
+        public void NextSegment(int segmentIndex)
+        {
+            SpawnClusters(segmentIndex);
+            PrepareClusters(segmentIndex);
+        }
+
+        public void SetSegmentPosition(Vector3 newPosition)
+        {
+            tr.localPosition = newPosition;
+        }
+
 
         private void SpawnClusters(int segmentIndex)
         {

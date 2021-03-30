@@ -9,9 +9,9 @@ namespace Balance
     [Serializable]
     public class MapBalance
     {
+        public SegmentConfig[] segments = null;
         public GarbageConfig[] garbageSpawnsConfig = null;
 
-        public SegmentConfig[] segments = null;
         
         [Serializable]
         public class GarbageConfig
@@ -33,6 +33,12 @@ namespace Balance
         public class ClusterRows
         {
             public int[] indexses = null;
+        }
+
+        [Serializable]
+        public class BiomeConfig
+        {
+            //биом, размеры, число неповторяющихся сегментов
         }
     }
 }
