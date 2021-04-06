@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Map;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Target;
@@ -9,10 +10,15 @@ namespace Balance
     [Serializable]
     public class MapBalance
     {
-        public SegmentConfig[] segments = null;
+        public EBiomeType startBiome = EBiomeType.DEFAULT;
+        public EBiomeType[] avableToRandom = { EBiomeType.DEFAULT, EBiomeType.FOREST };
+        public int segmentCounts = 20;
+
+        public BiomeConfig[] biomes = null;
         public GarbageConfig[] garbageSpawnsConfig = null;
 
         
+
         [Serializable]
         public class GarbageConfig
         {
@@ -23,22 +29,30 @@ namespace Balance
         }
 
         [Serializable]
-        public class SegmentConfig
-        {
-            public ClusterRows[] spawnConfig = null;
-            public ClusterRows[] parameters = null;
-        }
-
-        [Serializable]
-        public class ClusterRows
-        {
-            public int[] indexses = null;
-        }
-
-        [Serializable]
         public class BiomeConfig
         {
-            //биом, размеры, число неповторяющихся сегментов
+            public EBiomeType biomeType = EBiomeType.NONE;
+            public float setNextSegmentDistance = 100;
+            public int segmentSaveDublicateIndexes = 2;
+            public int biomeSaveDublicateIndexes = 2;
+            public int minBiomeSegments = 10;
+            public int maxBiomeSegments = 20;
+            public float biomeSpawnChange = 0.5f;
+            public EBiomeType nextBiome = EBiomeType.NONE; //NONE = random
+            public SegmentConfig[] segments = null;
+        }
+
+        [Serializable]
+        public class SegmentConfig
+        {
+            public ClusterRow[] spawnConfig = null;
+            public ClusterRow[] parameters = null;
+        }
+
+        [Serializable]
+        public class ClusterRow
+        {
+            public int[] indexses = null;
         }
     }
 }

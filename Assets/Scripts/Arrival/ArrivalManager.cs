@@ -3,6 +3,7 @@ using Base;
 using Boosts;
 using HUD;
 using Map;
+using Map.Generate;
 using Player;
 using Popups;
 using System;
@@ -52,7 +53,8 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             PlayerController.instance.SetCarBasePosition();
-            MapFiller.instance.ReloadMap(true);
+            //MapFiller.instance.ReloadMap(true);
+            MapGenerator.instance.ResetMap();
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
@@ -71,7 +73,8 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             TargetManager.instance.StartNewRun();
-            MapFiller.instance.ReloadMap(false);
+            //MapFiller.instance.ReloadMap(false);
+            MapGenerator.instance.ResetMap();
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed, GameBalance.GetPlayerBalance().accelerationSpeed);

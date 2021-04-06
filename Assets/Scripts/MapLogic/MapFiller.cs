@@ -117,7 +117,7 @@ namespace Map
 
         private void CreateMapSegment()
         {
-            GameObject prefab = previewMode ? previewBase[UnityEngine.Random.Range(0, previewBase.Count - 1)] : GetNextSegment();
+            GameObject prefab = previewMode ? previewBase[UnityEngine.Random.Range(0, previewBase.Count)] : GetNextSegment();
             nextSegmentSizeStep = previewMode ? prefab.GetComponent<MapSegment>().prefabSize : nextSegmentSizeStep;
 
 

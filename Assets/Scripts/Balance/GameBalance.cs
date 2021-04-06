@@ -5,6 +5,7 @@ using Garage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Balance
@@ -93,6 +94,7 @@ namespace Balance
         {
             if(!loadFromFirebase)
             {
+                LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
                 configReady = true;
                 E_ConfigReady?.Invoke();
                 return;
@@ -106,6 +108,22 @@ namespace Balance
 
             configReady = true;
             E_ConfigReady?.Invoke();
+        }
+
+        private void LoadBalanceFromFile<T>(out T result, string path)
+        {
+            result = default;
+            try
+            {
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    result = JsonUtility.FromJson<T>(reader.ReadToEnd());
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
         }
     }
 }

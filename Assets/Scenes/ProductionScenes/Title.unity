@@ -384,7 +384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f32d0287b97fb04e83a71faba5112e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5da956dd3b522ee4da527ba209bed019, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2890,6 +2890,13 @@ MonoBehaviour:
     previewSpeed: {x: 10, y: 0, z: 0}
     accelerationSpeed: 0.04
   mapBalance:
+    biomes:
+    - biomeType: 0
+      segments:
+      - spawnConfig:
+        - indexses: 02000000
+        parameters:
+        - indexses: 0100000001000000
     garbageSpawnsConfig:
     - garbageType: 0
       spawnChange: 0.3
@@ -2900,6 +2907,8 @@ MonoBehaviour:
     - garbageType: 2
       spawnChange: 0.1
       baseReward: 5
+    saveDublicateIndexes: 2
+    segmentCounts: 20
   boostBalance:
     boosts:
     - boostType: 1
@@ -3473,7 +3482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2820258074166166073 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8474999720768703207, guid: 96c69f8c023c02e4da379082c1f3d59c,

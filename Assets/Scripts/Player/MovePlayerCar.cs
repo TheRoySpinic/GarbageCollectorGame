@@ -52,7 +52,7 @@ namespace Player
 
         public static void SetZeroPosition()
         {
-            instance.tr.position = Vector3.zero;
+            instance.tr.position = new Vector3(100, 0, 0);
         }
     }
 }

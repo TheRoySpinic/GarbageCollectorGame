@@ -13,8 +13,7 @@ namespace Map.Generate
         [SerializeField]
         private LineParameters[] lines = null;
 
-        [SerializeField]
-        private List<ClusterRows> rows = null;
+        private List<ClusterRows> rows = new List<ClusterRows>();
 
         private Transform tr = null;
 
@@ -28,7 +27,7 @@ namespace Map.Generate
             mapBalance = GameBalance.GetMapBalance();
         }
 
-        public void NextSegment(int segmentIndex)
+        public void NextSegment(int segmentIndex, bool isPreview = false)
         {
             SpawnClusters(segmentIndex);
             PrepareClusters(segmentIndex);
@@ -43,23 +42,32 @@ namespace Map.Generate
         private void SpawnClusters(int segmentIndex)
         {
             for (int r = rows.Count > 0 ? rows.Count - 1 : 0;
-                r < mapBalance.segments[segmentIndex].spawnConfig.Length;
+                r < MapGenerator.GetCurrentBiomeConfig().segments[segmentIndex].spawnConfig.Length;
                 r++)
             {
                 LineParameters parameter = Array.Find(lines, (l) => { return r == l.line; });
 
-                for (int i = rows[r].clusters.Count > 0 ? rows[r].clusters.Count : 0; 
-                    i < mapBalance.segments[segmentIndex].spawnConfig[r].indexses.Length; 
+                if(rows.Count <= r)
+                {
+                    rows.Add(new ClusterRows());
+                }
+                /*
+                if(rows[r].clusters.Contains(null))
+                {
+                    rows[r].clusters.Remove(null);
+                }*/
+
+                for (int i = rows[r].clusters.Count > 0 ? rows[r].clusters.Count : 0;
+                    i < MapGenerator.GetCurrentBiomeConfig().segments[segmentIndex].spawnConfig[r].indexses.Length;
                     i++)
                 {
                     Cluster cluster = Instantiate(parameter.clusterPrefab, transform).GetComponent<Cluster>();
                     cluster.transform.localPosition = new Vector3(i * 10, 0, parameter.position);
-                    cluster.clusterType = parameter.clusterType;
-
-                    if(rows.Count < r)
+                    if (cluster.transform.localPosition.z > 0.1)
                     {
-                        rows.Add(new ClusterRows());
+                        cluster.transform.localScale = new Vector3(cluster.transform.localScale.x, cluster.transform.localScale.y, -cluster.transform.localScale.z);
                     }
+                    cluster.clusterType = parameter.clusterType;
 
                     rows[r].clusters.Add(cluster);
                 }
@@ -68,7 +76,7 @@ namespace Map.Generate
 
         private void PrepareClusters(int segmentIndex)
         {
-            MapBalance.SegmentConfig segmentConfig = mapBalance.segments[segmentIndex];
+            MapBalance.SegmentConfig segmentConfig = MapGenerator.GetCurrentBiomeConfig().segments[segmentIndex];
 
             for(int r = 0; r < segmentConfig.spawnConfig.Length; ++r)
             {

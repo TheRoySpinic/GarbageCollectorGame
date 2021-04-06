@@ -8,6 +8,6 @@ namespace Map.Generate
     public class ClusterRows
     {
         [SerializeField]
-        public List<Cluster> clusters = null;
+        public List<Cluster> clusters = new List<Cluster>();
     }
 }

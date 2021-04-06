@@ -8,10 +8,14 @@ namespace Map
     {
         NONE,
         DEFAULT,
+        DEFAULT_HARD,
         FOREST,
+        FOREST_HARD,
         BRIDGE,
+        BRIDGE_HARD,
         FIELD,
         MOUNTAINS,
-        INDUSTRIAL
+        INDUSTRIAL,
+        PREVIEW
     }
 }

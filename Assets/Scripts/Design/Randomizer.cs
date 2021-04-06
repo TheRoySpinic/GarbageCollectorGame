@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Design
 {
-    [ExecuteInEditMode]
     public class Randomizer : MonoBehaviour
     {
         [SerializeField]
@@ -17,6 +16,11 @@ namespace Design
         private GameObject content = null;
 
         private void Awake()
+        {
+            Randomize();
+        }
+
+        public void Randomize()
         {
             while(content.transform.childCount > 0)
             {
