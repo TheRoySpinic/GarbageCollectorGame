@@ -40,6 +40,7 @@ namespace Balance
             public float biomeSpawnChange = 0.5f;
             public EBiomeType nextBiome = EBiomeType.NONE; //NONE = random
             public SegmentConfig[] segments = null;
+            public TransitionConfig[] transitions = null;
         }
 
         [Serializable]
@@ -47,6 +48,14 @@ namespace Balance
         {
             public ClusterRow[] spawnConfig = null;
             public ClusterRow[] parameters = null;
+        }
+
+        [Serializable]
+        public class TransitionConfig
+        {
+            public EBiomeType previousBiome = EBiomeType.NONE;
+            public bool useTransition = false;
+            public SegmentConfig segment = null;
         }
 
         [Serializable]

@@ -93,28 +93,87 @@ namespace Map.Generate
         private void CheckNextBiome()
         {
             //Проверяем есть ли обязательный к спавну биом. Если биом есть то завершаем подбор
-            if(cachedBiome.nextBiome !=EBiomeType.NONE)
+            if(cachedBiome.nextBiome != EBiomeType.NONE)
             {
-
+                SetBiome(cachedBiome.nextBiome);
+                SpawnTransition();
             }
-            //Случайно с шансом выбираем следующий биом
+
             bool active = true;
             int step = 0;
             while(active && step < 100)
             {
-                EBiomeType newBiome = mapBalance.avableToRandom[UnityEngine.Random.Range(0, mapBalance.avableToRandom.Length)];
+                step++;
+
+                //Случайно с шансом выбираем следующий биом
+                EBiomeType newBiome = GetBiomeByChange();
+
                 //Проверяем значение "сколько раз должен неповторятся". Если биом есть то завершаем подбор
                 int saveCount = GetBiomeConfig(newBiome).biomeSaveDublicateIndexes;
+                if(lastBiomes.Count > saveCount)
+                {
+                    bool valideBiome = true;
+
+                    for (int i = lastBiomes.Count - 2; i >= 0; --i)
+                    {
+                        if(lastBiomes[i].Equals(currentBiome))
+                        {
+                            valideBiome = false;
+                            break;
+                        }
+                    }
+
+                    if (valideBiome)
+                    {
+                        active = false;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
 
                 //Если сменили биом то спавним переход
-                if(true)
+                if(newBiome != currentBiome)
+                {
+                    SetBiome(newBiome);
                     SpawnTransition();
+                    break;
+                }
             }
         }
 
         private void SpawnTransition()
         {
+            //получаем транзишн по прошлому биому, спавним
+        }
 
+        private EBiomeType GetBiomeByChange()
+        {
+            List<float> changes = new List<float>();
+
+            float sum = 0;
+
+            foreach(EBiomeType b in mapBalance.avableToRandom) 
+            {
+                    float value = GetBiomeConfig(b).biomeSpawnChange;
+                    changes.Add(value);
+                    sum += value;
+            }
+
+            float rand = UnityEngine.Random.Range(0, sum);
+            sum = 0;
+
+            for(int i = 0; i < changes.Count; ++i)
+            {
+                if(sum <= rand && rand < sum + changes[i])
+                {
+                    return mapBalance.avableToRandom[i];
+                }
+                sum += changes[i];
+            }
+
+            return EBiomeType.NONE;
         }
 
         private void FillMap()
