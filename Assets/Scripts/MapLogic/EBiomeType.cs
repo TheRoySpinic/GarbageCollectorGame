@@ -16,6 +16,8 @@ namespace Map
         FIELD,
         MOUNTAINS,
         INDUSTRIAL,
+        BONUS_1,
+        BONUS_2,
         PREVIEW
     }
 }

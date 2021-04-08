@@ -87,6 +87,8 @@ namespace Map.Generate
             lastBiomes.Add(biomeType);
 
             currentBiome = biomeType;
+            maxBiomeSize = UnityEngine.Random.Range(cachedBiome.minBiomeSegments, cachedBiome.maxBiomeSegments);
+            biomeSegmentCounts = 0;
         }
 
 
@@ -145,7 +147,23 @@ namespace Map.Generate
 
         private void SpawnTransition()
         {
-            //получаем транзишн по прошлому биому, спавним
+            MapBalance.TransitionConfig transitionConfig = Array.Find(cachedBiome.transitions, (t) => { return t.previousBiome.Equals(lastBiomes[lastBiomes.Count - 1]); });
+
+            if(transitionConfig.useTransition)
+            {
+                MapBalance.SegmentConfig segmentConfig = null;
+
+                if(transitionConfig.copyFromIndex == -1)
+                {
+                    segmentConfig = cachedBiome.transitions[transitionConfig.copyFromIndex].segment;
+                }
+                else
+                {
+                    segmentConfig = transitionConfig.segment;
+                }
+
+                NextSegment(segmentConfig);
+            }
         }
 
         private EBiomeType GetBiomeByChange()
@@ -235,6 +253,18 @@ namespace Map.Generate
 
                 mapSegments.Enqueue(segment);
             }
+        }
+
+        private void NextSegment(MapBalance.SegmentConfig segmentConfig)
+        {
+            MapSegment segment = mapSegments.Dequeue();
+
+            segment.SetSegmentPosition(GetNextPosition());
+            segment.NextSegment(segmentConfig);
+
+            lastSegmentSize = segment.size;
+
+            mapSegments.Enqueue(segment);
         }
 
         private void SpawnSegment()

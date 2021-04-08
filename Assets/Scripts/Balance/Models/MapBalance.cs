@@ -44,18 +44,19 @@ namespace Balance
         }
 
         [Serializable]
-        public class SegmentConfig
-        {
-            public ClusterRow[] spawnConfig = null;
-            public ClusterRow[] parameters = null;
-        }
-
-        [Serializable]
         public class TransitionConfig
         {
             public EBiomeType previousBiome = EBiomeType.NONE;
             public bool useTransition = false;
+            public int copyFromIndex = -1;
             public SegmentConfig segment = null;
+        }
+
+        [Serializable]
+        public class SegmentConfig
+        {
+            public ClusterRow[] spawnConfig = null;
+            public ClusterRow[] parameters = null;
         }
 
         [Serializable]
