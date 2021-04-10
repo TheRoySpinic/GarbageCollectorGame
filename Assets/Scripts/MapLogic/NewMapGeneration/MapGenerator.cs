@@ -87,7 +87,11 @@ namespace Map.Generate
             lastBiomes.Add(biomeType);
 
             currentBiome = biomeType;
-            maxBiomeSize = UnityEngine.Random.Range(cachedBiome.minBiomeSegments, cachedBiome.maxBiomeSegments);
+            if (biomeType != EBiomeType.PREVIEW)
+                maxBiomeSize = UnityEngine.Random.Range(cachedBiome.minBiomeSegments, cachedBiome.maxBiomeSegments);
+            else
+                maxBiomeSize = 0;
+
             biomeSegmentCounts = 0;
         }
 
@@ -149,7 +153,7 @@ namespace Map.Generate
         {
             MapBalance.TransitionConfig transitionConfig = Array.Find(cachedBiome.transitions, (t) => { return t.previousBiome.Equals(lastBiomes[lastBiomes.Count - 1]); });
 
-            if(transitionConfig.useTransition)
+            if(transitionConfig != null && transitionConfig.useTransition)
             {
                 MapBalance.SegmentConfig segmentConfig = null;
 

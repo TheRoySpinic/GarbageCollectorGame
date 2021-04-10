@@ -2890,13 +2890,30 @@ MonoBehaviour:
     previewSpeed: {x: 10, y: 0, z: 0}
     accelerationSpeed: 0.04
   mapBalance:
+    startBiome: 1
+    avableToRandom: 0100000003000000
+    segmentCounts: 20
     biomes:
-    - biomeType: 0
+    - biomeType: 1
+      setNextSegmentDistance: 100
+      segmentSaveDublicateIndexes: 2
+      biomeSaveDublicateIndexes: 2
+      minBiomeSegments: 10
+      maxBiomeSegments: 20
+      biomeSpawnChange: 0.5
+      nextBiome: 0
       segments:
       - spawnConfig:
         - indexses: 02000000
         parameters:
         - indexses: 0100000001000000
+      transitions:
+      - previousBiome: 0
+        useTransition: 0
+        copyFromIndex: -1
+        segment:
+          spawnConfig: []
+          parameters: []
     garbageSpawnsConfig:
     - garbageType: 0
       spawnChange: 0.3
@@ -2907,8 +2924,6 @@ MonoBehaviour:
     - garbageType: 2
       spawnChange: 0.1
       baseReward: 5
-    saveDublicateIndexes: 2
-    segmentCounts: 20
   boostBalance:
     boosts:
     - boostType: 1

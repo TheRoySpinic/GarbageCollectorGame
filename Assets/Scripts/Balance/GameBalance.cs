@@ -94,6 +94,7 @@ namespace Balance
         {
             if(!loadFromFirebase)
             {
+                //Debug.LogError(JsonUtility.ToJson(mapBalance));
                 LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
                 configReady = true;
                 E_ConfigReady?.Invoke();

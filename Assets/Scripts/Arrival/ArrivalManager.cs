@@ -55,6 +55,7 @@ namespace Arrival
             PlayerController.instance.SetCarBasePosition();
             //MapFiller.instance.ReloadMap(true);
             MapGenerator.instance.ResetMap();
+            MapGenerator.instance.SetBiome(EBiomeType.PREVIEW);
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
