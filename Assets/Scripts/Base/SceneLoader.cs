@@ -54,7 +54,15 @@ namespace Base
             if (progressText != null)
                 progressText.text = "Loading... 100%";
 
-            E_LoadScene?.Invoke();
+            try
+            {
+                E_LoadScene?.Invoke();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+
             ShowLoadingScreen(false);
         }
     }

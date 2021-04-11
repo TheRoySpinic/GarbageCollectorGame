@@ -53,9 +53,7 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             PlayerController.instance.SetCarBasePosition();
-            //MapFiller.instance.ReloadMap(true);
-            MapGenerator.instance.ResetMap();
-            MapGenerator.instance.SetBiome(EBiomeType.PREVIEW);
+            MapGenerator.instance.ResetMap(EBiomeType.PREVIEW);
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
@@ -74,7 +72,6 @@ namespace Arrival
             HealthManager.instance.ResetHealth();
             ActiveBoostsManager.instance.DisableAllBoost();
             TargetManager.instance.StartNewRun();
-            //MapFiller.instance.ReloadMap(false);
             MapGenerator.instance.ResetMap();
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;

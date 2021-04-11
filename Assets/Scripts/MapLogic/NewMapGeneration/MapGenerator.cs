@@ -64,6 +64,19 @@ namespace Map.Generate
             FillMap();
         }
 
+        public void ResetMap(EBiomeType biomeType)
+        {
+            currentPosition = 0;
+
+            lastBiomes.Clear();
+            SetBiome(biomeType);
+
+            maxBiomeSize = 0;
+            biomeSegmentCounts = 0;
+
+            FillMap();
+        }
+
         public static MapBalance.BiomeConfig GetCurrentBiomeConfig()
         {
             if (instance._cachedBiome != null && instance._cachedBiome.biomeType.Equals(instance.currentBiome))
