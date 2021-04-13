@@ -83,6 +83,11 @@ namespace Base
         {
             E_StartLoadScene?.Invoke();
 
+            if (progressText != null)
+                progressText.text = "Loading... ";
+
+            yield return new WaitForSeconds(3);
+
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
             while (!asyncLoad.isDone)
@@ -102,7 +107,7 @@ namespace Base
             else
             {
                 flag = true;
-                yield return new WaitForSeconds(10);
+                yield return new WaitForSeconds(5);
                 
                 if(flag)
                     FinishLoad();
