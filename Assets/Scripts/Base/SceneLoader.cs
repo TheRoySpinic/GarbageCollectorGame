@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Firebase.RemouteConfig;
+using GooglePlayGames;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,13 +8,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting;
 using UnityEngine.UI;
+using Base;
+using Balance;
 
 namespace Base
 {
-    public class SceneLoader : MonoBehaviour
+    public class SceneLoader : SingletonGen<SceneLoader>
     {
-        public static SceneLoader instance;
-
         public static event Action E_StartLoadScene;
         public static event Action E_LoadScene;
 
@@ -22,9 +24,28 @@ namespace Base
         [SerializeField]
         private TMP_Text progressText = null;
 
-        private void Awake()
+        private bool flag = false;
+
+        public override void Init()
         {
-            instance = this;
+            base.Init();
+
+            InitGoogleServices.E_GoogleServices_AutchComplete -= CheckLoadComplete;
+            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= CheckLoadComplete;
+            GameBalance.E_ConfigReady -= CheckLoadComplete;
+
+            InitGoogleServices.E_GoogleServices_AutchComplete += CheckLoadComplete;
+            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig += CheckLoadComplete;
+            GameBalance.E_ConfigReady += CheckLoadComplete;
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+
+            InitGoogleServices.E_GoogleServices_AutchComplete -= CheckLoadComplete;
+            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= CheckLoadComplete;
+            GameBalance.E_ConfigReady -= CheckLoadComplete;
         }
 
         public static void LoadScene(string name)
@@ -36,6 +57,26 @@ namespace Base
         private void ShowLoadingScreen(bool show)
         {
             LoadingScreen.SetActive(show);
+        }
+
+        private void CheckLoadComplete()
+        {
+            if (LoadComplete() && flag)
+                FinishLoad();
+        }
+
+        private void FinishLoad()
+        {
+            flag = false;
+
+            E_LoadScene?.Invoke();
+
+            ShowLoadingScreen(false);
+        }
+
+        private bool LoadComplete()
+        {
+            return FirebaseRemouteConfigInit.ready && InitGoogleServices.ready && GameBalance.configReady;
         }
 
         private IEnumerator LoadAsyncSceneCoroutine(string sceneName)
@@ -54,16 +95,18 @@ namespace Base
             if (progressText != null)
                 progressText.text = "Loading... 100%";
 
-            try
+            if(!flag && (LoadComplete() || Application.internetReachability.Equals(NetworkReachability.NotReachable)))
             {
-                E_LoadScene?.Invoke();
+                FinishLoad();
             }
-            catch (Exception e)
+            else
             {
-                Debug.LogError(e.Message);
+                flag = true;
+                yield return new WaitForSeconds(10);
+                
+                if(flag)
+                    FinishLoad();
             }
-
-            ShowLoadingScreen(false);
         }
     }
 }

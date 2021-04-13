@@ -13,6 +13,8 @@ namespace Firebase.RemouteConfig
         public static event Action E_InilializeFirebaseRemouteConfig;
         public static event Action E_FetchRemouteConfig_Success;
 
+        public static bool ready = false;
+
         public static FirebaseRemouteConfigInit instance;
 
         //DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
@@ -61,6 +63,7 @@ namespace Firebase.RemouteConfig
                     RemoteConfig.FirebaseRemoteConfig.DefaultInstance.ActivateAsync();
                     Debug.Log(String.Format("[F_RC] Remote data loaded and ready (last fetch time {0}).", info.FetchTime));
                     Debug.Log("remouteConfig_debug: " + RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("remouteConfig_debug").StringValue);
+                    ready = true;
                     E_FetchRemouteConfig_Success?.Invoke();
 
                     break;
@@ -79,6 +82,7 @@ namespace Firebase.RemouteConfig
                     Debug.Log("[F_RC] Latest Fetch call still pending.");
                     break;
             }
+
         }
 
         private void SetDefault()

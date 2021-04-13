@@ -40,13 +40,13 @@ namespace Balance
             loadFromFirebase = true;
 #endif
 
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= LoadConfigs;
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig += LoadConfigs;
+            FirebaseRemouteConfigInit.E_FetchRemouteConfig_Success -= LoadConfigs;
+            FirebaseRemouteConfigInit.E_FetchRemouteConfig_Success += LoadConfigs;
         }
 
         public override void Destroy()
         {
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= LoadConfigs;
+            FirebaseRemouteConfigInit.E_FetchRemouteConfig_Success -= LoadConfigs;
         }
 
         public static PlayerBalance GetPlayerBalance()
@@ -94,7 +94,6 @@ namespace Balance
         {
             if(!loadFromFirebase)
             {
-                //Debug.LogError(JsonUtility.ToJson(mapBalance));
                 LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
                 configReady = true;
                 E_ConfigReady?.Invoke();

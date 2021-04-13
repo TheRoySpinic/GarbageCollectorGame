@@ -4,11 +4,16 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
+using System;
 
 namespace GooglePlayGames
 {
     public class InitGoogleServices : MonoBehaviour
     {
+        public static event Action E_GoogleServices_AutchComplete;
+
+        public static bool ready = false;
+
         private void Awake()
         {
             Init();
@@ -43,6 +48,8 @@ namespace GooglePlayGames
             // authenticate user:
             PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
                 // handle results
+                ready = true;
+                E_GoogleServices_AutchComplete?.Invoke();
             });
         }
     }

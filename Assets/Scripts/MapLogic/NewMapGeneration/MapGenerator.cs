@@ -44,7 +44,7 @@ namespace Map.Generate
 
         private void Update()
         {
-            if(currentPosition - playerTransform.position.x < cachedBiome.setNextSegmentDistance)
+            if(cachedBiome != null && currentPosition - playerTransform.position.x < cachedBiome.setNextSegmentDistance)
             {
                 NextSegment();
             }
