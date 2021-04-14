@@ -826,7 +826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading... XXX%
+  m_text: Loading...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26b3e3beb45251e47b3d55c3870b4b52, type: 2}
   m_sharedMaterial: {fileID: -1934980393644289110, guid: 26b3e3beb45251e47b3d55c3870b4b52,
@@ -3497,6 +3497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: GameScene
+  waitFullLoad: 1
+  waitForSecond: 10
 --- !u!4 &2000731304
 Transform:
   m_ObjectHideFlags: 0

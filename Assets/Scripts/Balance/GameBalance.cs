@@ -100,7 +100,7 @@ namespace Balance
                 return;
             }
 
-            storeBalance = JsonUtility.FromJson<StoreBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("storeConfig").StringValue);
+            //storeBalance = JsonUtility.FromJson<StoreBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("storeConfig").StringValue);
             playerBalance = JsonUtility.FromJson<PlayerBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("playerBalance").StringValue);
             mapBalance = JsonUtility.FromJson<MapBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("mapBalance").StringValue);
             boostBalance = JsonUtility.FromJson<BoostBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("boostBalance").StringValue);

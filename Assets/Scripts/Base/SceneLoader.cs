@@ -24,29 +24,6 @@ namespace Base
         [SerializeField]
         private TMP_Text progressText = null;
 
-        private bool flag = false;
-
-        public override void Init()
-        {
-            base.Init();
-
-            InitGoogleServices.E_GoogleServices_AutchComplete -= CheckLoadComplete;
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= CheckLoadComplete;
-            GameBalance.E_ConfigReady -= CheckLoadComplete;
-
-            InitGoogleServices.E_GoogleServices_AutchComplete += CheckLoadComplete;
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig += CheckLoadComplete;
-            GameBalance.E_ConfigReady += CheckLoadComplete;
-        }
-
-        public override void Destroy()
-        {
-            base.Destroy();
-
-            InitGoogleServices.E_GoogleServices_AutchComplete -= CheckLoadComplete;
-            FirebaseRemouteConfigInit.E_InilializeFirebaseRemouteConfig -= CheckLoadComplete;
-            GameBalance.E_ConfigReady -= CheckLoadComplete;
-        }
 
         public static void LoadScene(string name)
         {
@@ -59,34 +36,9 @@ namespace Base
             LoadingScreen.SetActive(show);
         }
 
-        private void CheckLoadComplete()
-        {
-            if (LoadComplete() && flag)
-                FinishLoad();
-        }
-
-        private void FinishLoad()
-        {
-            flag = false;
-
-            E_LoadScene?.Invoke();
-
-            ShowLoadingScreen(false);
-        }
-
-        private bool LoadComplete()
-        {
-            return FirebaseRemouteConfigInit.ready && InitGoogleServices.ready && GameBalance.configReady;
-        }
-
         private IEnumerator LoadAsyncSceneCoroutine(string sceneName)
         {
             E_StartLoadScene?.Invoke();
-
-            if (progressText != null)
-                progressText.text = "Loading... ";
-
-            yield return new WaitForSeconds(3);
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
@@ -100,18 +52,9 @@ namespace Base
             if (progressText != null)
                 progressText.text = "Loading... 100%";
 
-            if(!flag && (LoadComplete() || Application.internetReachability.Equals(NetworkReachability.NotReachable)))
-            {
-                FinishLoad();
-            }
-            else
-            {
-                flag = true;
-                yield return new WaitForSeconds(5);
-                
-                if(flag)
-                    FinishLoad();
-            }
+            E_LoadScene?.Invoke();
+
+            ShowLoadingScreen(false);
         }
     }
 }
