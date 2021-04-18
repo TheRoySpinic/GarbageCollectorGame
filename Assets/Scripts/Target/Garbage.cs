@@ -1,4 +1,5 @@
-﻿using Map;
+﻿using Boosts;
+using Map;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Target
         [HideInInspector]
         public bool isActive = true;
 
+        private BoxCollider triger = null;
+        private Vector3 baseTrigerSize = Vector3.one;
+
         [SerializeField]
         private GameObject[] particles = null;
 
@@ -20,13 +24,27 @@ namespace Target
             {
                 o.SetActive(false);
             }
+            triger = GetComponent<BoxCollider>();
+            baseTrigerSize = triger.size;
+
+            ActiveBoostsManager.E_AddBoost -= BoostActivate;
+            ActiveBoostsManager.E_AddBoost += BoostActivate;
+
+            ActiveBoostsManager.E_BoostDeactivation -= BoostDeactivate;
+            ActiveBoostsManager.E_BoostDeactivation += BoostDeactivate;
+        }
+
+        private void OnDestroy()
+        {
+            ActiveBoostsManager.E_AddBoost -= BoostActivate;
+            ActiveBoostsManager.E_BoostDeactivation -= BoostDeactivate;
         }
 
         private void Update()
         {
             if(TargetManager.instance == null)
             {
-                Debug.LogError("TargetManager in null!!!");
+                Debug.LogError("TargetManager is null!!!");
                 return;
             }
             if(transform.position.x < TargetManager.instance.gameObject.transform.position.x - 15)
@@ -47,6 +65,22 @@ namespace Target
             }
 
             StartCoroutine(Hide());
+        }
+
+        private void BoostActivate(EBoostType boostType)
+        {
+            if (boostType.Equals(EBoostType.MAGNET) && triger != null)
+            {
+                triger.size *= 5;
+            }
+        }
+
+        private void BoostDeactivate(EBoostType boostType)
+        {
+            if(boostType.Equals(EBoostType.MAGNET) && triger != null)
+            {
+                triger.size = baseTrigerSize;
+            }
         }
 
         private IEnumerator Hide()

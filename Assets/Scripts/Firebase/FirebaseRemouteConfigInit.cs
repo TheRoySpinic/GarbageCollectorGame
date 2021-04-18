@@ -28,7 +28,7 @@ namespace Firebase.RemouteConfig
             FirebaseInit.E_InilializeFirebase += FirebaseItinAction;
         }
 
-        private void FirebaseItinAction()
+        public void FirebaseItinAction()
         {
             FetchDataAsync();
             E_InilializeFirebaseRemouteConfig?.Invoke();

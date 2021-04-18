@@ -15,6 +15,8 @@ namespace Popups
         private CarGradeLevelUp_Confirm upgradeConfirm = null;
         [SerializeField]
         private ArrivalResult arrivalResult = null;
+        [SerializeField]
+        private GameObject connection = null;
 
         public static void ShowUpgradeConfirm(EGradeType gradeType)
         {
@@ -45,6 +47,21 @@ namespace Popups
             instance.tint.SetActive(false);
 
             instance.arrivalResult.gameObject.SetActive(false);
+        }
+
+        public static void ShowConnection()
+        {
+
+            instance.tint.SetActive(true);
+
+            instance.connection.gameObject.SetActive(true);
+        }
+
+        public static void HideConnection()
+        {
+            instance.tint.SetActive(false);
+
+            instance.connection.gameObject.SetActive(false);
         }
     }
 }

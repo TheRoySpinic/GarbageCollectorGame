@@ -1,13 +1,14 @@
 ﻿using Balance;
 using Firebase.RemouteConfig;
 using GooglePlayGames;
+using Popups;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Base
 {
-    public class LoadScene : MonoBehaviour
+    public class LoadScene : SingletonGen<LoadScene>
     {
         [SerializeField]
         private string sceneName = "MenuScene";
@@ -19,6 +20,18 @@ namespace Base
 
         private void Start()
         {
+            Load();
+        }
+
+
+        public void Load()
+        {
+            if(Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                ShowConnectionErrorPopup();
+                return;
+            }
+
             if(waitFullLoad && !LoadComplete())
             {
                 StartCoroutine(WaitLoad());
@@ -29,6 +42,11 @@ namespace Base
             }
         }
 
+
+        private void ShowConnectionErrorPopup()
+        {
+            PopupManager.ShowConnection();
+        }
 
         private void FinishLoad()
         {
@@ -43,18 +61,20 @@ namespace Base
 
         private IEnumerator WaitLoad()
         {
+            bool show = true;
+
             for(int i = 0; i < waitForSecond; ++i)
             {
+                yield return new WaitForSeconds(1);
                 if(LoadComplete())
                 {
                     FinishLoad();
+                    show = false;
                     break;
                 }
-
-                yield return new WaitForSeconds(1);
             }
-
-            yield return null;
+            if(show)
+                ShowConnectionErrorPopup();
         }
     }
 }

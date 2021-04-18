@@ -6,6 +6,7 @@
         REPAIR,
         IMMORTAL,
         SPEED,
-        MAGNET
+        MAGNET,
+        CLEAR
     }
 }

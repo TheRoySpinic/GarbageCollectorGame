@@ -37,17 +37,13 @@ namespace GooglePlayGames
         .Build();
 
             PlayGamesPlatform.InitializeInstance(config);
-            // recommended for debugging:
             PlayGamesPlatform.DebugLogEnabled = true;
-            // Activate the Google Play Games platform
             PlayGamesPlatform.Activate();
         }
 
         private void Auth()
         {
-            // authenticate user:
             PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
-                // handle results
                 ready = true;
                 E_GoogleServices_AutchComplete?.Invoke();
             });

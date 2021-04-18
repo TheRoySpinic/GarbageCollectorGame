@@ -28,6 +28,7 @@ namespace Boosts
             {
                 case EBoostType.IMMORTAL:
                     HealthManager.instance.SetIsTakeDamage(false);
+                    PlayerController.instance.GetCarMesh().boostEffects.ShowShield();
                     break;
                 case EBoostType.REPAIR:
                     HealthManager.instance.RestoreHealth(value);
@@ -44,6 +45,7 @@ namespace Boosts
             {
                 case EBoostType.IMMORTAL:
                     HealthManager.instance.SetIsTakeDamage(true);
+                    PlayerController.instance.GetCarMesh().boostEffects.HideShield();
                     break;
                 case EBoostType.SPEED:
                     PlayerController.instance.SetMoveSpeed(PlayerController.instance.GetMoveSpeed() - value);

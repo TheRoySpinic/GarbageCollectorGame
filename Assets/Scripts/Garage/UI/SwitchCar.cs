@@ -82,8 +82,8 @@ namespace Garage.UI
             }
             GameObject o = Instantiate(GarageManager.instance.GetCarPrefab(carType),
                 GarageManager.instance.GetCarSlot().transform);
-            o.transform.position = GarageManager.instance.GetCarMesh().transform.position;
-            o.transform.eulerAngles = GarageManager.instance.GetCarMesh().transform.eulerAngles;
+            o.transform.localPosition = GarageManager.instance.GetCarMesh().transform.localPosition;
+            o.transform.localRotation = GarageManager.instance.GetCarMesh().transform.localRotation;
             Destroy(GarageManager.instance.GetCarMesh().gameObject);
             GarageManager.instance.SetCarMesh(o.GetComponent<CarMesh>());
 

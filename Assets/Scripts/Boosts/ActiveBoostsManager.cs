@@ -27,7 +27,7 @@ namespace Boosts
         {
             if(activeBoosts.Count > 0)
             {
-                foreach(Boost boost in activeBoosts) //не оптимально, подумать над оптимизацией
+                foreach(Boost boost in activeBoosts)
                 {
                     boost.timeLeft -= Time.deltaTime;
 

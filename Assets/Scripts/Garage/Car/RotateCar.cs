@@ -14,14 +14,14 @@ namespace Garage.Car
         Vector2 lastPos = new Vector2();
 #endif
 
-        private Vector3 defaultRotation = Vector3.zero;
+        private Quaternion defaultRotation = new Quaternion();
 
         private void Awake()
         {
             ScreensManager.E_ShowGarage -= ResetPos;
             ScreensManager.E_ShowGarage += ResetPos;
 
-            defaultRotation = slot.transform.eulerAngles;
+            defaultRotation = slot.transform.localRotation;
         }
 
         private void OnDestroy()
@@ -35,7 +35,7 @@ namespace Garage.Car
             {
                 Vector2 touchLocation = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
-                if (touchLocation.y < Screen.height * 0.5f || touchLocation.y > Screen.height * 0.8f)
+                if (touchLocation.y < Screen.height * 0.45f || touchLocation.y > Screen.height * 0.75f)
                 {
                     return;
                 }
@@ -62,7 +62,7 @@ namespace Garage.Car
 
         private void ResetPos()
         {
-            slot.transform.eulerAngles = defaultRotation;
+            slot.transform.localRotation = defaultRotation;
         }
 
 #if UNITY_EDITOR

@@ -20,6 +20,11 @@ namespace Firebase
         {
             instance = this;
 
+            Init();
+        }
+
+        public void Init()
+        {
             FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
             {
                 dependencyStatus = task.Result;

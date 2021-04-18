@@ -13,7 +13,7 @@ namespace Store.Colorsets
 
         [Header("Light")]
         [SerializeField]
-        private ColorsetLighting[] colorsets = null;
+        private ColorsetParameters[] colorsets = null;
 
         private void Awake()
         {
@@ -53,23 +53,34 @@ namespace Store.Colorsets
 
         private void SetActiveLight(EColorsetType type)
         {
-            foreach(ColorsetLighting lighting in colorsets)
+            foreach(ColorsetParameters colorset in colorsets)
             {
-                lighting.light.SetActive(false);
+                colorset.light.SetActive(false);
+                foreach(GameObject o in colorset.enviroment)
+                {
+                    o.SetActive(false);
+                }
             }
 
-            foreach(ColorsetLighting lighting in colorsets)
+            foreach(ColorsetParameters colorset in colorsets)
             {
-                if(lighting.colorsetType == type)
-                    lighting.light.SetActive(true);
+                if(colorset.colorsetType == type)
+                {
+                    colorset.light.SetActive(true);
+                    foreach (GameObject o in colorset.enviroment)
+                    {
+                        o.SetActive(true);
+                    }
+                }
             }
         }
 
         [System.Serializable]
-        private class ColorsetLighting
+        private class ColorsetParameters
         {
             public EColorsetType colorsetType = EColorsetType.NONE;
             public GameObject light = null;
+            public List<GameObject> enviroment = new List<GameObject>();
         }
     }
 }
