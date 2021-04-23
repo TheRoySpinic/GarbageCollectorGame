@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Map.Generate.ParameterLogic;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +18,15 @@ namespace Map.Generate
         [SerializeField]
         private int currentStateIndex = 0;
 
-        public bool SetActiveIndex(int nextState, int parameter = -1)
+        [SerializeField]
+        private int parameterIndex = 0;
+
+        [SerializeField]
+        private BaseParameterLogic defaultParameterComponent = null;
+        [SerializeField]
+        private ParameterLogic[] parameterLogics = new ParameterLogic[0];
+
+        public bool SetActiveIndex(int nextState, int parameter = 0)
         {
             HideLast();
 
@@ -27,7 +37,9 @@ namespace Map.Generate
 
                 currentStateIndex = nextState;
 
-                if(parameter >= 0)
+                ResetParameter();
+
+                if(parameter != 0)
                 {
                     SetupParameter(parameter);
                 }
@@ -43,7 +55,38 @@ namespace Map.Generate
 
         private void SetupParameter(int parameter)
         {
+            if (parameter == 0) 
+                return;
 
+            BaseParameterLogic parameterComponent = Array.Find(parameterLogics, (p) => { return p.avableIndex.Contains(currentStateIndex); })?.parameterComponent;
+
+            if (parameterComponent == null)
+                parameterComponent = defaultParameterComponent;
+
+            if (parameterComponent != null)
+            {
+                parameterComponent.ParameterAction(parameter);
+            }
+
+            parameterIndex = parameter;
+        }
+
+        private void ResetParameter()
+        {
+            if (parameterIndex == 0)
+                return;
+
+            BaseParameterLogic parameterComponent = Array.Find(parameterLogics, (p) => { return p.avableIndex.Contains(currentStateIndex); })?.parameterComponent;
+
+            if (parameterComponent == null)
+                parameterComponent = defaultParameterComponent;
+
+            if (parameterComponent != null)
+            {
+                parameterComponent.ResetParameter(parameterIndex);
+            }
+
+            parameterIndex = -1;
         }
 
         private void HideLast()
@@ -66,6 +109,13 @@ namespace Map.Generate
             public UnityEvent constructEvents = new UnityEvent();
             [SerializeField]
             public UnityEvent destructEvents = new UnityEvent();
+        }
+
+        [System.Serializable]
+        private class ParameterLogic
+        {
+            public List<int> avableIndex = new List<int>();
+            public BaseParameterLogic parameterComponent = null;
         }
     }
 }

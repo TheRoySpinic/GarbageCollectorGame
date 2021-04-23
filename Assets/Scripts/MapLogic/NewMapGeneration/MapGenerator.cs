@@ -44,6 +44,8 @@ namespace Map.Generate
 
         private void Update()
         {
+            //добавить проверку условия смены биома
+
             if(cachedBiome != null && currentPosition - playerTransform.position.x < cachedBiome.setNextSegmentDistance)
             {
                 NextSegment();
