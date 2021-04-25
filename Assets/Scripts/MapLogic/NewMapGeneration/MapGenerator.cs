@@ -9,6 +9,8 @@ namespace Map.Generate
 {
     public class MapGenerator : SingletonGen<MapGenerator>
     {
+        public int centerLineIndex { get; private set; } = 4;
+
         [SerializeField]
         private Transform playerTransform = null;
 
@@ -35,6 +37,7 @@ namespace Map.Generate
 
         private int maxBiomeSize = 0;
         private int biomeSegmentCounts = 0;
+
 
         public override void Init()
         {

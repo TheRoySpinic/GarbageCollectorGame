@@ -11,7 +11,10 @@ namespace Map.Generate
     {
         [SerializeField]
         public EClusterType clusterType = EClusterType.NONE;
-        
+
+        [SerializeField]
+        public int lineIndex = -1;
+
         [SerializeField]
         private State[] states = null;
 
@@ -32,6 +35,11 @@ namespace Map.Generate
 
             if (nextState >= 0 && nextState < states.Length && states[nextState] != null && states[nextState].root != null)
             {
+                if(clusterType.Equals(EClusterType.ROAD) && lineIndex == MapGenerator.instance.centerLineIndex)
+                {
+                    states[0].root.SetActive(true);
+                }
+
                 states[nextState].root.SetActive(true);
                 states[nextState].constructEvents?.Invoke();
 
@@ -95,6 +103,12 @@ namespace Map.Generate
                 return;
 
             states[currentStateIndex].destructEvents?.Invoke();
+
+            if (clusterType.Equals(EClusterType.ROAD) && lineIndex == MapGenerator.instance.centerLineIndex)
+            {
+                states[0].root.SetActive(false);
+            }
+
             states[currentStateIndex].root.SetActive(false);
         }
 

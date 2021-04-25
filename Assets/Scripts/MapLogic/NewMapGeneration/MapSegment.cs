@@ -79,6 +79,7 @@ namespace Map.Generate
                         cluster.transform.localScale = new Vector3(cluster.transform.localScale.x, cluster.transform.localScale.y, -cluster.transform.localScale.z);
                     }
                     cluster.clusterType = parameter.clusterType;
+                    cluster.lineIndex = r;
 
                     rows[r].clusters.Add(cluster);
                 }
