@@ -51,8 +51,8 @@ namespace Monetisation.IAP.UI
 
         private void ClearList()
         {
-            for(int i = 0; i < content.transform.childCount; i++)
-                DestroyImmediate(content.transform.GetChild(i).gameObject);
+            while(content.transform.childCount > 0)
+                DestroyImmediate(content.transform.GetChild(0).gameObject);
         }
     }
 }
