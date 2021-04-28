@@ -31,6 +31,7 @@ namespace Design
             foreach(DesignObjectOneFrom one in oneFrom)
             {
                 int index = UnityEngine.Random.Range(0, one.objects.Length);
+                if(one.objects[index] != null)
                     Instantiate(one.objects[index], content.transform);
             }
 
