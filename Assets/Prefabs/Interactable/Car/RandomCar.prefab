@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fd83a4140597647a7c3e14c1b94bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: -5, y: 0, z: 0}
+  speed: {x: 5, y: 0, z: 0}
 --- !u!1 &7491457200796823920
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +427,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomCar
       objectReference: {fileID: 0}
+    - target: {fileID: 4280768775042769666, guid: 0ce91fce06f24bb45a4f110c3fb55a9e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4950813238341171268, guid: 0ce91fce06f24bb45a4f110c3fb55a9e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -481,6 +486,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950813238341171268, guid: 0ce91fce06f24bb45a4f110c3fb55a9e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce91fce06f24bb45a4f110c3fb55a9e, type: 3}

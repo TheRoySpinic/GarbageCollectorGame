@@ -20,7 +20,7 @@ namespace Map
 
         private void FixedUpdate()
         {
-            rigidbody.MovePosition(tr.position + (speed * Time.deltaTime));
+            rigidbody.MovePosition(tr.position + (speed.magnitude * tr.parent.parent.localScale.x * -tr.right * Time.deltaTime));
         }
     }
 }

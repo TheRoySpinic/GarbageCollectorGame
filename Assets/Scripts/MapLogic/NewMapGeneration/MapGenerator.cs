@@ -16,19 +16,30 @@ namespace Map.Generate
 
         public EBiomeType currentBiome = EBiomeType.NONE;
         
+        //map segment
         [SerializeField]
         private GameObject segmentPrefab = null;
-
         private Queue<MapSegment> mapSegments = new Queue<MapSegment>();
+        private float currentPosition = 0;
+        private float lastSegmentSize = 0;
+        //-------------
 
+        //road collider
+        [SerializeField]
+        private GameObject roadCollider = null;
+        [SerializeField]
+        private float roadColliderSize = 10;
+        private float lastRoadColliderPosition = 0;
+        private Queue<GameObject> roadColliderQueue = new Queue<GameObject>();
+        [SerializeField]
+        private float setNextRoadColliderDistance = 500;
+        //--------------
+        
         private Transform tr = null;
 
         private MapBalance mapBalance = null;
 
         private List<int> lastIndexes = new List<int>();
-
-        private float currentPosition = 0;
-        private float lastSegmentSize = 0;
 
         private MapBalance.BiomeConfig _cachedBiome = null;
         private MapBalance.BiomeConfig cachedBiome { get { return GetCurrentBiomeConfig(); } }
@@ -52,6 +63,12 @@ namespace Map.Generate
             if(cachedBiome != null && currentPosition - playerTransform.position.x < cachedBiome.setNextSegmentDistance)
             {
                 NextSegment();
+            }
+
+            //добавить проверку на колайдер дороги
+            if(lastRoadColliderPosition - playerTransform.position.x < setNextRoadColliderDistance)
+            {
+                NextRoadCollider();
             }
         }
 
@@ -300,6 +317,28 @@ namespace Map.Generate
             currentPosition += lastSegmentSize;
 
             return new Vector3(currentPosition, 0, 0);
+        }
+
+        private void NextRoadCollider()
+        {
+            GameObject last;
+
+            if(roadColliderQueue.Count < 3)
+            {
+                last = Instantiate(roadCollider, tr);
+            }
+            else
+            {
+                last = roadColliderQueue.Dequeue();
+            }
+
+            Transform lt = last.transform;
+
+            lt.localPosition = new Vector3(lastRoadColliderPosition, lt.localPosition.y, lt.localPosition.z);
+
+            lastRoadColliderPosition += roadColliderSize;
+
+            roadColliderQueue.Enqueue(last);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace Map.Generate
         public float size { get; private set; } = 0;
 
         [SerializeField]
+        private int currentIndex = -1;
+
+        [SerializeField]
         private LineParameters[] lines = null;
 
         private List<ClusterRows> rows = new List<ClusterRows>();
@@ -31,6 +34,8 @@ namespace Map.Generate
         {
             SpawnClusters(segmentIndex);
             PrepareClusters(segmentIndex);
+
+            currentIndex = segmentIndex;
         }
 
         public void NextSegment(MapBalance.SegmentConfig segmentConfig)

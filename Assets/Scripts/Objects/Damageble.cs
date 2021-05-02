@@ -19,9 +19,16 @@ namespace Map
 
         private void Awake()
         {
+            Setup();
+        }
+
+        public void Setup()
+        {
             if(frezeWhileNoDamage)
             {
                 rb = GetComponent<Rigidbody>();
+                if (rb == null)
+                    return;
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 foreach(Rigidbody r in transform.GetComponentsInChildren<Rigidbody>())
                 {
@@ -36,10 +43,13 @@ namespace Map
             {
                 if (frezeWhileNoDamage)
                 {
-                    rb.constraints = RigidbodyConstraints.None;
-                    foreach (Rigidbody r in transform.GetComponentsInChildren<Rigidbody>())
+                    if (rb != null)
                     {
-                        r.constraints = RigidbodyConstraints.None;
+                        rb.constraints = RigidbodyConstraints.None;
+                        foreach (Rigidbody r in transform.GetComponentsInChildren<Rigidbody>())
+                        {
+                            r.constraints = RigidbodyConstraints.None;
+                        }
                     }
                 }
 

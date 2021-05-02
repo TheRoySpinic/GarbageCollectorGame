@@ -94,7 +94,7 @@ namespace Map.Generate
                 parameterComponent.ResetParameter(parameterIndex);
             }
 
-            parameterIndex = -1;
+            parameterIndex = 0;
         }
 
         private void HideLast()

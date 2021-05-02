@@ -4621,6 +4621,9 @@ MonoBehaviour:
   currentBiome: 1
   segmentPrefab: {fileID: 7834152037373392637, guid: 76426a977ff9e264ca858aa379f834e4,
     type: 3}
+  roadCollider: {fileID: 2227397575348305731, guid: 7b138edc7cf44d24980d061908675ba2,
+    type: 3}
+  roadColliderSize: 300
 --- !u!1 &721054799
 GameObject:
   m_ObjectHideFlags: 0
@@ -9483,14 +9486,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625098150}
-  m_LocalRotation: {x: -0.046182025, y: -0.8889428, z: 0.072395, w: 0.44989648}
-  m_LocalPosition: {x: 0, y: 0.5, z: -6.65}
+  m_LocalRotation: {x: -0.07010399, y: -0.8990228, z: 0.15652739, w: 0.40291768}
+  m_LocalPosition: {x: 0, y: 0.25, z: -6.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2030995104}
   m_Father: {fileID: 1264626227}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5, y: -125.94, z: 8.5}
+  m_LocalEulerAnglesHint: {x: 13, y: -130, z: 15}
 --- !u!1 &1638482397
 GameObject:
   m_ObjectHideFlags: 0
