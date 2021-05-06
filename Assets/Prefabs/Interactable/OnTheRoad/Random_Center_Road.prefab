@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 332477602295969851}
-  - component: {fileID: 811463599381913840}
   m_Layer: 0
   m_Name: Random_Center_Road
   m_TagString: Untagged
@@ -32,31 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &811463599381913840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4039086857913060044}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4916f72c5681864d90ee9a00b1e2827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oneFrom:
-  - name: trees
-    objects:
-    - {fileID: 3168893292041063343, guid: a6793a79d91124549b6872440b1acff1, type: 3}
-    - {fileID: 3017871441129431799, guid: 2db9ccdb24142b343a1349c762722635, type: 3}
-    - {fileID: 7645132815015421974, guid: 6cd5bac701464be469944c9da256bf1e, type: 3}
-    - {fileID: 7389702825948737265, guid: 9238a1715b4176c42902e06b64705699, type: 3}
-    - {fileID: 3359341992362906803, guid: 8f15d26743332f247b945b3de5f12e72, type: 3}
-    - {fileID: 861363654748168442, guid: cc08545187bdab74593e8fbfe1ea659b, type: 3}
-    - {fileID: 7119858081351898395, guid: ba1c62b5ec7b7d644bb76484814d4428, type: 3}
-    - {fileID: 2843404087737354148, guid: 1bce5b913d5c26a428b8311aa8d11360, type: 3}
-  betvenTwo: []
-  content: {fileID: 5724869306175781039}
 --- !u!1 &5724869306175781039
 GameObject:
   m_ObjectHideFlags: 0

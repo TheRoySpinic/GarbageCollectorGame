@@ -56,6 +56,7 @@ namespace Arrival
             MapGenerator.instance.ResetMap(EBiomeType.PREVIEW);
             ScreensManager.ShowMenuHud();
             PlayerController.enableInput = false;
+            HealthManager.instance.SetIsTakeDamage(false);
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
             MovePlayerCar.SetZeroPosition();
         }
@@ -75,6 +76,7 @@ namespace Arrival
             MapGenerator.instance.ResetMap();
             ScreensManager.ShowGameHud();
             PlayerController.enableInput = true;
+            HealthManager.instance.SetIsTakeDamage(true);
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().startSpeed, GameBalance.GetPlayerBalance().accelerationSpeed);
             PlayerController.instance.SetCarBasePosition();
             MovePlayerCar.SetZeroPosition();

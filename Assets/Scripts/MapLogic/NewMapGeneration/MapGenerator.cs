@@ -33,6 +33,8 @@ namespace Map.Generate
         private Queue<GameObject> roadColliderQueue = new Queue<GameObject>();
         [SerializeField]
         private float setNextRoadColliderDistance = 500;
+        [SerializeField]
+        private int roadSegmentCount = 3;
         //--------------
         
         private Transform tr = null;
@@ -58,14 +60,16 @@ namespace Map.Generate
 
         private void Update()
         {
-            //добавить проверку условия смены биома
+            if(maxBiomeSize != 0 && biomeSegmentCounts > maxBiomeSize)
+            {
+                CheckNextBiome();
+            }
 
             if(cachedBiome != null && currentPosition - playerTransform.position.x < cachedBiome.setNextSegmentDistance)
             {
                 NextSegment();
             }
 
-            //добавить проверку на колайдер дороги
             if(lastRoadColliderPosition - playerTransform.position.x < setNextRoadColliderDistance)
             {
                 NextRoadCollider();
@@ -76,6 +80,8 @@ namespace Map.Generate
         public void ResetMap()
         {
             currentPosition = 0;
+
+            lastRoadColliderPosition = 0;
 
             lastBiomes.Clear();
             SetBiome(mapBalance.startBiome);
@@ -89,6 +95,8 @@ namespace Map.Generate
         public void ResetMap(EBiomeType biomeType)
         {
             currentPosition = 0;
+
+            lastRoadColliderPosition = 0;
 
             lastBiomes.Clear();
             SetBiome(biomeType);
@@ -138,6 +146,7 @@ namespace Map.Generate
             {
                 SetBiome(cachedBiome.nextBiome);
                 SpawnTransition();
+                return;
             }
 
             bool active = true;
@@ -192,7 +201,7 @@ namespace Map.Generate
             {
                 MapBalance.SegmentConfig segmentConfig = null;
 
-                if(transitionConfig.copyFromIndex == -1)
+                if(transitionConfig.copyFromIndex != -1)
                 {
                     segmentConfig = cachedBiome.transitions[transitionConfig.copyFromIndex].segment;
                 }
@@ -237,11 +246,16 @@ namespace Map.Generate
         {
             GetCurrentBiomeConfig();
 
-            biomeSegmentCounts = CalcBiomeSize();
+            maxBiomeSize = CalcBiomeSize();
 
             for (int i = 0; i < mapBalance.segmentCounts; i++)
             {
                 NextSegment();
+            }
+
+            for (int i = 0; i < roadSegmentCount; i++)
+            {
+                NextRoadCollider();
             }
         }
 
@@ -291,6 +305,8 @@ namespace Map.Generate
                 lastSegmentSize = segment.size;
 
                 mapSegments.Enqueue(segment);
+
+                ++biomeSegmentCounts;
             }
         }
 
@@ -304,6 +320,8 @@ namespace Map.Generate
             lastSegmentSize = segment.size;
 
             mapSegments.Enqueue(segment);
+
+            ++biomeSegmentCounts;
         }
 
         private void SpawnSegment()
@@ -323,7 +341,7 @@ namespace Map.Generate
         {
             GameObject last;
 
-            if(roadColliderQueue.Count < 3)
+            if(roadColliderQueue.Count < roadSegmentCount)
             {
                 last = Instantiate(roadCollider, tr);
             }

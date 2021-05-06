@@ -530,6 +530,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3461102839849162945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560417737673297350}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4916f72c5681864d90ee9a00b1e2827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneFrom:
+  - name: car_trucks
+    objects:
+    - {fileID: 1412836321499971854, guid: 3fa6ae07129b46743b101fb92d24cde7, type: 3}
+    - {fileID: 1717835826757970961, guid: dfea97b1ca5d5204e8b71d1517a65a80, type: 3}
+    - {fileID: 692536115075357413, guid: fbeea35c1f5edc646b392ab237c4b8e0, type: 3}
+  betvenTwo: []
+  content: {fileID: 687809151643591813}
 --- !u!1 &5126598055312457726
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,26 +801,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3461102839849162945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4560417737673297350}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4916f72c5681864d90ee9a00b1e2827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oneFrom:
-  - name: car_trucks
-    objects:
-    - {fileID: 1412836321499971854, guid: 3fa6ae07129b46743b101fb92d24cde7, type: 3}
-    - {fileID: 1717835826757970961, guid: dfea97b1ca5d5204e8b71d1517a65a80, type: 3}
-    - {fileID: 692536115075357413, guid: fbeea35c1f5edc646b392ab237c4b8e0, type: 3}
-  betvenTwo: []
-  content: {fileID: 687809151643591813}
 --- !u!1001 &8597275505226424742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -872,6 +872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448881190923148672, guid: 57478f730cef2ea4598754f2f1bb709a,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57478f730cef2ea4598754f2f1bb709a, type: 3}

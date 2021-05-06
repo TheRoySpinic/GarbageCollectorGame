@@ -62,12 +62,15 @@ namespace Target
                 E_UpdateGarbageContains?.Invoke();
             }
 
+            // Uncommit for enable fill bar
+            /*
             if(garbageCount >= maxGarbages)
             {
                 canGrabGarbage = false;
                 E_CarIsFull?.Invoke();
                 StartClear();
             }
+            */
         }
 
         public void StartNewRun()

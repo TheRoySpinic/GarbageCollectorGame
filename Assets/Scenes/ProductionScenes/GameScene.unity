@@ -4330,7 +4330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 40, y: -225}
+  m_AnchoredPosition: {x: 40, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &661587560
@@ -4624,6 +4624,8 @@ MonoBehaviour:
   roadCollider: {fileID: 2227397575348305731, guid: 7b138edc7cf44d24980d061908675ba2,
     type: 3}
   roadColliderSize: 300
+  setNextRoadColliderDistance: 500
+  roadSegmentCount: 3
 --- !u!1 &721054799
 GameObject:
   m_ObjectHideFlags: 0
@@ -7714,27 +7716,27 @@ MonoBehaviour:
     colorset: 1
     iconSprite: {fileID: 21300000, guid: 52af7532adc3224408e21b1872f19148, type: 3}
     maintTexture: {fileID: 2800000, guid: e39b6d056bb2eb643bbf5bdde66372e1, type: 3}
-    cost: 1
+    cost: 0
   - name: COLD
     colorset: 2
     iconSprite: {fileID: 21300000, guid: ea77d0db0f1c1904daf40055036c1315, type: 3}
     maintTexture: {fileID: 2800000, guid: 47814e71e6dd44140904fb1395733fc5, type: 3}
-    cost: 1
+    cost: 500
   - name: RAIN
     colorset: 3
     iconSprite: {fileID: 21300000, guid: 5f32d0287b97fb04e83a71faba5112e0, type: 3}
     maintTexture: {fileID: 2800000, guid: 9f0d00e1196168247ab0fff171b7242b, type: 3}
-    cost: 1
+    cost: 1500
   - name: AUTUMN
     colorset: 4
     iconSprite: {fileID: 21300000, guid: 8e13d4d18646e0144ba8557f24bcae9e, type: 3}
     maintTexture: {fileID: 2800000, guid: d78e305fe3a3d2d44b19d65a1a198f6a, type: 3}
-    cost: 1
+    cost: 3000
   - name: WINTER
     colorset: 5
     iconSprite: {fileID: 21300000, guid: ae76e0dfac7d63d43852c4be38e7091b, type: 3}
     maintTexture: {fileID: 2800000, guid: 182cbc9207bab6345aa7ac5ea91610c0, type: 3}
-    cost: 1
+    cost: 5000
   playerColorsets:
     activeColorset: 1
     colorsets: 01000000
@@ -13896,7 +13898,7 @@ PrefabInstance:
     - target: {fileID: 7786590549268846906, guid: ba0d25006f6971c40a782a57765a27c7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7786590549268846907, guid: ba0d25006f6971c40a782a57765a27c7,
         type: 3}

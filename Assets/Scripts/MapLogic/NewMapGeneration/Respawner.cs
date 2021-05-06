@@ -28,7 +28,7 @@ namespace Map.Tools
         {
             while(content.childCount > 0)
             {
-                Destroy(content.GetChild(0).gameObject);
+                DestroyImmediate(content.GetChild(0).gameObject);
             }
         }
     }

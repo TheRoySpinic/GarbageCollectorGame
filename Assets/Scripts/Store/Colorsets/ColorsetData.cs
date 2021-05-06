@@ -12,5 +12,6 @@ namespace Store.Colorsets
         public Sprite iconSprite = null;
         public Texture maintTexture = null;
         public int cost = 1;
+        //public bool night = false;
     }
 }

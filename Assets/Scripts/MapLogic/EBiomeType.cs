@@ -18,6 +18,7 @@ namespace Map
         INDUSTRIAL,
         BONUS_1,
         BONUS_2,
-        PREVIEW
+        PREVIEW,
+        START
     }
 }

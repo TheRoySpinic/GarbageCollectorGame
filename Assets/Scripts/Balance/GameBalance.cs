@@ -34,6 +34,9 @@ namespace Balance
         [SerializeField]
         private CarGradeConfig carConfig = new CarGradeConfig();
 
+        [SerializeField]
+        private ColorsetStoreBalance colorsetStoreBalance = new ColorsetStoreBalance();
+
         public override void Init()
         {
 #if !UNITY_EDITOR
@@ -89,12 +92,20 @@ namespace Balance
             return null;
         }
 
+        public static ColorsetStoreBalance GetColorsetStoreBalance()
+        {
+            if (instance != null)
+                return instance.colorsetStoreBalance;
+
+            return null;
+        }
+
 
         private void LoadConfigs()
         {
             if(!loadFromFirebase)
             {
-                LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
+                //LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
                 configReady = true;
                 E_ConfigReady?.Invoke();
                 return;
@@ -105,6 +116,7 @@ namespace Balance
             mapBalance = JsonUtility.FromJson<MapBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("mapBalance").StringValue);
             boostBalance = JsonUtility.FromJson<BoostBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("boostBalance").StringValue);
             carConfig = JsonUtility.FromJson<CarGradeConfig>(FirebaseRemoteConfig.DefaultInstance.GetValue("carConfig").StringValue);
+            colorsetStoreBalance = JsonUtility.FromJson<ColorsetStoreBalance>(FirebaseRemoteConfig.DefaultInstance.GetValue("colorsetStoreBalance").StringValue);
 
             configReady = true;
             E_ConfigReady?.Invoke();

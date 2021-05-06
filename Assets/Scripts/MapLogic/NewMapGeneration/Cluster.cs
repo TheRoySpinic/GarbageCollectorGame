@@ -32,6 +32,7 @@ namespace Map.Generate
         public bool SetActiveIndex(int nextState, int parameter = 0)
         {
             HideLast();
+            ResetParameter();
 
             if (nextState >= 0 && nextState < states.Length && states[nextState] != null && states[nextState].root != null)
             {
@@ -44,8 +45,6 @@ namespace Map.Generate
                 states[nextState].constructEvents?.Invoke();
 
                 currentStateIndex = nextState;
-
-                ResetParameter();
 
                 if(parameter != 0)
                 {

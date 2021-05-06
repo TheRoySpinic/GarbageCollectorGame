@@ -62,6 +62,9 @@ namespace Map.Generate
 
         private void SpawnClusters(MapBalance.SegmentConfig segmentConfig)
         {
+            if (segmentConfig == null || segmentConfig.spawnConfig == null)
+                return;
+
             for (int r = rows.Count > 0 ? rows.Count - 1 : 0;
                 r < segmentConfig.spawnConfig.Length;
                 r++)
@@ -72,10 +75,15 @@ namespace Map.Generate
                 {
                     rows.Add(new ClusterRows());
                 }
+            }
+
+            for (int r = 0; r < segmentConfig.spawnConfig.Length; r++)
+            {
+                LineParameters parameter = Array.Find(lines, (l) => { return r == l.line; });
 
                 for (int i = rows[r].clusters.Count > 0 ? rows[r].clusters.Count : 0;
-                    i < segmentConfig.spawnConfig[r].indexses.Length;
-                    i++)
+                i < segmentConfig.spawnConfig[r].indexses.Length;
+                i++)
                 {
                     Cluster cluster = Instantiate(parameter.clusterPrefab, transform).GetComponent<Cluster>();
                     cluster.transform.localPosition = new Vector3(i * 10, 0, parameter.position);
@@ -93,7 +101,10 @@ namespace Map.Generate
 
         private void PrepareClusters(MapBalance.SegmentConfig segmentConfig)
         {
-            for(int r = 0; r < segmentConfig.spawnConfig.Length; ++r)
+            if (segmentConfig == null || segmentConfig.spawnConfig == null)
+                return;
+
+            for (int r = 0; r < segmentConfig.spawnConfig.Length; ++r)
             {
                 for (int i = 0; i < segmentConfig.spawnConfig[r].indexses.Length; ++i)
                 {
@@ -105,6 +116,18 @@ namespace Map.Generate
                 size = segmentConfig.spawnConfig[0].indexses.Length * clusterSize;
             else
                 size = 0;
+
+            //disable oversize clusters
+            for (int r = 0; r < segmentConfig.spawnConfig.Length; ++r)
+            {
+                if (rows[r].clusters.Count > segmentConfig.spawnConfig[r].indexses.Length)
+                {
+                    for (int i = segmentConfig.spawnConfig[r].indexses.Length; i < rows[r].clusters.Count; ++i)
+                    {
+                        rows[r].clusters[i].SetActiveIndex(-1);
+                    }
+                }
+            }
         }
 
         private void HideAll()

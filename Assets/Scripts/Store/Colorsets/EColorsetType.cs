@@ -11,7 +11,6 @@ namespace Store.Colorsets
         COLD,
         DRY,
         FALL,
-        WINTER,
-        DEFAULT_NIGHT
+        WINTER
     }
 }

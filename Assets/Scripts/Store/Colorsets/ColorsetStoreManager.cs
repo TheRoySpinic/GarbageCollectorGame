@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Base;
+using Balance;
 
 namespace Store.Colorsets
 {
-    public class ColorsetStoreManager : MonoBehaviour
+    public class ColorsetStoreManager : SingletonGen<ColorsetStoreManager>
     {
         private const string PLAYERPREFS_PLAYER_COLORSETS_FIELD = "player_colorsets";
-
-        public static ColorsetStoreManager instance = null;
 
         public static event Action E_PlayerColorsetUpdate;
         public static event Action E_PlayerColorsetsLoaded;
@@ -21,19 +21,25 @@ namespace Store.Colorsets
         [SerializeField]
         private PlayerColorsets playerColorsets = new PlayerColorsets();
 
-        private void Awake()
+        public override void Init()
         {
-            if (instance == null)
-                instance = this;
-            
+            //Setup balance config
+            ColorsetStoreBalance colorsetBalance = GameBalance.GetColorsetStoreBalance();
+
+            foreach(ColorsetData data in colorsets)
+            {
+                ColorsetStoreItem item = Array.Find(colorsetBalance.colorsetStoreItems.ToArray(), (c) => { return c.colorset.Equals(data.colorset); });
+
+                if (item == null)
+                    continue;
+
+                data.cost = item.cost;
+                data.name = item.name;
+            }
+            //-----------
+
             if(LoadPlayerColorsets())
                 E_PlayerColorsetsLoaded?.Invoke();
-        }
-
-        private void OnDestroy()
-        {
-            if (instance.Equals(this))
-                instance = null;
         }
         
         public void StoreButtonClickAction(EColorsetType colorsetType)
