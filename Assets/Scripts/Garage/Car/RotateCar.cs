@@ -14,6 +14,11 @@ namespace Garage.Car
         Vector2 lastPos = new Vector2();
 #endif
 
+        [SerializeField, Range(0, 1f)]
+        private float zoneRange_down = 0.45f;
+        [SerializeField, Range(0, 1f)]
+        private float zoneRange_up = 0.8f;
+
         private Quaternion defaultRotation = new Quaternion();
 
         private void Awake()
@@ -35,7 +40,7 @@ namespace Garage.Car
             {
                 Vector2 touchLocation = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
 
-                if (touchLocation.y < Screen.height * 0.45f || touchLocation.y > Screen.height * 0.75f)
+                if (touchLocation.y < Screen.height * zoneRange_down || touchLocation.y > Screen.height * zoneRange_up)
                 {
                     return;
                 }
