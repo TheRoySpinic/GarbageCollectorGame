@@ -3317,12 +3317,6 @@ MonoBehaviour:
         - 10
         - 20
         - 30
-      - gradeType: 3
-        gradeCost: 0a000000140000001e000000
-        parameterValue:
-        - 1
-        - 1.2
-        - 1.3
       colorsCost: 05000000140000000f000000190000001e0000000a000000
       baseCarHealth: 100
       baseCarSpeed: 1
@@ -3342,12 +3336,6 @@ MonoBehaviour:
         - 10
         - 20
         - 30
-      - gradeType: 3
-        gradeCost: 0a000000140000001e000000
-        parameterValue:
-        - 1
-        - 1.2
-        - 1.3
       colorsCost: 050000000a0000001400000014000000190000001e000000
       baseCarHealth: 100
       baseCarSpeed: 1.5
@@ -3367,16 +3355,12 @@ MonoBehaviour:
         - 10
         - 20
         - 30
-      - gradeType: 3
-        gradeCost: 0a000000140000001e000000
-        parameterValue:
-        - 1
-        - 1.2
-        - 1.3
       colorsCost: 050000000a0000000f00000014000000190000001e000000
       baseCarHealth: 200
       baseCarSpeed: 0.8
       baseCarSize: 10
+  colorsetStoreBalance:
+    colorsetStoreItems: []
 --- !u!4 &1625051562
 Transform:
   m_ObjectHideFlags: 0

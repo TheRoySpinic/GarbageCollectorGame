@@ -46,18 +46,20 @@ namespace Garage.UI
             ClearList();
 
             Instantiate(spacer, content.transform);
-
+            
+            GradeData[] data = GarageManager.instance.GetCarGradeData(GarageManager.instance.GetViewCarType()).grades;
+            
             if (GarageManager.instance.IsOwnedCar(GarageManager.instance.GetViewCarType()))
             {
                 CarGradePlayerData carGrade = GarageManager.instance.GetPlayerCarGrades();
                 foreach (GradeLevel level in carGrade.grades)
                 {
-                    Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(level.gradeType, level.level);
+                    if (Array.Find(data, (d) => { return d.gradeType.Equals(level.gradeType);}) != null)
+                        Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(level.gradeType, level.level);
                 }
             }
             else
             {
-                GradeData[] data = GarageManager.instance.GetCarGradeData(GarageManager.instance.GetViewCarType()).grades;
                 foreach (GradeData grade in data)
                 {
                     Instantiate(slot, content.transform).GetComponent<CarGradeSlot>().SetData(grade.gradeType, 0);
