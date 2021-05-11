@@ -44,11 +44,17 @@ namespace Player
 
         [SerializeField]
         private ECarControlType controlType = ECarControlType.FREE_CONTROL;
+        [SerializeField]
+        private bool useSwipe = true;
 
         [SerializeField]
         private Joystick dynamicJoystic = null;
         [SerializeField]
         private Joystick floatingJoystic = null;
+        [SerializeField]
+        private GameObject buttonsControl = null;
+        [SerializeField]
+        private GameObject swipeControl = null;
 
         private Joystick activeJoystic = null;
 
@@ -81,7 +87,10 @@ namespace Player
                 LoadCarPrefab(GarageManager.instance.GetActiveCarType());
             else
                 GarageManager.E_GarageManagerReady += LoadCar;
-            
+
+            TouchController.OnSwipe -= CheckSwipe;
+            TouchController.OnSwipe += CheckSwipe;
+
             UpdateControlers();
         }
 
@@ -90,6 +99,7 @@ namespace Player
             GarageManager.E_ActiveCarUpdate -= LoadCarPrefab;
             GarageManager.E_GarageManagerReady -= LoadCar;
             GarageManager.E_Ready -= SetCarSpeed;
+            TouchController.OnSwipe -= CheckSwipe;
         }
 
         private void Update()
@@ -97,29 +107,11 @@ namespace Player
             if (!HealthManager.isAlive || !enableInput)
                 return;
 
+
             switch (controlType)
             {
-                case ECarControlType.LINES:
-                    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                        Vector2 touchPosition = Input.touchCount > 0 ? Input.GetTouch(0).position : (Vector2)Input.mousePosition;
-
-                        if (touchPosition.y < Screen.height / 3)
-                        {
-                            if (touchPosition.x < Screen.width / 2)
-                            {
-
-                                StopCoroutine(MoveRight());
-                                StartCoroutine(MoveLeft());
-                            }
-                            else
-                            {
-                                StopCoroutine(MoveLeft());
-                                StartCoroutine(MoveRight());
-                            }
-                        }
-                    }
 #if UNITY_EDITOR
+                case ECarControlType.LINES:
                     if (Input.GetAxis("Horizontal") != 0 && phase == TouchPhase.Canceled)
                     {
                         left = Input.GetAxis("Horizontal") < 0;
@@ -147,9 +139,8 @@ namespace Player
 
                         phase = TouchPhase.Stationary;
                     }
-#endif
                     break;
-
+#endif
                 case ECarControlType.FREE_CONTROL:
                     if (Input.touchCount > 0 || Input.GetMouseButton(0))
                     {
@@ -157,7 +148,7 @@ namespace Player
 
                         if (touchPosition.y < Screen.height / 2)
                         {
-                            targetPos = Mathf.Clamp(touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f), -6.0f, 6.0f); //Не забыть убрать говно
+                            targetPos = Mathf.Clamp(touchPosition.x.Remap(0, Screen.width, 6.0f, -6.0f), -6.0f, 6.0f); //Не забыть убрать. Указывает позицию на экране
                         }
                     }
 
@@ -168,7 +159,7 @@ namespace Player
                             Time.deltaTime * moveSpeed);
                     }
                     break;
-                    
+
                 case ECarControlType.FLOATING_JOYSTIC:
                 case ECarControlType.DYNAMIC_JOYSTIC:
                     if (activeJoystic.Horizontal == 0)
@@ -176,10 +167,34 @@ namespace Player
 
                     float target = (carTransform.position + Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed).z;
 
-                    if(target > -6.0f && target < 6.0f)
+                    if (target > -6.0f && target < 6.0f)
                         carTransform.Translate(Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed);
                     break;
             }
+        }
+
+        public void LineMoveLeft()
+        {
+            if (!HealthManager.isAlive || !enableInput)
+                return;
+
+            if (controlType != ECarControlType.LINES)
+                return;
+
+            StopCoroutine(MoveRight());
+            StartCoroutine(MoveLeft());
+        }
+
+        public void LineMoveRight()
+        {
+            if (!HealthManager.isAlive || !enableInput)
+                return;
+
+            if (controlType != ECarControlType.LINES)
+                return;
+
+            StopCoroutine(MoveLeft());
+            StartCoroutine(MoveRight());
         }
 
         public CarMesh GetCarMesh()
@@ -190,6 +205,13 @@ namespace Player
         public void SetControlType(ECarControlType type)
         {
             controlType = type;
+
+            UpdateControlers();
+        }
+
+        public void UseSwipeLineControl(bool use)
+        {
+            useSwipe = use;
 
             UpdateControlers();
         }
@@ -222,13 +244,37 @@ namespace Player
         }
 
 
+        private void CheckSwipe(Vector2Int vector)
+        {
+            if(vector.x > 0)
+            {
+                LineMoveRight();
+            }
+            else if(vector.x < 0)
+            {
+                LineMoveLeft();
+            }
+        }
+
         private void UpdateControlers()
         {
             dynamicJoystic.gameObject.SetActive(false);
             floatingJoystic.gameObject.SetActive(false);
+            buttonsControl.SetActive(false);
+            swipeControl.SetActive(false);
 
             switch (controlType)
             {
+                case ECarControlType.LINES:
+                    if (useSwipe)
+                    {
+                        swipeControl.SetActive(true);
+                    }
+                    else
+                    {
+                        buttonsControl.SetActive(true);
+                    }
+                    break;
                 case ECarControlType.FLOATING_JOYSTIC:
                     floatingJoystic.gameObject.SetActive(true);
                     activeJoystic = floatingJoystic;
