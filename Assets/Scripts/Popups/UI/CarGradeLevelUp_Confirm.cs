@@ -1,5 +1,6 @@
 ﻿using Garage;
 using Store;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -39,7 +40,7 @@ namespace Popups
             modifierName.text = GarageManager.instance.GetGradeModifyerName(gradeType);
 
             modifierCount.text = GarageManager.instance.GetGradeValue(gradeType).ToString();
-            modifierCountAdd.text = "+" + (GarageManager.instance.GetGradeValue(gradeType, GarageManager.instance.GetCurentGradeLevel(gradeType) + 1) - GarageManager.instance.GetGradeValue(gradeType));
+            modifierCountAdd.text = "+" + Math.Round(GarageManager.instance.GetGradeValue(gradeType, GarageManager.instance.GetCurentGradeLevel(gradeType) + 1) - GarageManager.instance.GetGradeValue(gradeType), 2);
 
             icon.sprite = GarageManager.instance.GetGradeIcon(gradeType);
 
