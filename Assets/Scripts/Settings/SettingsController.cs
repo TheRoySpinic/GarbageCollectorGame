@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsController : MonoBehaviour
+namespace Settings
 {
-    private void Awake()
+    public class SettingsController : MonoBehaviour
     {
-        QualitySettings.vSyncCount = 1;
-        //QualitySettings.maxQueuedFrames = 60;
+        private void Awake()
+        {
+            QualitySettings.vSyncCount = 1;
+            //QualitySettings.maxQueuedFrames = 60;
+        }
     }
 }
