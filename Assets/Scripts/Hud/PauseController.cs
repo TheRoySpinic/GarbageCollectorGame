@@ -11,6 +11,9 @@ namespace HUD
     public class PauseController : MonoBehaviour
     {
         [SerializeField]
+        private MenuManager menuManager = null;
+
+        [SerializeField]
         private GameObject pausePopup = null;
 
         [SerializeField]
@@ -30,6 +33,12 @@ namespace HUD
             pausePopup.SetActive(false);
 
             StartCoroutine(SmoothTimeScale());
+        }
+
+        public void GoToMenu()
+        {
+            Time.timeScale = 1;
+            menuManager.OpenMenu();
         }
 
         private IEnumerator SmoothTimeScale()

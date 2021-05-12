@@ -10824,6 +10824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175e8719db35f96478d6ad10029600fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuManager: {fileID: 1477606181}
   pausePopup: {fileID: 8107092246666346046}
   distance: {fileID: 8107092246587580170}
 --- !u!4 &1483912228
@@ -17126,9 +17127,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1477606181}
-        m_TargetAssemblyTypeName: HUD.MenuManager, Assembly-CSharp
-        m_MethodName: OpenMenu
+      - m_Target: {fileID: 1483912227}
+        m_TargetAssemblyTypeName: HUD.PauseController, Assembly-CSharp
+        m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
