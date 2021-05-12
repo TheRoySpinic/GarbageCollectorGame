@@ -1665,7 +1665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.263, y: 609}
+  m_AnchoredPosition: {x: -0.2630005, y: 609}
   m_SizeDelta: {x: -398.49805, y: -1838.2871}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234520477
@@ -16577,9 +16577,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1483912227}
-        m_TargetAssemblyTypeName: HUD.PauseController, Assembly-CSharp
-        m_MethodName: ToMainMenu
+      - m_Target: {fileID: 1477606181}
+        m_TargetAssemblyTypeName: HUD.MenuManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17746,7 +17746,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1483912227}
         m_TargetAssemblyTypeName: HUD.PauseController, Assembly-CSharp
-        m_MethodName: GameUnPause
+        m_MethodName: GameUnpause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

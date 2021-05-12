@@ -25,18 +25,11 @@ namespace HUD
             Time.timeScale = 0;
         }
 
-        public void GameUnPause()
+        public void GameUnpause()
         {
             pausePopup.SetActive(false);
 
             StartCoroutine(SmoothTimeScale());
-        }
-
-        public void ToMainMenu()
-        {
-            pausePopup.SetActive(false);
-            Time.timeScale = 1;
-            ScreensManager.ShowMenuHud();
         }
 
         private IEnumerator SmoothTimeScale()

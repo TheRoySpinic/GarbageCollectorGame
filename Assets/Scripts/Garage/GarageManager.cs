@@ -248,7 +248,7 @@ namespace Garage
 
             GradeData grade = Array.Find(gradeConfig.grades, (g) => { return g.gradeType.Equals(gradeType); });
 
-            if (grade.parameterValue.Length < level)
+            if (grade.parameterValue.Length > level)
                 return grade.parameterValue[level];
             else
                 return grade.parameterValue[grade.parameterValue.Length - 1];
