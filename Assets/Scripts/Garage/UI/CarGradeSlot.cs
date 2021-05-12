@@ -44,7 +44,7 @@ namespace Garage.UI
                 cost.color = TextFormater.GetCostColor(true);
             }
 
-            gradeValue.text = "+" + GarageManager.instance.GetGradeValue(gradeType, level + 1).ToString();
+            gradeValue.text = "+" + Math.Round(GarageManager.instance.GetGradeValue(gradeType, GarageManager.instance.GetCurentGradeLevel(gradeType) + 1) - GarageManager.instance.GetGradeValue(gradeType), 2);
             gradeLevel.text = (level + 1) + " LVL";
         }
 

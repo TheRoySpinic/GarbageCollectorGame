@@ -39,7 +39,7 @@ namespace Popups
             modifierName.text = GarageManager.instance.GetGradeModifyerName(gradeType);
 
             modifierCount.text = GarageManager.instance.GetGradeValue(gradeType).ToString();
-            modifierCountAdd.text = "+" + (GarageManager.instance.GetGradeValue(gradeType, GarageManager.instance.GetCurentGradeLevel(gradeType)) - GarageManager.instance.GetGradeValue(gradeType));
+            modifierCountAdd.text = "+" + (GarageManager.instance.GetGradeValue(gradeType, GarageManager.instance.GetCurentGradeLevel(gradeType) + 1) - GarageManager.instance.GetGradeValue(gradeType));
 
             icon.sprite = GarageManager.instance.GetGradeIcon(gradeType);
 
