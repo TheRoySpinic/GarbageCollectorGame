@@ -20,8 +20,20 @@ namespace Map.Tools
         public void Respawn()
         {
             Clear();
-
+            
             Instantiate(prefab, content);
+        }
+
+        public void Respawn(float change = 1f)
+        {
+            Clear();
+
+            float val = UnityEngine.Random.Range(0, 1f);
+
+            if(val < change)
+                Instantiate(prefab, content);
+
+            //Debug.Log(string.Format("Spawn req val = {0}, change = {1}", val, change));
         }
 
         public void Clear()

@@ -167,7 +167,7 @@ namespace Player
 
                     float target = (carTransform.position + Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed).z;
 
-                    if (target > -6.0f && target < 6.0f)
+                    if (target > -6.0f && target < 6.0f) //Не забыть убрать. Указывает позицию на экране
                         carTransform.Translate(Vector3.forward * Time.deltaTime * -activeJoystic.Horizontal * moveSpeed);
                     break;
             }
@@ -317,7 +317,7 @@ namespace Player
 
         private IEnumerator MoveLeft()
         {
-            if(currentLine > 0 && canMoveLeft)
+            if(currentLine > 0 /*&& canMoveLeft*/)
             {
                 canMoveRight = false;
                 Vector3 target = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);
@@ -337,7 +337,7 @@ namespace Player
 
         private IEnumerator MoveRight()
         {
-            if (currentLine < MapManager.instance.lineShifts.Length - 1 && canMoveRight)
+            if (currentLine < MapManager.instance.lineShifts.Length - 1 /*&& canMoveRight*/)
             {
                 canMoveLeft = false;
                 Vector3 target = new Vector3(carTransform.position.x, carTransform.position.y, MapManager.instance.lineShifts[currentLine]);

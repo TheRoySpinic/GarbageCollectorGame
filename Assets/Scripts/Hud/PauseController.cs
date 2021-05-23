@@ -39,6 +39,7 @@ namespace HUD
         {
             Time.timeScale = 1;
             menuManager.OpenMenu();
+            pausePopup.SetActive(false);
         }
 
         private IEnumerator SmoothTimeScale()

@@ -11,8 +11,6 @@ namespace HUD
         [SerializeField]
         private TMP_Text text = null;
 
-        private int maxHealth = 100;
-
         private void Awake()
         {
             HealthManager.E_UpdateHealth -= UpdateHealth;
@@ -28,7 +26,7 @@ namespace HUD
 
         private void UpdateHealth(int newHealth)
         {
-            text.text = newHealth + "/" + maxHealth;
+            text.text = Mathf.Max(newHealth , 0) + "/" + HealthManager.maxHealth;
         }
     }
 }
