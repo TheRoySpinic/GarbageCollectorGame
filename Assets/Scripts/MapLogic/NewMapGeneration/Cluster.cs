@@ -36,13 +36,21 @@ namespace Map.Generate
 
             if (nextState >= 0 && nextState < states.Length && states[nextState] != null && states[nextState].root != null)
             {
-                if(clusterType.Equals(EClusterType.ROAD) && lineIndex == MapGenerator.instance.centerLineIndex)
+                if(clusterType.Equals(EClusterType.ROAD) && lineIndex == (MapGenerator.instance == null ? 4 : MapGenerator.instance.centerLineIndex))
                 {
                     states[0].root.SetActive(true);
                 }
 
                 states[nextState].root.SetActive(true);
-                states[nextState].constructEvents?.Invoke();
+
+                try
+                {
+                    states[nextState].constructEvents?.Invoke();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogError(e.Message);
+                }
 
                 currentStateIndex = nextState;
 
@@ -55,6 +63,11 @@ namespace Map.Generate
             }
             else
             {
+                if (parameter != 0)
+                {
+                    SetupParameter(parameter);
+                }
+
                 return false;
             }
         }
@@ -103,7 +116,7 @@ namespace Map.Generate
 
             states[currentStateIndex].destructEvents?.Invoke();
 
-            if (clusterType.Equals(EClusterType.ROAD) && lineIndex == MapGenerator.instance.centerLineIndex)
+            if (clusterType.Equals(EClusterType.ROAD) && lineIndex == (MapGenerator.instance == null ? 4 : MapGenerator.instance.centerLineIndex))
             {
                 states[0].root.SetActive(false);
             }

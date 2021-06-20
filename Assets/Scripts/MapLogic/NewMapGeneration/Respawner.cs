@@ -21,7 +21,8 @@ namespace Map.Tools
         {
             Clear();
             
-            Instantiate(prefab, content);
+            if(prefab != null)
+                Instantiate(prefab, content);
         }
 
         public void Respawn(float change = 1f)

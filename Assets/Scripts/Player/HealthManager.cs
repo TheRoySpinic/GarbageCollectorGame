@@ -19,6 +19,9 @@ namespace Player
         [SerializeField]
         private bool isTakeDamage = true;
 
+        [SerializeField]
+        private AudioSource audioSource = null;
+
         public static int health { get; private set; } = 100;
         public static int maxHealth { get; private set; } = 100;
 
@@ -49,6 +52,13 @@ namespace Player
                 return;
             }
             health -= damage;
+
+            if(audioSource != null)
+            {
+                audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+                audioSource.Play();
+            }
+
             E_Damage?.Invoke();
             E_UpdateHealth?.Invoke(health);
 

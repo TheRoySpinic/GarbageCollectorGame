@@ -52,14 +52,33 @@ namespace Map.Generate
         private int biomeSegmentCounts = 0;
 
 
+#if UNITY_EDITOR
+        [SerializeField]
+        private bool isDebugMode = false;
+#endif
+
         public override void Init()
         {
             tr = transform;
-            mapBalance = GameBalance.GetMapBalance();
+
+            GameBalance.E_ConfigReady -= LoadBalance;
+
+            if (mapBalance == null)
+            {
+                GameBalance.E_ConfigReady += LoadBalance;
+            }
+            else
+            {
+                LoadBalance();
+            }
         }
 
         private void Update()
         {
+#if UNITY_EDITOR
+            if (isDebugMode)
+                return;
+#endif
             if(maxBiomeSize != 0 && biomeSegmentCounts > maxBiomeSize)
             {
                 CheckNextBiome();
@@ -115,6 +134,9 @@ namespace Map.Generate
             }
             else
             {
+                if (instance.mapBalance == null)
+                    instance.LoadBalance();
+
                 instance._cachedBiome = Array.Find(instance.mapBalance.biomes, (b) => { return b.biomeType.Equals(instance.currentBiome); });
                 return instance._cachedBiome;
             }
@@ -138,6 +160,11 @@ namespace Map.Generate
             biomeSegmentCounts = 0;
         }
 
+
+        private void LoadBalance()
+        {
+            mapBalance = GameBalance.GetMapBalance();
+        }
 
         private void CheckNextBiome()
         {
@@ -164,9 +191,9 @@ namespace Map.Generate
                 {
                     bool valideBiome = true;
 
-                    for (int i = lastBiomes.Count - 2; i >= 0; --i)
+                    for (int i = lastBiomes.Count - 1; i >= 0; --i)
                     {
-                        if(lastBiomes[i].Equals(currentBiome))
+                        if(lastBiomes[i].Equals(newBiome))
                         {
                             valideBiome = false;
                             break;
@@ -195,7 +222,7 @@ namespace Map.Generate
 
         private void SpawnTransition()
         {
-            MapBalance.TransitionConfig transitionConfig = Array.Find(cachedBiome.transitions, (t) => { return t.previousBiome.Equals(lastBiomes[lastBiomes.Count - 1]); });
+            MapBalance.TransitionConfig transitionConfig = Array.Find(cachedBiome.transitions, (t) => { return t.previousBiome.Equals(lastBiomes[lastBiomes.Count - 2]); });
 
             if(transitionConfig != null && transitionConfig.useTransition)
             {

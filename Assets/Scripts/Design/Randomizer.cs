@@ -20,6 +20,7 @@ namespace Design
             Randomize();
         }
 
+        [ContextMenu("Randomize")]
         public void Randomize()
         {
             while(content.transform.childCount > 0)

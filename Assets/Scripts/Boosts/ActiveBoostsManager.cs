@@ -53,6 +53,8 @@ namespace Boosts
 
         public void AddBoost(EBoostType boostType)
         {
+            Debug.Log("Add boost " + boostType.ToString());
+
             if (balance == null)
                 balance = GameBalance.GetBoostBalance();
 

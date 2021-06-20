@@ -4,6 +4,7 @@ using Boosts;
 using HUD;
 using Map;
 using Map.Generate;
+using Music;
 using Player;
 using Popups;
 using System;
@@ -59,12 +60,15 @@ namespace Arrival
             HealthManager.instance.SetIsTakeDamage(false);
             MovePlayerCar.SetSpeed(GameBalance.GetPlayerBalance().previewSpeed);
             MovePlayerCar.SetZeroPosition();
+
+            MusicManager.instance?.SetupMenu();
         }
 
 
         private IEnumerator CStart()
         {
             ShowEffect.Blackout();
+            MusicManager.instance?.SetupGame();
             yield return new WaitForSeconds(0.3f);
 
             menuCamera.gameObject.SetActive(false);

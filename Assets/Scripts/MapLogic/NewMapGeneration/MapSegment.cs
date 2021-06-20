@@ -20,14 +20,11 @@ namespace Map.Generate
 
         private Transform tr = null;
 
-        private MapBalance mapBalance = null;
-
         private float clusterSize = 10;
 
         private void Awake()
         {
             tr = transform;
-            mapBalance = GameBalance.GetMapBalance();
         }
 
         public void NextSegment(int segmentIndex)

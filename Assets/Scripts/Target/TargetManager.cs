@@ -24,6 +24,9 @@ namespace Target
 
 
         [SerializeField]
+        private AudioSource audioSource = null;
+
+        [SerializeField]
         private GarbageData[] garbageData = { new GarbageData(), new GarbageData() {garbageType = GarbageType.COMMON}, new GarbageData() { garbageType = GarbageType.RARE} };
 
         public int allCount { get; private set; } = 0;
@@ -58,6 +61,13 @@ namespace Target
                 ++garbageCount;
                 AddAllCount();
                 garbage.HideEffect();
+
+                if(audioSource != null)
+                {
+                    audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+                    audioSource.Play();
+                }
+
                 E_CollectGarbage?.Invoke(garbage.garbageType);
                 E_UpdateGarbageContains?.Invoke();
             }

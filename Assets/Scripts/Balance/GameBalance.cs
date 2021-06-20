@@ -45,6 +45,11 @@ namespace Balance
 
             FirebaseRemouteConfigInit.E_FetchRemouteConfig_Success -= LoadConfigs;
             FirebaseRemouteConfigInit.E_FetchRemouteConfig_Success += LoadConfigs;
+
+#if UNITY_EDITOR
+            if(!loadFromFirebase)
+                LoadConfigs();
+#endif
         }
 
         public override void Destroy()
@@ -105,7 +110,7 @@ namespace Balance
         {
             if(!loadFromFirebase)
             {
-                //LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
+                LoadBalanceFromFile<MapBalance>(out mapBalance, "Assets/Editor/Configs/mapBalance.json");
                 configReady = true;
                 E_ConfigReady?.Invoke();
                 return;
